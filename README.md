@@ -1,3 +1,2 @@
-# triagem-sistema-de-saude
-Projeto de TP1
-Drive conceitual de um UML: https://drive.google.com/drive/folders/1YWZrWRbz1m90O18M-cc22rSpLuWioowO
+# LinkHealth
+Consiste em um sistema para venda e entrega de produtos farmaceuticos.
