@@ -17,6 +17,7 @@ public class FormaDePagamento {
     
     public boolean checaSenha(boolean debitoOuCredito, int inSenha){
         
+        // checa se a senha e a forma de pagamento estão corretas
         if((debitoOuCredito && credito) || (!debitoOuCredito && debito)){
             
             return(this.senha == inSenha);
