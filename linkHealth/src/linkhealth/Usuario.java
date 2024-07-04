@@ -7,9 +7,9 @@ public class Usuario {
     //Coisas comuns a todos os usuarios da aplicação
     
     protected String nome, senha;
-    protected ArrayList<String> enderco;
     protected int id;
     protected ArrayList<String> endereco;
+    protected ArrayList<FormaDePagamento> formasDePagamento;
 
     public Usuario() {
     }
@@ -31,11 +31,11 @@ public class Usuario {
     }
 
     public ArrayList<String> getEnderco() {
-        return enderco;
+        return endereco;
     }
 
-    public void setEnderco(ArrayList<String> enderco) {
-        this.enderco = enderco;
+    public void setEnderco(ArrayList<String> endereco) {
+        this.endereco = endereco;
     }
 
     public int getId() {
@@ -60,7 +60,28 @@ public class Usuario {
         
         //Como o usuario pode ter a necessidade de apresentar mais de um endereço
         //Ele podera cadastrar um novo enderço
-        
         this.endereco.add(endereco);
+        
+        //alterar no gerenciador de arquivos tambem
+    }
+    
+    public void cadastraFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
+        
+        //cadastra uma forma de Pagamento para o usuario
+        
+        formasDePagamento = new ArrayList<FormaDePagamento>();
+        
+        FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
+        
+        formasDePagamento.add(formaDePagamento);
+    }
+    
+    public void adicionaFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
+        
+        //adiciona uma nova forma de Pagamento para o usuario
+        
+        FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
+        
+        formasDePagamento.add(formaDePagamento);
     }
 }
