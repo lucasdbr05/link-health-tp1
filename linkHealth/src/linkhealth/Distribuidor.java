@@ -9,7 +9,15 @@ public class Distribuidor extends Usuario {
     private boolean aceitaPessoaFisica;
     private HashMap<Produto, Double> precos = new HashMap<>();
 
-    public Distribuidor(String nome, ArrayList<String> endereco, String senha,Produto[] _produtos,String _cnpj, boolean _aceitaPessoaFisica) {
+    public Distribuidor(
+            String _nome, 
+            ArrayList<String> endereco, 
+            String _senha,
+            Produto[] _produtos,
+            String _cnpj,
+            boolean _aceitaPessoaFisica
+    ) {
+        super(_nome, _senha);
         this.cnpj = _cnpj;
         this.aceitaPessoaFisica = _aceitaPessoaFisica;
         this.produtos = _produtos;
