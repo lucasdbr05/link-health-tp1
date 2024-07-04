@@ -5,8 +5,17 @@ public class Produto {
        private Integer id;
        private Double precoDeCusto;
        private boolean exigeReceita;
+       private Integer quantidade; // this needs improvements :)
 
-    public Produto(String nome, Integer id, Double precoDeCusto, boolean exigeReceita) {
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public Produto(String nome, Integer id, Double precoDeCusto, boolean exigeReceita, Integer estoque) {
         this.nome = nome;
         this.id = id;
         this.precoDeCusto = precoDeCusto;
