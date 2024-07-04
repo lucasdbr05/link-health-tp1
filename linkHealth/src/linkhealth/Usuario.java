@@ -11,7 +11,11 @@ public class Usuario {
     protected ArrayList<String> endereco;
     protected ArrayList<FormaDePagamento> formasDePagamento;
 
-    public Usuario() {
+    public Usuario(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
+        this.endereco = new ArrayList<String>();
+        this.formasDePagamento = new ArrayList<FormaDePagamento>();
     }
 
     public String getNome() {
@@ -45,16 +49,6 @@ public class Usuario {
     public void setId(int id) {
         this.id = id;
     }
-   
-    public void cadastraUsuario(String nome, String senha, String endereco){
-        
-        // acessar proximo id a partir do bd
-        
-        this.nome = nome;
-        this.senha = senha;
-        this.endereco = new ArrayList<String>();
-        this.endereco.add(endereco);
-    }
     
     public void cadastraNewEndereco(String endereco){
         
@@ -67,19 +61,7 @@ public class Usuario {
     
     public void cadastraFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
         
-        //cadastra uma forma de Pagamento para o usuario
-        
-        formasDePagamento = new ArrayList<FormaDePagamento>();
-        
-        FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
-        
-        formasDePagamento.add(formaDePagamento);
-    }
-    
-    public void adicionaFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
-        
-        //adiciona uma nova forma de Pagamento para o usuario
-        
+        //cadastra uma nova forma de Pagamento para o usuario        
         FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
         
         formasDePagamento.add(formaDePagamento);

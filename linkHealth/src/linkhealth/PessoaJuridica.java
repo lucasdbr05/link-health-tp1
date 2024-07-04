@@ -5,7 +5,12 @@ public class PessoaJuridica extends Usuario {
     private String cnpj;
     private boolean hospital = false;
 
-    public PessoaJuridica() {
+    public PessoaJuridica(String _nome, String _senha, String _cnpj, boolean _hospital) {
+        
+        super(_nome, _senha);
+        
+        this.cnpj = _cnpj;
+        this.hospital = _hospital;
     }
 
     public String getCnpj() {
@@ -21,13 +26,6 @@ public class PessoaJuridica extends Usuario {
     }
 
     public void setHospital(boolean hospital) {
-        this.hospital = hospital;
-    }
-    
-    public void cadastraPessoaJuridica(String inCnpj, boolean hospital){
-        
-        //Cadastra as informações de uma pessoa juridica no sistema
-        this.cnpj = inCnpj;
         this.hospital = hospital;
     }
 }
