@@ -49,7 +49,7 @@ public class Compra {
     
     public ArrayList<Map.Entry<Produto, Integer>> checaProdutos(){
         
-        //tratar o codigo do produto antes de chamar o checaProdutos;
+        //tratar o codigo da compra antes de chamar o checaProdutos;
         
         ArrayList<Map.Entry<Produto, Integer>> produtos = new ArrayList<Map.Entry<Produto, Integer>>();
         
