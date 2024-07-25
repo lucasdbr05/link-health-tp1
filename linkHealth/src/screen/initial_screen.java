@@ -43,7 +43,7 @@ public class initial_screen extends javax.swing.JFrame {
         jLabel2.setText("jLabel2");
 
         btnSignUp.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnSignUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/register_internet_direction_web_right_button_enter_arrow_login_icon_210831.png"))); // NOI18N
+        btnSignUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-up_icon-icons.com_52416.png"))); // NOI18N
         btnSignUp.setText("Cadastrar");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
