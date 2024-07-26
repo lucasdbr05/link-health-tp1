@@ -6,13 +6,13 @@ public class PessoaFisica extends Usuario{
     private int idade;
     private boolean receita = false;
     
-    public PessoaFisica(String _nome, String _senha, String _cpf, int _idade, boolean _receita)
+    public PessoaFisica(String _nome, String _senha, String _cpf, int _idade)
     {
         
         super(_nome, _senha);
         this.cpf = _cpf;
         this.idade = _idade;
-        this.receita = _receita;
+        //Acho q deveriamos tratar a receita por compra
     }
     
     public void setCpf(String cpf)

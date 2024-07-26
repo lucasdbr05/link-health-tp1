@@ -1,36 +1,39 @@
-package linkhealth;
+package classes;
 import java.util.HashMap;
 import java.util.ArrayList;
+import linkhealth.Produto;
+import linkhealth.Produto;
+import linkhealth.Usuario;
+import linkhealth.Usuario;
 
 public class Distribuidor extends Usuario {
     private String cnpj;
-    private Produto[] produtos;
+    private ArrayList<Produto> produtos;
     private HashMap<Produto, Integer> estoque = new HashMap<>();
     private boolean aceitaPessoaFisica;
     private HashMap<Produto, Double> precos = new HashMap<>();
 
     public Distribuidor(
             String _nome, 
-            ArrayList<String> endereco, 
             String _senha,
-            Produto[] _produtos,
             String _cnpj,
             boolean _aceitaPessoaFisica
     ) {
         super(_nome, _senha);
         this.cnpj = _cnpj;
         this.aceitaPessoaFisica = _aceitaPessoaFisica;
-        this.produtos = _produtos;
+        this.produtos = new ArrayList<Produto>();
+        // Fazer o cadastro primeiro depois registrar os produtos
         this.estoque = buildEstoque();
         this.precos = buildPrecos();
         
     }
 
-    public void setProdutos(Produto[] produtos) {
+    public void setProdutos(ArrayList<Produto> produtos) {
         this.produtos = produtos;
     }
 
-    public Produto[] getProdutos() {
+    public ArrayList<Produto> getProdutos() {
         return produtos;
     }
 
@@ -60,16 +63,16 @@ public class Distribuidor extends Usuario {
 
     public HashMap<Produto, Integer> buildEstoque() {
         HashMap<Produto, Integer> estoqueMap = new HashMap<>();
-        for (int i = 0; i < this.produtos.length; i ++) {
-            estoqueMap.put(this.produtos[i], this.produtos[i].getQuantidade());
+        for (int i = 0; i < this.produtos.size(); i ++) {
+            estoqueMap.put(this.produtos.get(i), this.produtos.get(i).getQuantidade());
         }
         return estoqueMap;
     }
     
     public HashMap<Produto, Double> buildPrecos() {
         HashMap<Produto, Double> precosMap = new HashMap<>();
-        for (int i = 0; i < this.produtos.length; i ++) {
-            precosMap.put(this.produtos[i], this.produtos[i].getQuantidade()*this.produtos[i].getPrecoDeCusto());
+        for (int i = 0; i < this.produtos.size(); i ++) {
+            precosMap.put(this.produtos.get(i), this.produtos.get(i).getQuantidade()*this.produtos.get(i).getPrecoDeCusto());
         }
         return precosMap;
     }

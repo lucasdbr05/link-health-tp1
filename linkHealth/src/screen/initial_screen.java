@@ -5,6 +5,7 @@
 package linkhealth.screen;
 
 import javax.swing.JFrame;
+import screen.telaDeCadastro;
 import screen.telaDeLogin;
 
 /**
@@ -114,6 +115,8 @@ public class initial_screen extends javax.swing.JFrame {
 
     private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
         // TODO add your handling code here:
+        
+        new telaDeCadastro().setVisible(true);
     }//GEN-LAST:event_btnSignUpMouseClicked
 
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
