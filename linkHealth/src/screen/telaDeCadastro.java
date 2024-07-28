@@ -75,6 +75,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastre se para usar o LinkHealth");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
 
         jTabbedPane1.setBackground(new java.awt.Color(149, 236, 236));
         jTabbedPane1.setForeground(new java.awt.Color(0, 102, 102));
