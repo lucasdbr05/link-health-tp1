@@ -19,7 +19,7 @@ public class Compra {
     private boolean entregaOuRetirada;
     private Carrinho carrinhoIni;
 
-    public Compra(Status status, boolean entregaOuRetirada, HashMap<Produto, Integer> inPacote Carrinho carrinhoIni) {
+    public Compra(Status status, boolean entregaOuRetirada, HashMap<Produto, Integer> inPacote, Carrinho carrinhoIni) {
         
         //o codigo de status é gerado aleatoriamente
         
