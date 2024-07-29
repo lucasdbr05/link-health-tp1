@@ -17,10 +17,17 @@ public class Carrinho {
     
     private double total;
     private Usuario user;
+<<<<<<< HEAD
    
     public Carrinho(Usuario _user, int _id)
     {
         user = _user;     
+=======
+
+    public Carrinho(Usuario _user)
+    {
+        user = _user;
+>>>>>>> 4fe4ff952c012c8f8d933f576e73aab0588ffff8
         produtosDesejados = new HashMap<>();
         total = 0;
     }
