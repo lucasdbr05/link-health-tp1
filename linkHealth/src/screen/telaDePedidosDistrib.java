@@ -40,6 +40,7 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
 
         jScrollPane1.setBackground(new java.awt.Color(78, 171, 176));
+        jScrollPane1.setForeground(new java.awt.Color(0, 102, 102));
         jScrollPane1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
 
         tblPedidos.setBackground(new java.awt.Color(78, 171, 176));
@@ -50,14 +51,14 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome do Cliente", "Status", "Entrega ou Retirada", "Quantidade de Produtos", "Valor Total"
+                "Nome do Cliente", "ID", "Status", "Entrega ou Retirada", "Quantidade de Produtos", "Valor Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -78,6 +79,7 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
             tblPedidos.getColumnModel().getColumn(2).setResizable(false);
             tblPedidos.getColumnModel().getColumn(3).setResizable(false);
             tblPedidos.getColumnModel().getColumn(4).setResizable(false);
+            tblPedidos.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPanel1.setBackground(new java.awt.Color(78, 171, 176));

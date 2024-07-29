@@ -15,12 +15,10 @@ public class Carrinho {
     private HashMap<Produto, Double> produtosDesejados;
     private double total;
     private Usuario user;
-    private int id;
-    
-    public Carrinho(Usuario _user, int _id)
+
+    public Carrinho(Usuario _user)
     {
         user = _user;
-        id = _id;
         produtosDesejados = new HashMap<>();
         total = 0;
     }
