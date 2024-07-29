@@ -13,13 +13,14 @@ enum Status{
 
 public class Compra {
     
+    private int id;
     private Status status;
     private int codigoStatus;
     private HashMap<Produto, Integer> pacote;
     private boolean entregaOuRetirada;
     private Carrinho carrinhoIni;
 
-    public Compra(Status status, boolean entregaOuRetirada, HashMap<Produto, Integer> inPacote, Carrinho carrinhoIni) {
+    public Compra(Status status, boolean entregaOuRetirada, HashMap<Produto, Integer> inPacote, Carrinho carrinhoIni, int _id) {
         
         //o codigo de status é gerado aleatoriamente
         
@@ -27,6 +28,8 @@ public class Compra {
         this.entregaOuRetirada = entregaOuRetirada;
         this.carrinhoIni = carrinhoIni;
         this.pacote = inPacote; 
+        this.id = _id;
+        
     }
     
     public String checaStatus(int inCodigo){

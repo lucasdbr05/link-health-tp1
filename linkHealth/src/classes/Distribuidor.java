@@ -2,7 +2,6 @@ package classes;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-
 public class Distribuidor extends Usuario {
     private String cnpj;
     private ArrayList<Produto> produtos;
