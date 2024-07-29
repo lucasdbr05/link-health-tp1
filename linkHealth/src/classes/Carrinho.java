@@ -17,27 +17,31 @@ public class Carrinho {
     
     private double total;
     private Usuario user;
-<<<<<<< HEAD
-   
-    public Carrinho(Usuario _user, int _id)
-    {
-        user = _user;     
-=======
 
+   
     public Carrinho(Usuario _user)
     {
         user = _user;
->>>>>>> 4fe4ff952c012c8f8d933f576e73aab0588ffff8
+
         produtosDesejados = new HashMap<>();
         total = 0;
     }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, int _quantidade)
     {
         double _preco = _distribuidor.getPrecos().get(_produto); 
         produtosDesejados.put(_produto,_preco );
         total += _preco;
-        quantidade.merge(_produto, 1, (a,b) -> a + b);
+        
+        
+        if(quantidade.get(_produto) != null) quantidade.put(_produto, 1);
+        else
+        {
+            int v = quantidade.get(_produto);
+            quantidade.remove(_produto);
+            v += 1;
+            quantidade.put(_produto, v);
+        }
     }
     public void carrinhoRemove(Produto _produto, Distribuidor _distribuidor)
     {
@@ -46,7 +50,7 @@ public class Carrinho {
         total -= _preco;
         int v = quantidade.get(_produto);
         quantidade.remove(_produto);
-        v += 1;
+        v -= 1;
         quantidade.put(_produto, v);
     }
  
