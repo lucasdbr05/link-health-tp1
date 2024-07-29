@@ -1,4 +1,4 @@
-package linkhealth;
+package classes;
 
 public class PessoaJuridica extends Usuario {
 

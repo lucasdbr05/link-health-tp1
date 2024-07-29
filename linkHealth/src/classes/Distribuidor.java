@@ -1,10 +1,7 @@
 package classes;
 import java.util.HashMap;
 import java.util.ArrayList;
-import linkhealth.Produto;
-import linkhealth.Produto;
-import linkhealth.Usuario;
-import linkhealth.Usuario;
+
 
 public class Distribuidor extends Usuario {
     private String cnpj;
