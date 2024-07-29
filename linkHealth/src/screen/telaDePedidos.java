@@ -28,17 +28,17 @@ public class telaDePedidos extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPedidos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Seus Pedidos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 14), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(78, 171, 176));
-        jTable1.setForeground(new java.awt.Color(0, 102, 102));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPedidos.setAutoCreateRowSorter(true);
+        tblPedidos.setBackground(new java.awt.Color(78, 171, 176));
+        tblPedidos.setForeground(new java.awt.Color(0, 102, 102));
+        tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,7 +49,7 @@ public class telaDePedidos extends javax.swing.JFrame {
                 "Id", "Produtos", "Preço", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPedidos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -59,9 +59,9 @@ public class telaDePedidos extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,6 +116,6 @@ public class telaDePedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
 }
