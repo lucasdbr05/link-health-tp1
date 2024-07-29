@@ -22,7 +22,6 @@ public class Carrinho {
     public Carrinho(Usuario _user)
     {
         user = _user;
-
         produtosDesejados = new HashMap<>();
         total = 0;
     }
