@@ -28,4 +28,10 @@ public class PessoaJuridica extends Usuario {
     public void setHospital(boolean hospital) {
         this.hospital = hospital;
     }
+    
+    @Override
+    public void mostrarDadosUsuario()
+    {
+        System.out.println("Nome: " + nome + "\nCnpj: " + cnpj);
+    }
 }

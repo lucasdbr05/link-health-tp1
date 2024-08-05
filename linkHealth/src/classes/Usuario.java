@@ -2,7 +2,7 @@ package classes;
 
 import java.util.ArrayList;
 
-public class Usuario {
+public abstract class Usuario {
     
     //Coisas comuns a todos os usuarios da aplicação
     
