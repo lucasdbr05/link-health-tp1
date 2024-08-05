@@ -30,8 +30,8 @@ public class PessoaJuridica extends Usuario {
     }
     
     @Override
-    public void mostrarDadosUsuario()
+    public String mostrarDadosUsuario()
     {
-        System.out.println("Nome: " + nome + "\nCnpj: " + cnpj);
+        return("Nome: " + nome + "\nCnpj: " + cnpj);
     }
 }
