@@ -37,9 +37,8 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jCheckBox1 = new javax.swing.JCheckBox();
         pswSenha1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        chkDistribuidor = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -50,17 +49,15 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         txtIdade = new javax.swing.JTextField();
         txtNome2 = new javax.swing.JTextField();
-        chkPF = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         chkHospital = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
+        btnOk2 = new javax.swing.JButton();
         txtCNPJ1 = new javax.swing.JTextField();
         txtNome1 = new javax.swing.JTextField();
         txtSenha2 = new javax.swing.JPasswordField();
-        chkPJ = new javax.swing.JCheckBox();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,28 +116,24 @@ public class telaDeCadastro extends javax.swing.JFrame {
         pswSenha1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         pswSenha1.setForeground(new java.awt.Color(0, 102, 102));
 
-        jButton1.setBackground(new java.awt.Color(78, 171, 176));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOk.setBackground(new java.awt.Color(78, 171, 176));
+        btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOk.setForeground(new java.awt.Color(0, 102, 102));
+        btnOk.setText("OK");
+        btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOkMouseClicked(evt);
+            }
+        });
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOkActionPerformed(evt);
             }
         });
 
         jTextField1.setBackground(new java.awt.Color(149, 236, 236));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 102, 102));
-
-        chkDistribuidor.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        chkDistribuidor.setForeground(new java.awt.Color(0, 102, 102));
-        chkDistribuidor.setText("Distribuidor");
-        chkDistribuidor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkDistribuidorActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlDistribLayout = new javax.swing.GroupLayout(pnlDistrib);
         pnlDistrib.setLayout(pnlDistribLayout);
@@ -167,18 +160,13 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                     .addComponent(pswSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))))
                     .addGroup(pnlDistribLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
-                        .addComponent(jButton1))
-                    .addGroup(pnlDistribLayout.createSequentialGroup()
-                        .addGap(229, 229, 229)
-                        .addComponent(chkDistribuidor)))
-                .addContainerGap(310, Short.MAX_VALUE))
+                        .addComponent(btnOk)))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         pnlDistribLayout.setVerticalGroup(
             pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDistribLayout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(chkDistribuidor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(50, 50, 50)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,7 +181,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnOk)
                 .addGap(41, 41, 41))
         );
 
@@ -222,6 +210,11 @@ public class telaDeCadastro extends javax.swing.JFrame {
         btnOk1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnOk1.setForeground(new java.awt.Color(0, 102, 102));
         btnOk1.setText("OK");
+        btnOk1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOk1MouseClicked(evt);
+            }
+        });
         btnOk1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOk1ActionPerformed(evt);
@@ -254,10 +247,6 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        chkPF.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        chkPF.setForeground(new java.awt.Color(0, 102, 102));
-        chkPF.setText("Pessoa Física");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -285,18 +274,13 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(btnOk1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(chkPF)))
-                .addContainerGap(272, Short.MAX_VALUE))
+                        .addComponent(btnOk1)))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(chkPF)
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -343,13 +327,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(78, 171, 176));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("OK");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnOk2.setBackground(new java.awt.Color(78, 171, 176));
+        btnOk2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOk2.setForeground(new java.awt.Color(0, 102, 102));
+        btnOk2.setText("OK");
+        btnOk2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOk2MouseClicked(evt);
+            }
+        });
+        btnOk2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnOk2ActionPerformed(evt);
             }
         });
 
@@ -364,10 +353,6 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenha2.setBackground(new java.awt.Color(149, 236, 236));
         txtSenha2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtSenha2.setForeground(new java.awt.Color(0, 102, 102));
-
-        chkPJ.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        chkPJ.setForeground(new java.awt.Color(0, 102, 102));
-        chkPJ.setText("Pessoa Jurídica");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -395,18 +380,13 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                         .addGap(0, 0, Short.MAX_VALUE))))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(252, 252, 252)
-                        .addComponent(jButton2))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(chkPJ)))
-                .addContainerGap(253, Short.MAX_VALUE))
+                        .addComponent(btnOk2)))
+                .addContainerGap(330, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(chkPJ)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -421,7 +401,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addComponent(chkHospital)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnOk2)
                 .addGap(55, 55, 55))
         );
 
@@ -438,7 +418,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -451,9 +431,12 @@ public class telaDeCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        new TelaPrincipal().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnOkActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
@@ -475,13 +458,27 @@ public class telaDeCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkHospitalActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOk2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnOk2ActionPerformed
 
-    private void chkDistribuidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDistribuidorActionPerformed
+    private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_chkDistribuidorActionPerformed
+        new telaPrincipalDistribuidor().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnOkMouseClicked
+
+    private void btnOk1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOk1MouseClicked
+        // TODO add your handling code here:
+        new TelaPrincipal().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnOk1MouseClicked
+
+    private void btnOk2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOk2MouseClicked
+        // TODO add your handling code here:
+        new TelaPrincipal().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnOk2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -519,13 +516,10 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOk;
     private javax.swing.JButton btnOk1;
-    private javax.swing.JCheckBox chkDistribuidor;
+    private javax.swing.JButton btnOk2;
     private javax.swing.JCheckBox chkHospital;
-    private javax.swing.JCheckBox chkPF;
-    private javax.swing.JCheckBox chkPJ;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

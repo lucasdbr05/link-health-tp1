@@ -43,7 +43,6 @@ public class PessoaFisica extends Usuario{
         return this.receita;
     }        
     
-    @Override
     public void mostrarDadosUsuario()
     {
         System.out.println("Nome: " + nome + "\nIdade: " + idade + "\nCpf: " + cpf);

@@ -21,7 +21,9 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
         btnProdutos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bem-vindo(a)!!!");
         setBackground(new java.awt.Color(149, 236, 236));
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
 
         jPanel1.setBackground(new java.awt.Color(78, 171, 176));
 

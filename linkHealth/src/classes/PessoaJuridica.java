@@ -29,7 +29,6 @@ public class PessoaJuridica extends Usuario {
         this.hospital = hospital;
     }
     
-    @Override
     public String mostrarDadosUsuario()
     {
         return("Nome: " + nome + "\nCnpj: " + cnpj);

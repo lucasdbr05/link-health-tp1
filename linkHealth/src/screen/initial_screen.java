@@ -134,7 +134,6 @@ public class initial_screen extends javax.swing.JFrame {
     private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
         // TODO add your handling code here:new telaDeCadastro().setVisible(true);
         new telaDeCadastro().setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_btnSignUpMouseClicked
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -144,7 +143,6 @@ public class initial_screen extends javax.swing.JFrame {
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // TODO add your handling code here:
         new telaDeLogin().setVisible(true);
-        this.setVisible(false);
     }                                       
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
