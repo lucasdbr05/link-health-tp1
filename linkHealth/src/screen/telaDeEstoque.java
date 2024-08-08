@@ -90,6 +90,11 @@ public class telaDeEstoque extends javax.swing.JFrame {
         btnNew.setForeground(new java.awt.Color(0, 102, 102));
         btnNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_insert_new_plus_button_icon_142943.png"))); // NOI18N
         btnNew.setText("Novo");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setBackground(new java.awt.Color(78, 171, 176));
         btnAlterar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -153,6 +158,10 @@ public class telaDeEstoque extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNewActionPerformed
 
     /**
      * @param args the command line arguments
