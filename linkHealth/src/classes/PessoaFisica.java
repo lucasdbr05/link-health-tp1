@@ -43,7 +43,8 @@ public class PessoaFisica extends Usuario{
         return this.receita;
     }        
     
-    public void mostrarDadosUsuario()
+    
+    public String mostrarDadosUsuario()
     {
         return("Nome: " + nome + "\nIdade: " + idade + "\nCpf: " + cpf);
     }
