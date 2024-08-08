@@ -117,6 +117,7 @@ public class initial_screen extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         new telaDeCadastro().setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnSignUpMouseClicked
 
     private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
