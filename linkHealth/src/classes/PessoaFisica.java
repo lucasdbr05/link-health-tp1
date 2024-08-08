@@ -12,7 +12,7 @@ public class PessoaFisica extends Usuario{
         super(_nome, _senha);
         this.cpf = _cpf;
         this.idade = _idade;
-        //Acho q deveriamos tratar a receita por compra
+    
     }
     
     public void setCpf(String cpf)
@@ -45,6 +45,6 @@ public class PessoaFisica extends Usuario{
     
     public void mostrarDadosUsuario()
     {
-        System.out.println("Nome: " + nome + "\nIdade: " + idade + "\nCpf: " + cpf);
+        return("Nome: " + nome + "\nIdade: " + idade + "\nCpf: " + cpf);
     }
 }
