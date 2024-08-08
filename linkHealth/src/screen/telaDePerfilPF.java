@@ -38,7 +38,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         txtIdade = new javax.swing.JTextField();
         btnAlterar = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
-        btnAlterar1 = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -112,14 +112,14 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         btnOk.setForeground(new java.awt.Color(0, 102, 102));
         btnOk.setText("OK");
 
-        btnAlterar1.setBackground(new java.awt.Color(149, 236, 236));
-        btnAlterar1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnAlterar1.setForeground(new java.awt.Color(0, 102, 102));
-        btnAlterar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lixeira_menor.png"))); // NOI18N
-        btnAlterar1.setText("Excluir");
-        btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
+        btnExcluir.setBackground(new java.awt.Color(149, 236, 236));
+        btnExcluir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnExcluir.setForeground(new java.awt.Color(0, 102, 102));
+        btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lixeira_menor.png"))); // NOI18N
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterar1ActionPerformed(evt);
+                btnExcluirActionPerformed(evt);
             }
         });
 
@@ -146,7 +146,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(btnAlterar)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAlterar1)
+                        .addComponent(btnExcluir)
                         .addGap(18, 18, 18)
                         .addComponent(btnOk)))
                 .addContainerGap(61, Short.MAX_VALUE))
@@ -171,7 +171,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnOk)
-                            .addComponent(btnAlterar1))
+                            .addComponent(btnExcluir))
                         .addGap(9, 9, 9))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAlterar)
@@ -246,9 +246,9 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAlterarActionPerformed
 
-    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAlterar1ActionPerformed
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -287,7 +287,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnAlterar1;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnOk;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
