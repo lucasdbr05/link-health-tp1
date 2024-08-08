@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package linkhealth.screen;
+package screen;
 
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import screen.telaDeCadastro;
 import screen.telaDeLogin;
@@ -35,8 +36,8 @@ public class initial_screen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnSignUp1 = new javax.swing.JButton();
-        btnEntrar1 = new javax.swing.JButton();
+        btnSignUp = new javax.swing.JButton();
+        btnEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bem-Vindo(a) ao LinkHealth");
@@ -52,34 +53,34 @@ public class initial_screen extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/LinkHealth.png"))); // NOI18N
         jLabel4.setText("jLabel2");
 
-        btnSignUp1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnSignUp1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-up_icon-icons.com_52416.png"))); // NOI18N
-        btnSignUp1.setMnemonic('c');
-        btnSignUp1.setText("Cadastrar");
-        btnSignUp1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnSignUp.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnSignUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/sign-up_icon-icons.com_52416.png"))); // NOI18N
+        btnSignUp.setMnemonic('c');
+        btnSignUp.setText("Cadastrar");
+        btnSignUp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSignUp1MouseClicked(evt);
+                btnSignUpMouseClicked(evt);
             }
         });
-        btnSignUp1.addActionListener(new java.awt.event.ActionListener() {
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUp1ActionPerformed(evt);
+                btnSignUpActionPerformed(evt);
             }
         });
 
-        btnEntrar1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnEntrar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/register_internet_direction_web_right_button_enter_arrow_login_icon_210831.png"))); // NOI18N
-        btnEntrar1.setMnemonic('e');
-        btnEntrar1.setText("Entrar");
-        btnEntrar1.setToolTipText("");
-        btnEntrar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnEntrar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/register_internet_direction_web_right_button_enter_arrow_login_icon_210831.png"))); // NOI18N
+        btnEntrar.setMnemonic('e');
+        btnEntrar.setText("Entrar");
+        btnEntrar.setToolTipText("");
+        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEntrar1MouseClicked(evt);
+                btnEntrarMouseClicked(evt);
             }
         });
-        btnEntrar1.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEntrar1ActionPerformed(evt);
+                btnEntrarActionPerformed(evt);
             }
         });
 
@@ -88,7 +89,7 @@ public class initial_screen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(375, 375, 375)
+                .addGap(379, 379, 379)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,10 +97,9 @@ public class initial_screen extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(13, 13, 13)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnSignUp1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnEntrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48)))
                 .addContainerGap(377, Short.MAX_VALUE))
         );
@@ -111,9 +111,9 @@ public class initial_screen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(btnSignUp1)
+                .addComponent(btnSignUp)
                 .addGap(18, 18, 18)
-                .addComponent(btnEntrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
@@ -131,24 +131,25 @@ public class initial_screen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSignUp1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUp1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSignUp1MouseClicked
-
-    private void btnSignUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUp1ActionPerformed
-        // TODO add your handling code here:
-        
+    private void btnSignUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignUpMouseClicked
+        // TODO add your handling code here:new telaDeCadastro().setVisible(true);
         new telaDeCadastro().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSignUpMouseClicked
 
-    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntrar1MouseClicked
+    }                                      
 
-    private void btnEntrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrar1ActionPerformed
+    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {                                       
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnEntrar1ActionPerformed
+        new telaDeLogin().setVisible(true);
+        this.setVisible(false);
+    }                                       
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,8 +187,8 @@ public class initial_screen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEntrar1;
-    private javax.swing.JButton btnSignUp1;
+    private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
