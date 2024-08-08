@@ -15,6 +15,8 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
      */
     public TelaPrincipalPJ() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(149, 236, 236));
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -26,21 +28,126 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSpinner1 = new javax.swing.JSpinner();
+        jPanel1 = new javax.swing.JPanel();
+        btnPerfil = new javax.swing.JButton();
+        btnCarrinho = new javax.swing.JButton();
+        btnCatalogo = new javax.swing.JButton();
+        btnAcompPedi = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Bem-vindo(a)!!!");
+        setAutoRequestFocus(false);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+
+        jPanel1.setBackground(new java.awt.Color(78, 171, 176));
+
+        btnPerfil.setBackground(new java.awt.Color(149, 236, 236));
+        btnPerfil.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnPerfil.setForeground(new java.awt.Color(0, 102, 102));
+        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-profile_icon-icons.com_71302_1.png"))); // NOI18N
+        btnPerfil.setText("Perfil");
+        btnPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPerfilMouseClicked(evt);
+            }
+        });
+
+        btnCarrinho.setBackground(new java.awt.Color(149, 236, 236));
+        btnCarrinho.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnCarrinho.setForeground(new java.awt.Color(0, 102, 102));
+        btnCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/supermarketcart_89153.png"))); // NOI18N
+        btnCarrinho.setText("Carrinho");
+        btnCarrinho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCarrinhoMouseClicked(evt);
+            }
+        });
+
+        btnCatalogo.setBackground(new java.awt.Color(149, 236, 236));
+        btnCatalogo.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnCatalogo.setForeground(new java.awt.Color(0, 102, 102));
+        btnCatalogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/catalog_icon_215654.png"))); // NOI18N
+        btnCatalogo.setText("Catalogo");
+        btnCatalogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCatalogoMouseClicked(evt);
+            }
+        });
+
+        btnAcompPedi.setBackground(new java.awt.Color(149, 236, 236));
+        btnAcompPedi.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnAcompPedi.setForeground(new java.awt.Color(0, 102, 102));
+        btnAcompPedi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screen/shoppingbag_5096.png"))); // NOI18N
+        btnAcompPedi.setText("Acompanhar pedidos");
+        btnAcompPedi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAcompPediMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAcompPedi)
+                    .addComponent(btnPerfil)
+                    .addComponent(btnCatalogo)
+                    .addComponent(btnCarrinho))
+                .addContainerGap(66, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(btnPerfil)
+                .addGap(28, 28, 28)
+                .addComponent(btnCatalogo)
+                .addGap(27, 27, 27)
+                .addComponent(btnCarrinho)
+                .addGap(31, 31, 31)
+                .addComponent(btnAcompPedi)
+                .addContainerGap(47, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
+        new telaDePerfilPJ().setVisible(true);
+    }//GEN-LAST:event_btnPerfilMouseClicked
+
+    private void btnCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatalogoMouseClicked
+        new telaDeCatalogo().setVisible(true);
+    }//GEN-LAST:event_btnCatalogoMouseClicked
+
+    private void btnCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarrinhoMouseClicked
+        new telaDeCarrinho().setVisible(true);
+    }//GEN-LAST:event_btnCarrinhoMouseClicked
+
+    private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
+        new telaDeAcompanharPedidos().setVisible(true);
+    }//GEN-LAST:event_btnAcompPediMouseClicked
 
     /**
      * @param args the command line arguments
@@ -78,5 +185,11 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcompPedi;
+    private javax.swing.JButton btnCarrinho;
+    private javax.swing.JButton btnCatalogo;
+    private javax.swing.JButton btnPerfil;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSpinner jSpinner1;
     // End of variables declaration//GEN-END:variables
 }
