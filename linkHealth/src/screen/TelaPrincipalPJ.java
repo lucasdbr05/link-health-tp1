@@ -78,7 +78,7 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
         btnAcompPedi.setBackground(new java.awt.Color(149, 236, 236));
         btnAcompPedi.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnAcompPedi.setForeground(new java.awt.Color(0, 102, 102));
-        btnAcompPedi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/screen/shoppingbag_5096.png"))); // NOI18N
+        btnAcompPedi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/shoppingbag_5096.png"))); // NOI18N
         btnAcompPedi.setText("Acompanhar pedidos");
         btnAcompPedi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -97,7 +97,7 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
                     .addComponent(btnPerfil)
                     .addComponent(btnCatalogo)
                     .addComponent(btnCarrinho))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,7 +110,7 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
                 .addComponent(btnCarrinho)
                 .addGap(31, 31, 31)
                 .addComponent(btnAcompPedi)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
