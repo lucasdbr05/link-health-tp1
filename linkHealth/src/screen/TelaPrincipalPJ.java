@@ -52,6 +52,11 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
                 btnPerfilMouseClicked(evt);
             }
         });
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnCarrinho.setBackground(new java.awt.Color(149, 236, 236));
         btnCarrinho.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -148,6 +153,10 @@ public class TelaPrincipalPJ extends javax.swing.JFrame {
     private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
         new telaDeAcompanharPedidos().setVisible(true);
     }//GEN-LAST:event_btnAcompPediMouseClicked
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
     /**
      * @param args the command line arguments

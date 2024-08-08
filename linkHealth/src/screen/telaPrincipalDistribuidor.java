@@ -16,59 +16,70 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnPerfil = new javax.swing.JButton();
+        btnEstoque = new javax.swing.JButton();
+        btnProdutos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(149, 236, 236));
 
-        jPanel1.setBackground(new java.awt.Color(149, 236, 236));
+        jPanel1.setBackground(new java.awt.Color(78, 171, 176));
 
-        jButton1.setText("Perfil");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnPerfil.setBackground(new java.awt.Color(149, 236, 236));
+        btnPerfil.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        btnPerfil.setForeground(new java.awt.Color(78, 171, 176));
+        btnPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/user-profile_icon-icons.com_71302_1.png"))); // NOI18N
+        btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnPerfilActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Estoque");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnEstoque.setBackground(new java.awt.Color(149, 236, 236));
+        btnEstoque.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        btnEstoque.setForeground(new java.awt.Color(78, 171, 176));
+        btnEstoque.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/relief_goods_box_icon_148329.png"))); // NOI18N
+        btnEstoque.setText("Estoque");
+        btnEstoque.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnEstoqueActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
+        btnProdutos.setBackground(new java.awt.Color(149, 236, 236));
+        btnProdutos.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        btnProdutos.setForeground(new java.awt.Color(78, 171, 176));
+        btnProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ad_product_icon_155850.png"))); // NOI18N
+        btnProdutos.setText("Produtos");
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnPerfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnProdutos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jButton1)
-                .addGap(33, 33, 33)
-                .addComponent(jButton2)
-                .addGap(36, 36, 36)
-                .addComponent(jButton3)
-                .addGap(52, 52, 52)
-                .addComponent(jButton4)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addComponent(btnPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(btnProdutos, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -85,13 +96,17 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPerfilActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnEstoqueActionPerformed
+
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnProdutosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,10 +144,9 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton btnEstoque;
+    private javax.swing.JButton btnPerfil;
+    private javax.swing.JButton btnProdutos;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
