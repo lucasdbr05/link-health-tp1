@@ -66,4 +66,8 @@ public abstract class Usuario {
         
         formasDePagamento.add(formaDePagamento);
     }
+    public String mostrarDadosUsuario()
+    {
+        return ("Nome: " + this.nome);
+    }
 }
