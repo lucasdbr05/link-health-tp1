@@ -13,6 +13,9 @@ public class telaDeLogin extends javax.swing.JFrame {
     /**
      * Creates new form telaDeLogin
      */
+    
+    private Boolean chcPf = false, chcPj = false, chcDistr = false;
+    
     public telaDeLogin() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
@@ -54,10 +57,35 @@ public class telaDeLogin extends javax.swing.JFrame {
         chkDistribuidor.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         chkDistribuidor.setForeground(new java.awt.Color(0, 102, 102));
         chkDistribuidor.setText("Distribuidor");
+        chkDistribuidor.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkDistribuidorItemStateChanged(evt);
+            }
+        });
+        chkDistribuidor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkDistribuidorMouseClicked(evt);
+            }
+        });
 
         chkPf.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         chkPf.setForeground(new java.awt.Color(0, 102, 102));
         chkPf.setText("Pessoa Física");
+        chkPf.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkPfItemStateChanged(evt);
+            }
+        });
+        chkPf.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                chkPfStateChanged(evt);
+            }
+        });
+        chkPf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkPfMouseClicked(evt);
+            }
+        });
         chkPf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkPfActionPerformed(evt);
@@ -67,6 +95,16 @@ public class telaDeLogin extends javax.swing.JFrame {
         chkPj.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         chkPj.setForeground(new java.awt.Color(0, 102, 102));
         chkPj.setText("Pessoa Jurídica");
+        chkPj.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkPjItemStateChanged(evt);
+            }
+        });
+        chkPj.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                chkPjMouseClicked(evt);
+            }
+        });
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warehouse_116463.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -125,6 +163,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         txtCPFCNPJ.setBackground(new java.awt.Color(149, 236, 236));
         txtCPFCNPJ.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtCPFCNPJ.setForeground(new java.awt.Color(0, 102, 102));
+        txtCPFCNPJ.setEnabled(false);
         txtCPFCNPJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCPFCNPJActionPerformed(evt);
@@ -134,11 +173,18 @@ public class telaDeLogin extends javax.swing.JFrame {
         pswSenha.setBackground(new java.awt.Color(149, 236, 236));
         pswSenha.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         pswSenha.setForeground(new java.awt.Color(0, 102, 102));
+        pswSenha.setEnabled(false);
 
         btnOk.setBackground(new java.awt.Color(78, 171, 176));
         btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnOk.setForeground(new java.awt.Color(0, 102, 102));
         btnOk.setText("OK");
+        btnOk.setEnabled(false);
+        btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnOkMouseClicked(evt);
+            }
+        });
         btnOk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOkActionPerformed(evt);
@@ -216,6 +262,100 @@ public class telaDeLogin extends javax.swing.JFrame {
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOkActionPerformed
+
+    private void chkPfStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_chkPfStateChanged
+  
+    }//GEN-LAST:event_chkPfStateChanged
+
+    private void chkPfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkPfMouseClicked
+
+    }//GEN-LAST:event_chkPfMouseClicked
+
+    private void chkDistribuidorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkDistribuidorMouseClicked
+        
+    }//GEN-LAST:event_chkDistribuidorMouseClicked
+
+    private void chkPjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chkPjMouseClicked
+       
+    }//GEN-LAST:event_chkPjMouseClicked
+
+    private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
+        
+        //checa se é o user mesmo
+        
+        this.setVisible(false);
+        
+        new TelaPrincipal().setVisible(true);
+    }//GEN-LAST:event_btnOkMouseClicked
+
+    private void chkDistribuidorItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkDistribuidorItemStateChanged
+        this.chcDistr = !this.chcDistr;
+        
+        if(this.chcDistr){
+            
+            chkPf.setEnabled(false);
+            chkPj.setEnabled(false);
+            txtCPFCNPJ.setEnabled(true);
+            btnOk.setEnabled(true);
+            pswSenha.setEnabled(true);
+            
+            return;
+        }
+        
+        txtCPFCNPJ.setText("");
+        pswSenha.setText("");
+        chkPf.setEnabled(true);
+        chkPj.setEnabled(true);
+        txtCPFCNPJ.setEnabled(false);
+        btnOk.setEnabled(false);
+        pswSenha.setEnabled(false);
+    }//GEN-LAST:event_chkDistribuidorItemStateChanged
+
+    private void chkPjItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkPjItemStateChanged
+         this.chcPj = !this.chcPj;
+        
+        if(this.chcPj){
+            
+            chkPf.setEnabled(false);
+            chkDistribuidor.setEnabled(false);
+            txtCPFCNPJ.setEnabled(true);
+            btnOk.setEnabled(true);
+            pswSenha.setEnabled(true);
+            
+            return;
+        }
+        
+        txtCPFCNPJ.setText("");
+        pswSenha.setText("");
+        chkPf.setEnabled(true);
+        chkDistribuidor.setEnabled(true);
+        txtCPFCNPJ.setEnabled(false);
+        btnOk.setEnabled(false);
+        pswSenha.setEnabled(false);
+    }//GEN-LAST:event_chkPjItemStateChanged
+
+    private void chkPfItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkPfItemStateChanged
+                this.chcPf = !this.chcPf;
+        
+        if(this.chcPf){
+            
+            chkPj.setEnabled(false);
+            chkDistribuidor.setEnabled(false);
+            txtCPFCNPJ.setEnabled(true);
+            btnOk.setEnabled(true);
+            pswSenha.setEnabled(true);
+            
+            return;
+        }
+        
+        txtCPFCNPJ.setText("");
+        pswSenha.setText("");
+        chkPj.setEnabled(true);
+        chkDistribuidor.setEnabled(true);
+        txtCPFCNPJ.setEnabled(false);
+        btnOk.setEnabled(false);
+        pswSenha.setEnabled(false);
+    }//GEN-LAST:event_chkPfItemStateChanged
 
     /**
      * @param args the command line arguments
