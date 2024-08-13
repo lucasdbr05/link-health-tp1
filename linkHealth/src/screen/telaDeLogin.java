@@ -47,7 +47,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         btnOk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Insira seus dados");
+        setTitle("Selecione um usuário valido.");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
         setResizable(false);
 
@@ -289,12 +289,14 @@ public class telaDeLogin extends javax.swing.JFrame {
 
         //checa se é o user mesmo
         
+        if(this.chcDistr){
+            new telaPrincipalDistribuidor().setVisible(true);
+            this.setVisible(false);
+            return;
+        }
+        
+        if(!this.chcPf && !this.chcPj) return;
         this.setVisible(false);
-        
-        if(this.chcDistr){new telaPrincipalDistribuidor().setVisible(true); return;}
-        
-        if(!this.chcPf && !this.chcPj){this.setVisible(true); return;}
-        
         new TelaPrincipal().setVisible(true);
     }//GEN-LAST:event_btnOkMouseClicked
 
