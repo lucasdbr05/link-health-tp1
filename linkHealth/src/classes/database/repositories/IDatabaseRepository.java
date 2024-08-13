@@ -8,4 +8,6 @@ public interface IDatabaseRepository {
     void fileWriter(String path, String row) throws IOException;
     String[] splitRowString(String row);
     String[] splitFileWrite(String fileData);
+    // void fileUpdate(String path, String newData)
+    // void fileDeleteRow(String path, String newData)
 }
