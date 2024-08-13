@@ -14,6 +14,8 @@ public class FormaDePagamento {
         this.credito = credito;
         this.senha = senha;
     }
+
+    public FormaDePagamento() {};
     
     public boolean checaSenha(boolean debitoOuCredito, int inSenha){
         
