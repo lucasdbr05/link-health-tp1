@@ -43,6 +43,7 @@ public class initial_screen extends javax.swing.JFrame {
         setTitle("Bem-Vindo(a) ao LinkHealth");
         setBackground(new java.awt.Color(51, 255, 255));
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
 

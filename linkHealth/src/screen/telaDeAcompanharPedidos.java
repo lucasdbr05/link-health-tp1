@@ -40,6 +40,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(149, 236, 236));
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status do Pedido", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 14), new java.awt.Color(0, 102, 102))); // NOI18N

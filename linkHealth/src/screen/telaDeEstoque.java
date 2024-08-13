@@ -38,6 +38,7 @@ public class telaDeEstoque extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seu estoque");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jScrollPane1.setBackground(new java.awt.Color(149, 236, 236));
         jScrollPane1.setForeground(new java.awt.Color(0, 102, 102));

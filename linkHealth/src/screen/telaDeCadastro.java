@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package screen;
 
-/**
- *
- * @author emers
- */
 public class telaDeCadastro extends javax.swing.JFrame {
 
     /**
@@ -73,6 +65,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastre se para usar o LinkHealth");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jTabbedPane1.setBackground(new java.awt.Color(149, 236, 236));
         jTabbedPane1.setForeground(new java.awt.Color(0, 102, 102));
@@ -86,7 +79,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Nome:");
 
-        txtNome.setBackground(new java.awt.Color(149, 236, 236));
+        txtNome.setBackground(new java.awt.Color(78, 171, 176));
         txtNome.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtNome.setForeground(new java.awt.Color(0, 102, 102));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +105,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        pswSenha1.setBackground(new java.awt.Color(149, 236, 236));
+        pswSenha1.setBackground(new java.awt.Color(78, 171, 176));
         pswSenha1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         pswSenha1.setForeground(new java.awt.Color(0, 102, 102));
 
@@ -131,7 +124,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(149, 236, 236));
+        jTextField1.setBackground(new java.awt.Color(78, 171, 176));
         jTextField1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(0, 102, 102));
 
@@ -221,15 +214,15 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(149, 236, 236));
+        jPasswordField1.setBackground(new java.awt.Color(78, 171, 176));
         jPasswordField1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         jPasswordField1.setForeground(new java.awt.Color(0, 102, 102));
 
-        jTextField2.setBackground(new java.awt.Color(149, 236, 236));
+        jTextField2.setBackground(new java.awt.Color(78, 171, 176));
         jTextField2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(0, 102, 102));
 
-        txtIdade.setBackground(new java.awt.Color(149, 236, 236));
+        txtIdade.setBackground(new java.awt.Color(78, 171, 176));
         txtIdade.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtIdade.setForeground(new java.awt.Color(0, 102, 102));
         txtIdade.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +231,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        txtNome2.setBackground(new java.awt.Color(149, 236, 236));
+        txtNome2.setBackground(new java.awt.Color(78, 171, 176));
         txtNome2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtNome2.setForeground(new java.awt.Color(0, 102, 102));
         txtNome2.addActionListener(new java.awt.event.ActionListener() {
@@ -342,15 +335,15 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        txtCNPJ1.setBackground(new java.awt.Color(149, 236, 236));
+        txtCNPJ1.setBackground(new java.awt.Color(78, 171, 176));
         txtCNPJ1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtCNPJ1.setForeground(new java.awt.Color(0, 102, 102));
 
-        txtNome1.setBackground(new java.awt.Color(149, 236, 236));
+        txtNome1.setBackground(new java.awt.Color(78, 171, 176));
         txtNome1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtNome1.setForeground(new java.awt.Color(0, 102, 102));
 
-        txtSenha2.setBackground(new java.awt.Color(149, 236, 236));
+        txtSenha2.setBackground(new java.awt.Color(78, 171, 176));
         txtSenha2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtSenha2.setForeground(new java.awt.Color(0, 102, 102));
 

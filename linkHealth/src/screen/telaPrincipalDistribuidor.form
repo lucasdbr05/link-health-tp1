@@ -10,6 +10,7 @@
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/images/initial_screen.jpg&quot;)).getImage()" type="code"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -51,13 +52,13 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace pref="128" max="32767" attributes="0"/>
+                  <EmptySpace pref="131" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="btnPerfil" max="32767" attributes="0"/>
                       <Component id="btnEstoque" max="32767" attributes="0"/>
-                      <Component id="btnProdutos" max="32767" attributes="0"/>
+                      <Component id="btnPedidos" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="127" max="32767" attributes="0"/>
+                  <EmptySpace pref="131" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -69,7 +70,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnEstoque" min="-2" pref="43" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="btnProdutos" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="btnPedidos" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace pref="73" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -113,10 +114,11 @@
             <Property name="text" type="java.lang.String" value="Estoque"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEstoqueMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstoqueActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnProdutos">
+        <Component class="javax.swing.JButton" name="btnPedidos">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ec" green="ec" red="95" type="rgb"/>
@@ -130,10 +132,11 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/images/ad_product_icon_155850.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Produtos"/>
+            <Property name="text" type="java.lang.String" value="Pedidos"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPedidosMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPedidosActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

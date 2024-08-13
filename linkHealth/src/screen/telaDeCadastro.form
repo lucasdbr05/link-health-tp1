@@ -24,6 +24,7 @@
     <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
       <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/images/initial_screen.jpg&quot;)).getImage()" type="code"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -176,7 +177,7 @@
             <Component class="javax.swing.JTextField" name="txtNome">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -228,7 +229,7 @@
             <Component class="javax.swing.JPasswordField" name="pswSenha1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -259,7 +260,7 @@
             <Component class="javax.swing.JTextField" name="jTextField1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -424,7 +425,7 @@
             <Component class="javax.swing.JPasswordField" name="jPasswordField1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -437,7 +438,7 @@
             <Component class="javax.swing.JTextField" name="jTextField2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -450,7 +451,7 @@
             <Component class="javax.swing.JTextField" name="txtIdade">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -466,7 +467,7 @@
             <Component class="javax.swing.JTextField" name="txtNome2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -633,7 +634,7 @@
             <Component class="javax.swing.JTextField" name="txtCNPJ1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="12" style="0"/>
@@ -646,7 +647,7 @@
             <Component class="javax.swing.JTextField" name="txtNome1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>
@@ -659,7 +660,7 @@
             <Component class="javax.swing.JPasswordField" name="txtSenha2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ec" green="ec" red="95" type="rgb"/>
+                  <Color blue="b0" green="ab" red="4e" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial Black" size="10" style="0"/>

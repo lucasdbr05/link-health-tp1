@@ -39,6 +39,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setTitle("Bem-vindo(a)!!!");
         setAutoRequestFocus(false);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(78, 171, 176));
 

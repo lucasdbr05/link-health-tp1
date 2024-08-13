@@ -36,6 +36,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seu carrinho");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
 

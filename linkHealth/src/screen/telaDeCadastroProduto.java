@@ -43,6 +43,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastre um Produto");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 0, 18), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -51,7 +52,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         lblNome.setForeground(new java.awt.Color(0, 102, 102));
         lblNome.setText("Nome: ");
 
-        txtNome.setBackground(new java.awt.Color(149, 236, 236));
+        txtNome.setBackground(new java.awt.Color(78, 171, 176));
         txtNome.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtNome.setForeground(new java.awt.Color(0, 102, 102));
         txtNome.addActionListener(new java.awt.event.ActionListener() {
@@ -64,24 +65,27 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         lblId.setForeground(new java.awt.Color(0, 102, 102));
         lblId.setText("Id:");
 
-        txtId.setBackground(new java.awt.Color(149, 236, 236));
+        txtId.setBackground(new java.awt.Color(78, 171, 176));
         txtId.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtId.setForeground(new java.awt.Color(0, 102, 102));
         txtId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIdActionPerformed(evt);
             }
         });
 
-        txtPreco.setBackground(new java.awt.Color(149, 236, 236));
+        txtPreco.setBackground(new java.awt.Color(78, 171, 176));
         txtPreco.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtPreco.setForeground(new java.awt.Color(0, 102, 102));
         txtPreco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoActionPerformed(evt);
             }
         });
 
-        txtQuantidade.setBackground(new java.awt.Color(149, 236, 236));
+        txtQuantidade.setBackground(new java.awt.Color(78, 171, 176));
         txtQuantidade.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtQuantidade.setForeground(new java.awt.Color(0, 102, 102));
         txtQuantidade.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQuantidadeActionPerformed(evt);
@@ -120,7 +124,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(149, 236, 236));
+        jButton1.setBackground(new java.awt.Color(78, 171, 176));
         jButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 102, 102));
         jButton1.setText("Salvar");

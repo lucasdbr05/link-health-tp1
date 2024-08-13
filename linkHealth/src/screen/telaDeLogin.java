@@ -49,6 +49,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Insira seus dados");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -180,6 +181,11 @@ public class telaDeLogin extends javax.swing.JFrame {
         btnOk.setForeground(new java.awt.Color(0, 102, 102));
         btnOk.setText("OK");
         btnOk.setEnabled(false);
+        btnOk.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                btnOkItemStateChanged(evt);
+            }
+        });
         btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOkMouseClicked(evt);
@@ -280,10 +286,14 @@ public class telaDeLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_chkPjMouseClicked
 
     private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
-        
+
         //checa se é o user mesmo
         
         this.setVisible(false);
+        
+        if(this.chcDistr){new telaPrincipalDistribuidor().setVisible(true); return;}
+        
+        if(!this.chcPf && !this.chcPj){this.setVisible(true); return;}
         
         new TelaPrincipal().setVisible(true);
     }//GEN-LAST:event_btnOkMouseClicked
@@ -356,6 +366,10 @@ public class telaDeLogin extends javax.swing.JFrame {
         btnOk.setEnabled(false);
         pswSenha.setEnabled(false);
     }//GEN-LAST:event_chkPfItemStateChanged
+
+    private void btnOkItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_btnOkItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOkItemStateChanged
 
     /**
      * @param args the command line arguments

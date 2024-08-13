@@ -40,6 +40,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         setTitle("Catálogo de produtos");
         setBackground(new java.awt.Color(149, 236, 236));
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
 
