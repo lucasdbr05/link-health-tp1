@@ -5,6 +5,9 @@ public class telaDeCadastro extends javax.swing.JFrame {
     /**
      * Creates new form telaDeCadastro
      */
+    
+    private Boolean chcHosp = false, chcAcetPf = false;
+    
     public telaDeCadastro() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
@@ -24,32 +27,32 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         pnlDistrib = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
+        txtNomeDistr = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        pswSenha1 = new javax.swing.JPasswordField();
+        chkAceitaPF = new javax.swing.JCheckBox();
+        txtSenhaDistr = new javax.swing.JPasswordField();
         btnOk = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txtCNPJDistr = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnOk1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField2 = new javax.swing.JTextField();
+        txtSenhaPf = new javax.swing.JPasswordField();
         txtIdade = new javax.swing.JTextField();
-        txtNome2 = new javax.swing.JTextField();
+        txtNomePf = new javax.swing.JTextField();
+        txtCPFpf = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         chkHospital = new javax.swing.JCheckBox();
         btnOk2 = new javax.swing.JButton();
-        txtCNPJ1 = new javax.swing.JTextField();
-        txtNome1 = new javax.swing.JTextField();
-        txtSenha2 = new javax.swing.JPasswordField();
+        txtNomePj = new javax.swing.JTextField();
+        txtSenhaPj = new javax.swing.JPasswordField();
+        txtCNPJpj = new javax.swing.JFormattedTextField();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,12 +82,12 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Nome:");
 
-        txtNome.setBackground(new java.awt.Color(78, 171, 176));
-        txtNome.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        txtNome.setForeground(new java.awt.Color(0, 102, 102));
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeDistr.setBackground(new java.awt.Color(78, 171, 176));
+        txtNomeDistr.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtNomeDistr.setForeground(new java.awt.Color(0, 102, 102));
+        txtNomeDistr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
+                txtNomeDistrActionPerformed(evt);
             }
         });
 
@@ -96,18 +99,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Senha:");
 
-        jCheckBox1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(0, 102, 102));
-        jCheckBox1.setText("Aceita Pessoa Física");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        chkAceitaPF.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        chkAceitaPF.setForeground(new java.awt.Color(0, 102, 102));
+        chkAceitaPF.setText("Aceita Pessoa Física");
+        chkAceitaPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                chkAceitaPFActionPerformed(evt);
             }
         });
 
-        pswSenha1.setBackground(new java.awt.Color(78, 171, 176));
-        pswSenha1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        pswSenha1.setForeground(new java.awt.Color(0, 102, 102));
+        txtSenhaDistr.setBackground(new java.awt.Color(78, 171, 176));
+        txtSenhaDistr.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtSenhaDistr.setForeground(new java.awt.Color(0, 102, 102));
 
         btnOk.setBackground(new java.awt.Color(78, 171, 176));
         btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -124,9 +127,15 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setBackground(new java.awt.Color(78, 171, 176));
-        jTextField1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 102, 102));
+        txtCNPJDistr.setBackground(new java.awt.Color(78, 171, 176));
+        txtCNPJDistr.setForeground(new java.awt.Color(0, 102, 102));
+        try {
+            txtCNPJDistr.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCNPJDistr.setFocusable(false);
+        txtCNPJDistr.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         javax.swing.GroupLayout pnlDistribLayout = new javax.swing.GroupLayout(pnlDistrib);
         pnlDistrib.setLayout(pnlDistribLayout);
@@ -140,21 +149,20 @@ public class telaDeCadastro extends javax.swing.JFrame {
                             .addGroup(pnlDistribLayout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDistribLayout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1))
-                                .addGroup(pnlDistribLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(pswSenha1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))))
+                                .addComponent(txtNomeDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(chkAceitaPF, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlDistribLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtSenhaDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlDistribLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlDistribLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
                         .addComponent(btnOk)))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         pnlDistribLayout.setVerticalGroup(
             pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,18 +170,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                    .addComponent(txtNomeDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                    .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(pswSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenhaDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(chkAceitaPF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                 .addComponent(btnOk)
                 .addGap(41, 41, 41))
         );
@@ -214,13 +222,9 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(78, 171, 176));
-        jPasswordField1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(0, 102, 102));
-
-        jTextField2.setBackground(new java.awt.Color(78, 171, 176));
-        jTextField2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 102, 102));
+        txtSenhaPf.setBackground(new java.awt.Color(78, 171, 176));
+        txtSenhaPf.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtSenhaPf.setForeground(new java.awt.Color(0, 102, 102));
 
         txtIdade.setBackground(new java.awt.Color(78, 171, 176));
         txtIdade.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
@@ -231,14 +235,23 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        txtNome2.setBackground(new java.awt.Color(78, 171, 176));
-        txtNome2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        txtNome2.setForeground(new java.awt.Color(0, 102, 102));
-        txtNome2.addActionListener(new java.awt.event.ActionListener() {
+        txtNomePf.setBackground(new java.awt.Color(78, 171, 176));
+        txtNomePf.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtNomePf.setForeground(new java.awt.Color(0, 102, 102));
+        txtNomePf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNome2ActionPerformed(evt);
+                txtNomePfActionPerformed(evt);
             }
         });
+
+        txtCPFpf.setBackground(new java.awt.Color(78, 171, 176));
+        txtCPFpf.setForeground(new java.awt.Color(0, 102, 102));
+        try {
+            txtCPFpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtCPFpf.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -256,19 +269,19 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNomePf, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtCPFpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtSenhaPf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(263, 263, 263)
                         .addComponent(btnOk1)))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(331, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,20 +289,20 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNomePf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                    .addComponent(txtCPFpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                    .addComponent(txtSenhaPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(btnOk1)
                 .addGap(47, 47, 47))
         );
@@ -335,17 +348,21 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        txtCNPJ1.setBackground(new java.awt.Color(78, 171, 176));
-        txtCNPJ1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txtCNPJ1.setForeground(new java.awt.Color(0, 102, 102));
+        txtNomePj.setBackground(new java.awt.Color(78, 171, 176));
+        txtNomePj.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtNomePj.setForeground(new java.awt.Color(0, 102, 102));
 
-        txtNome1.setBackground(new java.awt.Color(78, 171, 176));
-        txtNome1.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        txtNome1.setForeground(new java.awt.Color(0, 102, 102));
+        txtSenhaPj.setBackground(new java.awt.Color(78, 171, 176));
+        txtSenhaPj.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
+        txtSenhaPj.setForeground(new java.awt.Color(0, 102, 102));
 
-        txtSenha2.setBackground(new java.awt.Color(78, 171, 176));
-        txtSenha2.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
-        txtSenha2.setForeground(new java.awt.Color(0, 102, 102));
+        txtCNPJpj.setBackground(new java.awt.Color(78, 171, 176));
+        txtCNPJpj.setForeground(new java.awt.Color(0, 102, 102));
+        try {
+            txtCNPJpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -355,26 +372,24 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkHospital)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtNomePj, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCNPJ1)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))))))
+                                    .addComponent(txtSenhaPj, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCNPJpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(252, 252, 252)
                         .addComponent(btnOk2)))
-                .addContainerGap(330, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,18 +397,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                    .addComponent(txtNomePj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(txtCNPJ1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                    .addComponent(txtCNPJpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txtSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSenhaPj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addComponent(chkHospital)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addComponent(btnOk2)
                 .addGap(55, 55, 55))
         );
@@ -404,25 +419,19 @@ public class telaDeCadastro extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+            .addComponent(jTabbedPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
+    private void txtNomeDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDistrActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
+    }//GEN-LAST:event_txtNomeDistrActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         // TODO add your handling code here:
@@ -431,24 +440,26 @@ public class telaDeCadastro extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnOkActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    private void chkAceitaPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAceitaPFActionPerformed
+        
+        this.chcAcetPf = !this.chcAcetPf;
+    }//GEN-LAST:event_chkAceitaPFActionPerformed
 
     private void btnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOk1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOk1ActionPerformed
 
-    private void txtNome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNome2ActionPerformed
+    private void txtNomePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNome2ActionPerformed
+    }//GEN-LAST:event_txtNomePfActionPerformed
 
     private void txtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdadeActionPerformed
 
     private void chkHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkHospitalActionPerformed
-        // TODO add your handling code here:
+        
+        this.chcHosp = !this.chcHosp;
     }//GEN-LAST:event_chkHospitalActionPerformed
 
     private void btnOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOk2ActionPerformed
@@ -512,8 +523,8 @@ public class telaDeCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnOk;
     private javax.swing.JButton btnOk1;
     private javax.swing.JButton btnOk2;
+    private javax.swing.JCheckBox chkAceitaPF;
     private javax.swing.JCheckBox chkHospital;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -527,17 +538,17 @@ public class telaDeCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel pnlDistrib;
-    private javax.swing.JPasswordField pswSenha1;
-    private javax.swing.JTextField txtCNPJ1;
+    private javax.swing.JFormattedTextField txtCNPJDistr;
+    private javax.swing.JFormattedTextField txtCNPJpj;
+    private javax.swing.JFormattedTextField txtCPFpf;
     private javax.swing.JTextField txtIdade;
-    private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtNome1;
-    private javax.swing.JTextField txtNome2;
-    private javax.swing.JPasswordField txtSenha2;
+    private javax.swing.JTextField txtNomeDistr;
+    private javax.swing.JTextField txtNomePf;
+    private javax.swing.JTextField txtNomePj;
+    private javax.swing.JPasswordField txtSenhaDistr;
+    private javax.swing.JPasswordField txtSenhaPf;
+    private javax.swing.JPasswordField txtSenhaPj;
     // End of variables declaration//GEN-END:variables
 }
