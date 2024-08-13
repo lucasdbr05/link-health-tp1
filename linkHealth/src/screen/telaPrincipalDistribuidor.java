@@ -110,15 +110,15 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
+        new telaDePerfilDistribuidor().setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
-        // TODO add your handling code here:
+        new telaDeEstoque().setVisible(true);
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        // TODO add your handling code here:
+        new telaDeCadastroProduto().setVisible(true);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstoqueMouseClicked

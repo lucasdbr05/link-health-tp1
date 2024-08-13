@@ -11,6 +11,17 @@ public abstract class Usuario {
     protected ArrayList<String> endereco;
     protected ArrayList<FormaDePagamento> formasDePagamento;
 
+    public Usuario(){};
+
+    public Usuario(String nome, String senha, int id, ArrayList<String> endereco,
+            ArrayList<FormaDePagamento> formasDePagamento) {
+        this.nome = nome;
+        this.senha = senha;
+        this.id = id;
+        this.endereco = endereco;
+        this.formasDePagamento = formasDePagamento;
+    }
+
     public Usuario(String nome, String senha) {
         this.nome = nome;
         this.senha = senha;
@@ -70,4 +81,16 @@ public abstract class Usuario {
     {
         return ("Nome: " + this.nome);
     }
+
+    @Override
+    public String toString() {
+        String address = "";
+
+        for(String s: this.endereco) {
+            address += s;
+        }
+        return String.format("%d|%s|%s|%s||", this.id, this.nome, this.senha,address );
+    }
+
+    
 }
