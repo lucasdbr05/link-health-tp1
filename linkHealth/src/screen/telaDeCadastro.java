@@ -1,5 +1,12 @@
 package screen;
 
+import classes.Distribuidor;
+import classes.PessoaFisica;
+import classes.PessoaJuridica;
+import classes.Usuario;
+import static java.lang.Integer.parseInt;
+
+
 public class telaDeCadastro extends javax.swing.JFrame {
 
     /**
@@ -32,14 +39,14 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         chkAceitaPF = new javax.swing.JCheckBox();
         txtSenhaDistr = new javax.swing.JPasswordField();
-        btnOk = new javax.swing.JButton();
+        btnOkDistr = new javax.swing.JButton();
         txtCNPJDistr = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnOk1 = new javax.swing.JButton();
+        btnOkPf = new javax.swing.JButton();
         txtSenhaPf = new javax.swing.JPasswordField();
         txtIdade = new javax.swing.JTextField();
         txtNomePf = new javax.swing.JTextField();
@@ -49,7 +56,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         chkHospital = new javax.swing.JCheckBox();
-        btnOk2 = new javax.swing.JButton();
+        btnOkj = new javax.swing.JButton();
         txtNomePj = new javax.swing.JTextField();
         txtSenhaPj = new javax.swing.JPasswordField();
         txtCNPJpj = new javax.swing.JFormattedTextField();
@@ -112,18 +119,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenhaDistr.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
         txtSenhaDistr.setForeground(new java.awt.Color(0, 102, 102));
 
-        btnOk.setBackground(new java.awt.Color(78, 171, 176));
-        btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnOk.setForeground(new java.awt.Color(0, 102, 102));
-        btnOk.setText("OK");
-        btnOk.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnOkDistr.setBackground(new java.awt.Color(78, 171, 176));
+        btnOkDistr.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOkDistr.setForeground(new java.awt.Color(0, 102, 102));
+        btnOkDistr.setText("OK");
+        btnOkDistr.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOkMouseClicked(evt);
+                btnOkDistrMouseClicked(evt);
             }
         });
-        btnOk.addActionListener(new java.awt.event.ActionListener() {
+        btnOkDistr.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOkActionPerformed(evt);
+                btnOkDistrActionPerformed(evt);
             }
         });
 
@@ -161,7 +168,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                 .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlDistribLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
-                        .addComponent(btnOk)))
+                        .addComponent(btnOkDistr)))
                 .addContainerGap(339, Short.MAX_VALUE))
         );
         pnlDistribLayout.setVerticalGroup(
@@ -182,7 +189,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(53, 53, 53)
                 .addComponent(chkAceitaPF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(btnOk)
+                .addComponent(btnOkDistr)
                 .addGap(41, 41, 41))
         );
 
@@ -207,18 +214,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 102, 102));
         jLabel8.setText("Senha:");
 
-        btnOk1.setBackground(new java.awt.Color(78, 171, 176));
-        btnOk1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnOk1.setForeground(new java.awt.Color(0, 102, 102));
-        btnOk1.setText("OK");
-        btnOk1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnOkPf.setBackground(new java.awt.Color(78, 171, 176));
+        btnOkPf.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOkPf.setForeground(new java.awt.Color(0, 102, 102));
+        btnOkPf.setText("OK");
+        btnOkPf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOk1MouseClicked(evt);
+                btnOkPfMouseClicked(evt);
             }
         });
-        btnOk1.addActionListener(new java.awt.event.ActionListener() {
+        btnOkPf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOk1ActionPerformed(evt);
+                btnOkPfActionPerformed(evt);
             }
         });
 
@@ -280,7 +287,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                 .addComponent(txtSenhaPf, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(btnOk1)))
+                        .addComponent(btnOkPf)))
                 .addContainerGap(331, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -303,7 +310,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(txtSenhaPf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                .addComponent(btnOk1)
+                .addComponent(btnOkPf)
                 .addGap(47, 47, 47))
         );
 
@@ -333,18 +340,18 @@ public class telaDeCadastro extends javax.swing.JFrame {
             }
         });
 
-        btnOk2.setBackground(new java.awt.Color(78, 171, 176));
-        btnOk2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnOk2.setForeground(new java.awt.Color(0, 102, 102));
-        btnOk2.setText("OK");
-        btnOk2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnOkj.setBackground(new java.awt.Color(78, 171, 176));
+        btnOkj.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOkj.setForeground(new java.awt.Color(0, 102, 102));
+        btnOkj.setText("OK");
+        btnOkj.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOk2MouseClicked(evt);
+                btnOkjMouseClicked(evt);
             }
         });
-        btnOk2.addActionListener(new java.awt.event.ActionListener() {
+        btnOkj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOk2ActionPerformed(evt);
+                btnOkjActionPerformed(evt);
             }
         });
 
@@ -388,7 +395,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                     .addComponent(txtCNPJpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(252, 252, 252)
-                        .addComponent(btnOk2)))
+                        .addComponent(btnOkj)))
                 .addContainerGap(342, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -409,7 +416,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGap(61, 61, 61)
                 .addComponent(chkHospital)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addComponent(btnOk2)
+                .addComponent(btnOkj)
                 .addGap(55, 55, 55))
         );
 
@@ -433,21 +440,43 @@ public class telaDeCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeDistrActionPerformed
 
-    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+    private void btnOkDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkDistrActionPerformed
         // TODO add your handling code here:
+        
+        String nome = txtNomeDistr.getText();
+        String senha = new String(txtSenhaDistr.getPassword());
+        String cnpj = txtCNPJDistr.getText();
+        boolean aceitaPF = chkAceitaPF.isSelected();
+        Usuario usuario = new Distribuidor(nome, senha, cnpj, aceitaPF);
+        
+        txtNomeDistr.setText("");
+        txtSenhaDistr.setText("");
+        txtCNPJDistr.setText("");
+        chkAceitaPF.setSelected(false);
         
         new TelaPrincipal().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnOkActionPerformed
+    }//GEN-LAST:event_btnOkDistrActionPerformed
 
     private void chkAceitaPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAceitaPFActionPerformed
         
         this.chcAcetPf = !this.chcAcetPf;
     }//GEN-LAST:event_chkAceitaPFActionPerformed
 
-    private void btnOk1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOk1ActionPerformed
+    private void btnOkPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkPfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnOk1ActionPerformed
+        String nome = txtNomePf.getText();
+        String senha = new String(txtSenhaPf.getPassword());
+        String cpf = txtCPFpf.getText();
+        int idade = parseInt(txtIdade.getText());
+        Usuario usuario = new PessoaFisica(nome, senha, cpf, idade);
+        
+        txtNomePf.setText("");
+        txtSenhaPf.setText("");
+        txtCPFpf.setText("");
+        txtIdade.setText("");
+        
+    }//GEN-LAST:event_btnOkPfActionPerformed
 
     private void txtNomePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePfActionPerformed
         // TODO add your handling code here:
@@ -462,27 +491,37 @@ public class telaDeCadastro extends javax.swing.JFrame {
         this.chcHosp = !this.chcHosp;
     }//GEN-LAST:event_chkHospitalActionPerformed
 
-    private void btnOk2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOk2ActionPerformed
+    private void btnOkjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkjActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnOk2ActionPerformed
+        String nome = txtNomePj.getText();
+        String senha = new String(txtSenhaPj.getPassword());
+        String cnpj = txtCNPJpj.getText();
+        boolean hospital = chkHospital.isSelected();
+        Usuario usuario = new PessoaJuridica(nome, senha, cnpj, hospital);
+        
+        txtNomePj.setText("");
+        txtSenhaPj.setText("");
+        txtCNPJpj.setText("");
+        chkHospital.setSelected(false);
+    }//GEN-LAST:event_btnOkjActionPerformed
 
-    private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
+    private void btnOkDistrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkDistrMouseClicked
         // TODO add your handling code here:
         new telaPrincipalDistribuidor().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnOkMouseClicked
+    }//GEN-LAST:event_btnOkDistrMouseClicked
 
-    private void btnOk1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOk1MouseClicked
+    private void btnOkPfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkPfMouseClicked
         // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnOk1MouseClicked
+    }//GEN-LAST:event_btnOkPfMouseClicked
 
-    private void btnOk2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOk2MouseClicked
+    private void btnOkjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkjMouseClicked
         // TODO add your handling code here:
         new TelaPrincipal().setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_btnOk2MouseClicked
+    }//GEN-LAST:event_btnOkjMouseClicked
 
     /**
      * @param args the command line arguments
@@ -520,9 +559,9 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnOk;
-    private javax.swing.JButton btnOk1;
-    private javax.swing.JButton btnOk2;
+    private javax.swing.JButton btnOkDistr;
+    private javax.swing.JButton btnOkPf;
+    private javax.swing.JButton btnOkj;
     private javax.swing.JCheckBox chkAceitaPF;
     private javax.swing.JCheckBox chkHospital;
     private javax.swing.JLabel jLabel1;

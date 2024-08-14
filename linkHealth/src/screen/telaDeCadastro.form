@@ -115,7 +115,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
-                              <Component id="btnOk" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnOkDistr" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="339" max="32767" attributes="0"/>
@@ -143,7 +143,7 @@
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       <Component id="chkAceitaPF" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="71" max="32767" attributes="0"/>
-                      <Component id="btnOk" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOkDistr" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -229,7 +229,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnOk">
+            <Component class="javax.swing.JButton" name="btnOkDistr">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b0" green="ab" red="4e" type="rgb"/>
@@ -243,8 +243,8 @@
                 <Property name="text" type="java.lang.String" value="OK"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOkMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOkDistrMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkDistrActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="txtCNPJDistr">
@@ -316,7 +316,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="263" max="-2" attributes="0"/>
-                              <Component id="btnOk1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnOkPf" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="331" max="32767" attributes="0"/>
@@ -347,7 +347,7 @@
                           <Component id="txtSenhaPf" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="122" max="32767" attributes="0"/>
-                      <Component id="btnOk1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOkPf" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -398,7 +398,7 @@
                 <Property name="text" type="java.lang.String" value="Senha:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnOk1">
+            <Component class="javax.swing.JButton" name="btnOkPf">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b0" green="ab" red="4e" type="rgb"/>
@@ -412,8 +412,8 @@
                 <Property name="text" type="java.lang.String" value="OK"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOk1MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOk1ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOkPfMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkPfActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JPasswordField" name="txtSenhaPf">
@@ -525,7 +525,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
-                              <Component id="btnOk2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnOkj" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="342" max="32767" attributes="0"/>
@@ -553,7 +553,7 @@
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="chkHospital" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="80" max="32767" attributes="0"/>
-                      <Component id="btnOk2" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnOkj" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -607,7 +607,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkHospitalActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnOk2">
+            <Component class="javax.swing.JButton" name="btnOkj">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b0" green="ab" red="4e" type="rgb"/>
@@ -621,8 +621,8 @@
                 <Property name="text" type="java.lang.String" value="OK"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOk2MouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOk2ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOkjMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOkjActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNomePj">
