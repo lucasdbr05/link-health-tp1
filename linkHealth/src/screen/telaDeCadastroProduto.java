@@ -4,6 +4,10 @@
  */
 package screen;
 
+import classes.Produto;
+import static java.lang.Double.parseDouble;
+import static java.lang.Integer.parseInt;
+
 /**
  *
  * @author psisn
@@ -36,9 +40,9 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         lblPreco = new javax.swing.JLabel();
         lblQuantidade = new javax.swing.JLabel();
         lblReceita = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        rdBtnSim = new javax.swing.JRadioButton();
+        rdBtnNao = new javax.swing.JRadioButton();
+        btnSalvarProd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastre um Produto");
@@ -104,30 +108,35 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         lblReceita.setForeground(new java.awt.Color(0, 102, 102));
         lblReceita.setText("Exige Receita?");
 
-        jRadioButton1.setBackground(new java.awt.Color(149, 236, 236));
-        jRadioButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jRadioButton1.setText("Sim");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        rdBtnSim.setBackground(new java.awt.Color(149, 236, 236));
+        rdBtnSim.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        rdBtnSim.setForeground(new java.awt.Color(0, 102, 102));
+        rdBtnSim.setText("Sim");
+        rdBtnSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rdBtnSimActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(149, 236, 236));
-        jRadioButton2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jRadioButton2.setText("Não");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        rdBtnNao.setBackground(new java.awt.Color(149, 236, 236));
+        rdBtnNao.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        rdBtnNao.setForeground(new java.awt.Color(0, 102, 102));
+        rdBtnNao.setText("Não");
+        rdBtnNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                rdBtnNaoActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(78, 171, 176));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setText("Salvar");
+        btnSalvarProd.setBackground(new java.awt.Color(78, 171, 176));
+        btnSalvarProd.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        btnSalvarProd.setForeground(new java.awt.Color(0, 102, 102));
+        btnSalvarProd.setText("Salvar");
+        btnSalvarProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,7 +146,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnSalvarProd))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +172,9 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                                         .addComponent(txtNome)
                                         .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(rdBtnSim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(rdBtnNao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 12, Short.MAX_VALUE)))))
                 .addGap(302, 302, 302))
         );
@@ -187,14 +196,14 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                 .addGap(62, 62, 62)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReceita)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rdBtnSim)
+                    .addComponent(rdBtnNao))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQuantidade))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnSalvarProd)
                 .addGap(42, 42, 42))
         );
 
@@ -228,13 +237,29 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rdBtnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnSimActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rdBtnSimActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void rdBtnNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnNaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_rdBtnNaoActionPerformed
+
+    private void btnSalvarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdActionPerformed
+        // TODO add your handling code here:
+        String nome = txtNome.getText();
+        int id = parseInt(txtId.getText());
+        double preco = parseDouble(txtPreco.getText());
+        boolean receita = (rdBtnSim.isSelected());
+        int qnt = parseInt(txtQuantidade.getText());
+        Produto produto = new Produto(nome, id, preco, receita, qnt);
+        
+        txtId.setText("");
+        txtPreco.setText("");
+        rdBtnSim.setSelected(false);
+        rdBtnNao.setSelected(false);
+        txtQuantidade.setText("");
+    }//GEN-LAST:event_btnSalvarProdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,15 +297,15 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnSalvarProd;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblQuantidade;
     private javax.swing.JLabel lblReceita;
+    private javax.swing.JRadioButton rdBtnNao;
+    private javax.swing.JRadioButton rdBtnSim;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtPreco;
