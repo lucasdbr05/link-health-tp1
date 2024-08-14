@@ -4,7 +4,9 @@ import classes.Distribuidor;
 import classes.PessoaFisica;
 import classes.PessoaJuridica;
 import classes.Usuario;
+import classes.database.UsersDB;
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 
 
 public class telaDeCadastro extends javax.swing.JFrame {
@@ -280,7 +282,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCPFpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCPFpf, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -447,6 +449,17 @@ public class telaDeCadastro extends javax.swing.JFrame {
         String senha = new String(txtSenhaDistr.getPassword());
         String cnpj = txtCNPJDistr.getText();
         boolean aceitaPF = chkAceitaPF.isSelected();
+        if(nome.equals("") || senha.equals("") || cnpj.equals("  .   .   /    -  ")){
+            
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
+        if(senha.length() < 5){
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
         Usuario usuario = new Distribuidor(nome, senha, cnpj, aceitaPF);
         
         txtNomeDistr.setText("");
@@ -454,7 +467,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtCNPJDistr.setText("");
         chkAceitaPF.setSelected(false);
         
-        new TelaPrincipal().setVisible(true);
+        new telaPrincipalDistribuidor().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnOkDistrActionPerformed
 
@@ -468,14 +481,35 @@ public class telaDeCadastro extends javax.swing.JFrame {
         String nome = txtNomePf.getText();
         String senha = new String(txtSenhaPf.getPassword());
         String cpf = txtCPFpf.getText();
-        int idade = parseInt(txtIdade.getText());
+        if(nome.equals("") || senha.equals("") || cpf.equals("   .   .   -  ") || txtIdade.getText().equals("")){
+            
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
+        int idade;
+        try{
+            idade = parseInt(txtIdade.getText());
+        } catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Insira uma idade valida!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }  
+        
+        if(senha.length() < 5){
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         Usuario usuario = new PessoaFisica(nome, senha, cpf, idade);
+        
+        //UsersDB.create(usuario);
         
         txtNomePf.setText("");
         txtSenhaPf.setText("");
         txtCPFpf.setText("");
         txtIdade.setText("");
-        
+        new TelaPrincipal(usuario.getId()).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnOkPfActionPerformed
 
     private void txtNomePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePfActionPerformed
@@ -497,30 +531,37 @@ public class telaDeCadastro extends javax.swing.JFrame {
         String senha = new String(txtSenhaPj.getPassword());
         String cnpj = txtCNPJpj.getText();
         boolean hospital = chkHospital.isSelected();
+        
+        if(nome.equals("") || senha.equals("") || cnpj.equals("  .   .   /    -  ")){
+            
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
+        
+        if(senha.length() < 5){
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }
         Usuario usuario = new PessoaJuridica(nome, senha, cnpj, hospital);
         
         txtNomePj.setText("");
         txtSenhaPj.setText("");
         txtCNPJpj.setText("");
         chkHospital.setSelected(false);
+        new TelaPrincipal(usuario.getId()).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnOkjActionPerformed
 
     private void btnOkDistrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkDistrMouseClicked
-        // TODO add your handling code here:
-        new telaPrincipalDistribuidor().setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btnOkDistrMouseClicked
 
     private void btnOkPfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkPfMouseClicked
-        // TODO add your handling code here:
-        new TelaPrincipal().setVisible(true);
-        this.setVisible(false);
+       
     }//GEN-LAST:event_btnOkPfMouseClicked
 
     private void btnOkjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkjMouseClicked
-        // TODO add your handling code here:
-        new TelaPrincipal().setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_btnOkjMouseClicked
 
     /**

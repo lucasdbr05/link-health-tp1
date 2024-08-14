@@ -10,7 +10,7 @@ import classes.PessoaJuridica;
 import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
-public class UsersDB extends Database implements IUsersDBRepository {
+public   class UsersDB extends Database implements IUsersDBRepository {
     static String file = "./data/usuarios.txt";
 
     @Override
@@ -20,6 +20,28 @@ public class UsersDB extends Database implements IUsersDBRepository {
         for(String row: usersRows) {
             Usuario user = this.fromStringToUserObject(row);
             if(user.getId() == id) return user;
+        }
+        throw new UnsupportedOperationException("User not found");
+    }
+    
+    public Usuario  findOne(String inCPF, String inPasw, int tipoLog) throws IOException, IOException {
+        String[] usersRows = this.splitFileWrite(this.fileReader(file));
+        
+        // tipoLog - > define quem está fazendo login 
+        // 0 - > define um distribuidor
+        // 1 - > define uma pessoa fisica
+        // 2 - > define uma pessoa juridica
+        
+        for(String row: usersRows) {
+            Usuario user = this.fromStringToUserObject(row);
+            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && user.getSenha().equals(inPasw))
+                return user;
+            
+            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && user.getSenha().equals(inPasw))
+                return user;
+            
+            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && user.getSenha().equals(inPasw))
+                return user;
         }
         throw new UnsupportedOperationException("User not found");
     }
