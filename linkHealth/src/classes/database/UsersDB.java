@@ -68,6 +68,8 @@ public   class UsersDB extends Database implements IUsersDBRepository {
     @Override
     public Usuario create(Usuario usuario) throws IOException {
         String data = "";
+        int id = this.getNextId(file, 1);
+        usuario.setId(id);
         if(usuario instanceof PessoaFisica){
             data = ((PessoaFisica)usuario).toString();
         } else if (usuario instanceof PessoaJuridica) {

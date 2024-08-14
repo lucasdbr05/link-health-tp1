@@ -68,4 +68,14 @@ class Database implements IDatabaseRepository{
         return fileData.split("\n");
     }
 
+    @Override
+    public int getNextId(String path, int idPosition) throws IOException{
+        String fileData = this.fileReader(path);
+        String[] dataSplited = this.splitFileWrite(fileData);
+
+        String[] rowData = this.splitRowString(dataSplited[dataSplited.length -1]);
+
+        return Integer.parseInt(rowData[idPosition]);
+    }
+
 }

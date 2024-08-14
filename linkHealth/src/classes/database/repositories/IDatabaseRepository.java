@@ -10,4 +10,5 @@ public interface IDatabaseRepository {
     String[] splitFileWrite(String fileData);
     // void fileUpdate(String path, String newData)
     // void fileDeleteRow(String path, String newData)
+    int getNextId(String path, int idPosition) throws IOException;
 }
