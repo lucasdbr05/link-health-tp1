@@ -13,7 +13,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipalPJ
      */
-    public TelaPrincipal() {
+    
+    private int userId;
+    
+    public TelaPrincipal(int inID) {
+        
+        this.userId = inID;
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
@@ -190,7 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal().setVisible(true);
+                new TelaPrincipal(11).setVisible(true);
             }
         });
     }

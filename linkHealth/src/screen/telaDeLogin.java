@@ -393,7 +393,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         // aqui iremos checar se esse usuário está no banco de dados
         
         this.setVisible(false);
-        new TelaPrincipal().setVisible(true);
+        new TelaPrincipal(11).setVisible(true);
     }//GEN-LAST:event_btnOKPfMouseClicked
 
     private void btnOkPjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkPjMouseClicked
@@ -420,7 +420,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         // aqui iremos checar se esse usuário está no banco de dados
         
         this.setVisible(false);
-        new TelaPrincipal().setVisible(true);
+        new TelaPrincipal(11).setVisible(true);
     }//GEN-LAST:event_btnOkPjMouseClicked
 
     /**
