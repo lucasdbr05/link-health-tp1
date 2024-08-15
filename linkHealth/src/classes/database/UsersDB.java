@@ -38,12 +38,6 @@ public class UsersDB extends Database implements IUsersDBRepository {
     }
 
     @Override
-    public Usuario update(int id, Usuario updatedUsuario) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
-
-    @Override
     public Usuario create(Usuario usuario) throws IOException {
         String data = "";
         int id = this.getNextId(file, 1);
@@ -108,5 +102,11 @@ public class UsersDB extends Database implements IUsersDBRepository {
                 
             return new PessoaFisica();
         }
+
+    @Override
+    public Usuario update(int id, Usuario updatedUsuario) throws IOException {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
     }
 

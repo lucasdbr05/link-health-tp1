@@ -19,6 +19,7 @@ class Database implements IDatabaseRepository{
         buffWrite.close();
     }
     
+    
     @Override
     public  String fileReader(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
