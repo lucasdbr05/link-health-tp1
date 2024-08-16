@@ -16,11 +16,13 @@ public class telaDeCadastro extends javax.swing.JFrame {
      */
     
     private Boolean chcHosp = false, chcAcetPf = false;
+    private UsersDB userDb;
     
     public telaDeCadastro() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
+        userDb = new UsersDB();
     }
 
     /**
@@ -143,7 +145,6 @@ public class telaDeCadastro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        txtCNPJDistr.setFocusable(false);
         txtCNPJDistr.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         javax.swing.GroupLayout pnlDistribLayout = new javax.swing.GroupLayout(pnlDistrib);
@@ -166,8 +167,8 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                 .addComponent(txtSenhaDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlDistribLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlDistribLayout.createSequentialGroup()
                         .addGap(255, 255, 255)
                         .addComponent(btnOkDistr)))
@@ -180,17 +181,17 @@ public class telaDeCadastro extends javax.swing.JFrame {
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtNomeDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                .addGap(44, 44, 44)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtCNPJDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                .addGap(60, 60, 60)
                 .addGroup(pnlDistribLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtSenhaDistr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(53, 53, 53)
                 .addComponent(chkAceitaPF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addComponent(btnOkDistr)
                 .addGap(41, 41, 41))
         );
@@ -372,6 +373,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtCNPJpj.setFont(new java.awt.Font("Arial Black", 0, 10)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -392,9 +394,9 @@ public class telaDeCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel10))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtSenhaPj, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCNPJpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtSenhaPj, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                                    .addComponent(txtCNPJpj)))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(252, 252, 252)
                         .addComponent(btnOkj)))
@@ -417,7 +419,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
                     .addComponent(txtSenhaPj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addComponent(chkHospital)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btnOkj)
                 .addGap(55, 55, 55))
         );
@@ -460,7 +462,20 @@ public class telaDeCadastro extends javax.swing.JFrame {
             return;
         }
         
+        try{
+            this.userDb.findOne(cnpj, "0", 0);
+            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.PLAIN_MESSAGE);           
+            return;
+        }catch(Exception e){
+        }
         Usuario usuario = new Distribuidor(nome, senha, cnpj, aceitaPF);
+        
+        try{
+            this.userDb.create(usuario);
+        } catch (Exception e){
+            
+            System.out.println(e);
+        }
         
         txtNomeDistr.setText("");
         txtSenhaDistr.setText("");
@@ -500,9 +515,25 @@ public class telaDeCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+        
+                
+        try{
+            
+            this.userDb.findOne(cpf, "0", 1);
+            System.out.println(cpf);
+            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CPF!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }catch(Exception e){ 
+        }
+        
         Usuario usuario = new PessoaFisica(nome, senha, cpf, idade);
         
-        //UsersDB.create(usuario);
+        try{
+            this.userDb.create(usuario);
+        } catch (Exception e){
+            
+            System.out.println(e);
+        }
         
         txtNomePf.setText("");
         txtSenhaPf.setText("");
@@ -542,7 +573,22 @@ public class telaDeCadastro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+        
+        try{
+            
+            this.userDb.findOne(cnpj, "0", 2);
+            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            return;
+        }catch(Exception e){
+            
+        }
         Usuario usuario = new PessoaJuridica(nome, senha, cnpj, hospital);
+        try{
+            this.userDb.create(usuario);
+        } catch (Exception e){
+            
+            System.out.println(e);
+        }
         
         txtNomePj.setText("");
         txtSenhaPj.setText("");

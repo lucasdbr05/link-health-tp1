@@ -11,7 +11,7 @@ import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
 public   class UsersDB extends Database implements IUsersDBRepository {
-    static String file = "./data/usuarios.txt";
+    static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
 
     @Override
     public Usuario  findOne(int id) throws IOException, IOException {
@@ -31,16 +31,21 @@ public   class UsersDB extends Database implements IUsersDBRepository {
         // 0 - > define um distribuidor
         // 1 - > define uma pessoa fisica
         // 2 - > define uma pessoa juridica
+        // Se a senha for 0 estou checando se existe algum usuario
+        // com esse CPF
         
         for(String row: usersRows) {
             Usuario user = this.fromStringToUserObject(row);
-            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && user.getSenha().equals(inPasw))
+            
+            System.out.println(user.getNome());
+            
+            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0"))){
+                return user;
+            }
+            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0")))
                 return user;
             
-            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && user.getSenha().equals(inPasw))
-                return user;
-            
-            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && user.getSenha().equals(inPasw))
+            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0")))
                 return user;
         }
         throw new UnsupportedOperationException("User not found");
@@ -67,12 +72,18 @@ public   class UsersDB extends Database implements IUsersDBRepository {
 
     @Override
     public Usuario create(Usuario usuario) throws IOException {
-        String data = "";
-        int id = this.getNextId(file, 1);
+        String data = "";       
+        int id;
+        try{
+            id = this.getNextId(file, 1);
+        }catch(Exception e){
+            id = 0;
+        }
         usuario.setId(id);
         if(usuario instanceof PessoaFisica){
             data = ((PessoaFisica)usuario).toString();
         } else if (usuario instanceof PessoaJuridica) {
+            System.out.println("DD");
             data = ((PessoaJuridica)usuario).toString();
         } else if (usuario instanceof Distribuidor){
             //TODO: HAHAHA

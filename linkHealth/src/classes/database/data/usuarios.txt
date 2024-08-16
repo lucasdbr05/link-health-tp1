@@ -1,4 +1,2 @@
-// id | PESSOA_FISICA |nome | senha | endereço1; endereço2... | fp1; fp2; | cpf | idade | receita
-// id | PESSOA_JURIDICA |nome | senha | endereço1; endereço2... | fp1; fp2; | cnpj| isHospital
-// id | DISTRIBUIDOR |nome | senha | endereço1; endereço2... | fp1; fp2; | cnpj | aceitaPf
-//
+PESSOA_FISICA|0|a|111111111111||||111.111.111-11|1|false
+
