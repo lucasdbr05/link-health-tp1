@@ -113,6 +113,11 @@ public class telaDeLogin extends javax.swing.JFrame {
                 btnOKDistrMouseClicked(evt);
             }
         });
+        btnOKDistr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKDistrActionPerformed(evt);
+            }
+        });
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/warehouse_116463.png"))); // NOI18N
         jLabel7.setText("jLabel7");
@@ -195,6 +200,11 @@ public class telaDeLogin extends javax.swing.JFrame {
         btnOKPf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnOKPfMouseClicked(evt);
+            }
+        });
+        btnOKPf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKPfActionPerformed(evt);
             }
         });
 
@@ -422,6 +432,14 @@ public class telaDeLogin extends javax.swing.JFrame {
         this.setVisible(false);
         new TelaPrincipal(11).setVisible(true);
     }//GEN-LAST:event_btnOkPjMouseClicked
+
+    private void btnOKDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKDistrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKDistrActionPerformed
+
+    private void btnOKPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKPfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOKPfActionPerformed
 
     /**
      * @param args the command line arguments
