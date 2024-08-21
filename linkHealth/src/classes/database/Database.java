@@ -79,4 +79,16 @@ class Database implements IDatabaseRepository{
         return Integer.parseInt(rowData[idPosition]);
     }
 
+    @Override
+    public void fileWriteRows(String path, String[] newData) throws IOException {
+        String data = "";
+        
+        for(String row: newData){
+            data += (row + '\n');
+            
+        }
+        
+        this.fileWriter(path, data);
+    }
+
 }

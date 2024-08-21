@@ -10,9 +10,9 @@ import classes.PessoaJuridica;
 import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
-public   class UsersDB extends Database implements IUsersDBRepository {
-    static String file = "./data/usuarios.txt";
-
+public class UsersDB extends Database implements IUsersDBRepository {
+    static String file = "linkHealth/src/classes/database/data/usuarios.txt";
+    
     @Override
     public Usuario  findOne(int id) throws IOException, IOException {
         String[] usersRows = this.splitFileWrite(this.fileReader(file));
@@ -79,8 +79,29 @@ public   class UsersDB extends Database implements IUsersDBRepository {
 
     @Override
     public Usuario deleteUsuario(int id) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUsuario'");
+        
+        this.fileClear(file);
+        String[] usersRows = this.splitFileWrite(this.fileReader(file));
+        
+        Usuario removedUser = null;
+        
+        if(usersRows.length == 0) {
+            return null;
+        }
+        
+        String[] newRows = new String[usersRows.length -1];
+       
+        for(int i=0, j=0; i< usersRows.length; i++) {
+            Usuario user = this.fromStringToUserObject(usersRows[i]);
+            if(id == user.getId()) {
+                removedUser = user;
+                continue;
+            }
+            newRows[j++] = usersRows[i]; 
+        }
+        
+        this.fileWriteRows(file, newRows);
+        return removedUser;
     }
 
     @Override
@@ -125,10 +146,23 @@ public   class UsersDB extends Database implements IUsersDBRepository {
             return new PessoaFisica();
         }
 
+
     @Override
-    public Usuario update(int id, Usuario updatedUsuario) throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    public Usuario update(Usuario newUserData) throws IOException {
+        this.fileClear(file);
+        String[] usersRows = this.splitFileWrite(this.fileReader(file));
+        
+        
+        for(int i=0; i< usersRows.length; i++) {
+            Usuario user = this.fromStringToUserObject(usersRows[i]);
+            if(newUserData.getId() == user.getId()) {
+                usersRows[i] = newUserData.toString();
+            }
+        }
+        
+        this.fileWriteRows(file, usersRows);
+        
+        return newUserData;
     }
     }
 
