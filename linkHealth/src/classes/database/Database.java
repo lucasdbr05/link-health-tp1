@@ -26,7 +26,7 @@ class Database implements IDatabaseRepository{
         String ans = "";
         while (true) {
             row = buffRead.readLine();
-            if (row != null && row.isBlank()) {
+            if (row != null && !row.isBlank()) {
                     if(row.startsWith("//")) continue; //indicate database pattern
                     ans += row +"\n";
 
@@ -57,7 +57,7 @@ class Database implements IDatabaseRepository{
 
     @Override
     public String[] splitRowString(String userSplited2) {
-        String[] rowSplit =  userSplited2.split("|");
+        String[] rowSplit =  userSplited2.split("\\|");
         for(String data: rowSplit) {
             data = data.strip();
         }
@@ -72,7 +72,7 @@ class Database implements IDatabaseRepository{
     @Override
     public int getNextId(String path, int idPosition) throws IOException{
         String fileData = this.fileReader(path);
-        System.out.println(fileData);
+       
         String[] dataSplited = this.splitFileWrite(fileData);
             
         String data = "";
@@ -85,7 +85,7 @@ class Database implements IDatabaseRepository{
         
         String[] rowData = this.splitRowString(data);
 
-        return Integer.parseInt(rowData[idPosition]);
+        return (Integer.parseInt(rowData[idPosition]) + 1);
     }
 
 }

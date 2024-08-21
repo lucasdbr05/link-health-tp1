@@ -78,8 +78,9 @@ public   class UsersDB extends Database implements IUsersDBRepository {
         int id;
         try{
             id = this.getNextId(file, 1);
+
         }catch(Exception e){
-            id = 0;
+            id = 1;
         }
         usuario.setId(id);
         if(usuario instanceof PessoaFisica){
