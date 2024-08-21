@@ -12,10 +12,10 @@ import classes.database.repositories.IUsersDBRepository;
 
 public   class UsersDB extends Database implements IUsersDBRepository {
     
-    static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
+    static String file = "C:\\Users\\Notebook\\Documents\\NetBeansProjects\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
 
     @Override
-    public Usuario  findOne(int id) throws IOException, IOException {
+    public Usuario  findOne(int id) throws IOException {
         String[] usersRows = this.splitFileWrite(this.fileReader(file));
 
         for(String row: usersRows) {
@@ -26,6 +26,7 @@ public   class UsersDB extends Database implements IUsersDBRepository {
     }
     
     public Usuario  findOne(String inCPF, String inPasw, int tipoLog) throws IOException, IOException {
+        
         String[] usersRows = this.splitFileWrite(this.fileReader(file));
         
         // tipoLog - > define quem está fazendo login 

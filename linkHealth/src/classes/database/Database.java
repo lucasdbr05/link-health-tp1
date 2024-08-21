@@ -39,6 +39,7 @@ class Database implements IDatabaseRepository{
     
     @Override
     public void fileWriter(String path, String row) throws IOException {
+        
         try {
             String text = fileReader(path) + row; 
 
@@ -71,9 +72,18 @@ class Database implements IDatabaseRepository{
     @Override
     public int getNextId(String path, int idPosition) throws IOException{
         String fileData = this.fileReader(path);
+        System.out.println(fileData);
         String[] dataSplited = this.splitFileWrite(fileData);
-
-        String[] rowData = this.splitRowString(dataSplited[dataSplited.length -1]);
+            
+        String data = "";
+        for(int i=dataSplited.length-1; i>=0; i--){
+           if(!dataSplited[i].isBlank()) {
+               data = dataSplited[i];
+               break;
+           }   
+        }
+        
+        String[] rowData = this.splitRowString(data);
 
         return Integer.parseInt(rowData[idPosition]);
     }

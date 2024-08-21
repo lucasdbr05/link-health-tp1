@@ -492,7 +492,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_chkAceitaPFActionPerformed
 
     private void btnOkPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkPfActionPerformed
-        // TODO add your handling code here:
+
         String nome = txtNomePf.getText();
         String senha = new String(txtSenhaPf.getPassword());
         String cpf = txtCPFpf.getText();
