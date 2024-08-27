@@ -11,7 +11,7 @@ import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
 
-public   class UsersDB extends Database implements IUsersDBRepository {
+public  class UsersDB extends Database implements IUsersDBRepository {
     
     static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
     
@@ -116,7 +116,6 @@ public   class UsersDB extends Database implements IUsersDBRepository {
     @Override
     public Usuario deleteUsuario(int id) throws IOException {
         
-        this.fileClear(file);
         String[] usersRows = this.splitFileWrite(this.fileReader(file));
         
         Usuario removedUser = null;
@@ -126,7 +125,7 @@ public   class UsersDB extends Database implements IUsersDBRepository {
         }
         
         String[] newRows = new String[usersRows.length -1];
-       
+        
         for(int i=0, j=0; i< usersRows.length; i++) {
             Usuario user = this.fromStringToUserObject(usersRows[i]);
             if(id == user.getId()) {
@@ -135,7 +134,7 @@ public   class UsersDB extends Database implements IUsersDBRepository {
             }
             newRows[j++] = usersRows[i]; 
         }
-        
+        this.fileClear(file);
         this.fileWriteRows(file, newRows);
         return removedUser;
     }
@@ -201,5 +200,5 @@ public   class UsersDB extends Database implements IUsersDBRepository {
         
         return newUserData;
     }
-    }
+}
 

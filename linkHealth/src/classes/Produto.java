@@ -54,5 +54,9 @@ public class Produto {
         this.exigeReceita = exigeReceita;
     }
        
-    
+    @Override
+    public String toString() {
+        String receita = this.exigeReceita ? "true":"false";
+        return String.format("%d|%s|%.2f|%d|%s", this.id, this.nome, this.precoDeCusto, this.quantidade, receita);
+    }
 }
