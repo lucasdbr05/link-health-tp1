@@ -453,20 +453,33 @@ public class telaDeCadastro extends javax.swing.JFrame {
         boolean aceitaPF = chkAceitaPF.isSelected();
         if(nome.equals("") || senha.equals("") || cnpj.equals("  .   .   /    -  ")){
             
-            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         if(senha.length() < 5){
-            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try{
-            this.userDb.findOne(cnpj, "0", 0);
-            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.PLAIN_MESSAGE);           
-            return;
+            Usuario aux = this.userDb.findOne(cnpj, "0", 0);
+            if(aux != null){
+                JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
         }catch(Exception e){
+        }
+        
+        try{
+            
+            Usuario aux = this.userDb.findOne("  .   .   /    -  ", senha, 0);
+            if(aux != null){
+                 JOptionPane.showMessageDialog(null, "Essa senha já existe!", "Erro", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
+        }catch(Exception e){ 
         }
         Usuario usuario = new Distribuidor(nome, senha, cnpj, aceitaPF);
         
@@ -498,7 +511,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         String cpf = txtCPFpf.getText();
         if(nome.equals("") || senha.equals("") || cpf.equals("   .   .   -  ") || txtIdade.getText().equals("")){
             
-            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -507,22 +520,33 @@ public class telaDeCadastro extends javax.swing.JFrame {
             idade = parseInt(txtIdade.getText());
         } catch(Exception e){
             
-            JOptionPane.showMessageDialog(null, "Insira uma idade valida!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira uma idade valida!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }  
         
         if(senha.length() < 5){
-            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
                 
         try{
             
-            this.userDb.findOne(cpf, "0", 1);
-            System.out.println(cpf);
-            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CPF!", "Erro", JOptionPane.PLAIN_MESSAGE);
-            return;
+            Usuario aux = this.userDb.findOne(cpf, "0", 1);
+            if(aux != null){
+                 JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
+        }catch(Exception e){ 
+        }
+        
+        try{
+            
+            Usuario aux = this.userDb.findOne("   .   .   -  ", senha, 1);
+            if(aux != null){
+                 JOptionPane.showMessageDialog(null, "Essa senha já existe!", "Erro", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
         }catch(Exception e){ 
         }
         
@@ -565,23 +589,35 @@ public class telaDeCadastro extends javax.swing.JFrame {
         
         if(nome.equals("") || senha.equals("") || cnpj.equals("  .   .   /    -  ")){
             
-            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todos os campos devem estar marcados!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         if(senha.length() < 5){
-            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Sua senha deve conter 5 caracteres!", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
         try{
             
-            this.userDb.findOne(cnpj, "0", 2);
-            JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.PLAIN_MESSAGE);
-            return;
+            Usuario aux = this.userDb.findOne(cnpj, "0", 2);
+            if(aux != null){
+                JOptionPane.showMessageDialog(null, "Já existe um usuário com esse CNPJ!", "Erro", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }catch(Exception e){
-            
         }
+        
+        try{
+            
+            Usuario aux = this.userDb.findOne("  .   .   /    -  ", senha, 2);
+            if(aux != null){
+                 JOptionPane.showMessageDialog(null, "Essa senha já existe!", "Erro", JOptionPane.ERROR_MESSAGE);
+                 return;
+             }
+        }catch(Exception e){ 
+        }
+        
         Usuario usuario = new PessoaJuridica(nome, senha, cnpj, hospital);
         try{
             this.userDb.create(usuario);
