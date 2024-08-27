@@ -4,6 +4,8 @@
  */
 package screen;
 
+import classes.PessoaJuridica;
+
 /**
  *
  * @author emers
@@ -13,10 +15,26 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
     /**
      * Creates new form telaDePerfilPJ
      */
-    public telaDePerfilPJ() {
+    private PessoaJuridica user;
+    
+    public telaDePerfilPJ(PessoaJuridica par) {
         initComponents();
+        this.user = par;
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
+        
+        this.txtCNPJ.setEnabled(false);
+        this.txtNome.setEnabled(false);
+        this.chkHosp.setEnabled(false);
+        this.btnAlterar.setEnabled(true);
+        this.btnExcluir.setEnabled(true);
+        this.btnOk.setEnabled(false);
+        
+        // setando as informações do usuário
+        
+        this.txtCNPJ.setText(user.getCnpj());
+        this.txtNome.setText(user.getNome());
+        this.chkHosp.setSelected(user.isHospital());
     }
 
     /**
@@ -34,11 +52,11 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        chkHosp = new javax.swing.JCheckBox();
         txtNome = new javax.swing.JTextField();
         txtCNPJ = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAlterar = new javax.swing.JButton();
+        btnOk = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,12 +108,12 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("CNPJ:");
 
-        jCheckBox1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(0, 102, 102));
-        jCheckBox1.setText("Hospital");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        chkHosp.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        chkHosp.setForeground(new java.awt.Color(0, 102, 102));
+        chkHosp.setText("Hospital");
+        chkHosp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                chkHospActionPerformed(evt);
             }
         });
 
@@ -107,16 +125,16 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         txtCNPJ.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtCNPJ.setForeground(new java.awt.Color(0, 102, 102));
 
-        jButton1.setBackground(new java.awt.Color(149, 236, 236));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
-        jButton1.setText("Alterar");
+        btnAlterar.setBackground(new java.awt.Color(149, 236, 236));
+        btnAlterar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnAlterar.setForeground(new java.awt.Color(0, 102, 102));
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
+        btnAlterar.setText("Alterar");
 
-        jButton2.setBackground(new java.awt.Color(149, 236, 236));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("OK");
+        btnOk.setBackground(new java.awt.Color(149, 236, 236));
+        btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOk.setForeground(new java.awt.Color(0, 102, 102));
+        btnOk.setText("OK");
 
         btnExcluir.setBackground(new java.awt.Color(149, 236, 236));
         btnExcluir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -144,15 +162,15 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jCheckBox1))
+                    .addComponent(chkHosp))
                 .addContainerGap(373, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnAlterar)
                 .addGap(18, 18, 18)
                 .addComponent(btnExcluir)
                 .addGap(29, 29, 29)
-                .addComponent(jButton2)
+                .addComponent(btnOk)
                 .addGap(98, 98, 98))
         );
         jPanel2Layout.setVerticalGroup(
@@ -169,13 +187,13 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(54, 54, 54)
-                        .addComponent(jCheckBox1)
+                        .addComponent(chkHosp)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(btnAlterar))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(btnOk)
                             .addComponent(btnExcluir))))
                 .addGap(21, 21, 21))
         );
@@ -204,9 +222,9 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void chkHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkHospActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_chkHospActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
@@ -242,16 +260,16 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDePerfilPJ().setVisible(true);
+                new telaDePerfilPJ(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton btnOk;
+    private javax.swing.JCheckBox chkHosp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

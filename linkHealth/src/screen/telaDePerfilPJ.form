@@ -140,17 +140,17 @@
                               <Component id="txtCNPJ" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkHosp" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="373" max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnOk" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -171,14 +171,14 @@
                               <Component id="txtCNPJ" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkHosp" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="43" max="32767" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAlterar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnOk" min="-2" max="-2" attributes="0"/>
                               <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -211,7 +211,7 @@
             <Property name="text" type="java.lang.String" value="CNPJ:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+        <Component class="javax.swing.JCheckBox" name="chkHosp">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="14" style="0"/>
@@ -222,7 +222,7 @@
             <Property name="text" type="java.lang.String" value="Hospital"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkHospActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNome">
@@ -251,7 +251,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnAlterar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ec" green="ec" red="95" type="rgb"/>
@@ -268,7 +268,7 @@
             <Property name="text" type="java.lang.String" value="Alterar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnOk">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ec" green="ec" red="95" type="rgb"/>

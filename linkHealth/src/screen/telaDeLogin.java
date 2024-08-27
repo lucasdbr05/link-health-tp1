@@ -1,5 +1,7 @@
 package screen;
 
+import classes.Usuario;
+import classes.database.UsersDB;
 import javax.swing.JOptionPane;
 
 public class telaDeLogin extends javax.swing.JFrame {
@@ -9,9 +11,12 @@ public class telaDeLogin extends javax.swing.JFrame {
      */
     
     private Boolean chcPf = false, chcPj = false, chcDistr = false;
+    private UsersDB usersDB;
     
     public telaDeLogin() {
         initComponents();
+        
+        this.usersDB = new UsersDB();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
     }
@@ -362,20 +367,32 @@ public class telaDeLogin extends javax.swing.JFrame {
         
         if(inCNPJ.equals(patCNPJ)){
             
-            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCNPJDistr.setText(patCNPJ);
             txtPaswDistr.setText("");
             return;
         }
         
         if(inPsw.length() < 5){
-            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCNPJDistr.setText(patCNPJ);
             txtPaswDistr.setText("");
             return;
         }
         // aqui iremos checar se esse usuário está no banco de dados
-        
+        Usuario aux = null;
+        try{
+
+            aux = this.usersDB.findOne(inCNPJ, inPsw, 0);
+            
+            System.out.println(aux);
+            
+            if(aux == null){
+              JOptionPane.showMessageDialog(null, "CNPJ ou senha errados!", "Erro", JOptionPane.ERROR_MESSAGE);
+              return;
+            }
+        }catch(Exception e){
+        }
         this.setVisible(false);
         new telaPrincipalDistribuidor().setVisible(true);
     }//GEN-LAST:event_btnOKDistrMouseClicked
@@ -387,14 +404,14 @@ public class telaDeLogin extends javax.swing.JFrame {
         
         if(inCPF.equals(patCPF)){
             
-            JOptionPane.showMessageDialog(null, "Insira um CPF valido!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira um CPF valido!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCPF.setText(patCPF);
             txtPaswPf.setText("");
             return;
         }
         
         if(inPsw.length() < 5){
-            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCPF.setText(patCPF);
             txtPaswPf.setText("");
             return;
@@ -402,8 +419,20 @@ public class telaDeLogin extends javax.swing.JFrame {
         
         // aqui iremos checar se esse usuário está no banco de dados
         
+        Usuario aux = null;
+        try{
+
+            aux = this.usersDB.findOne(inCPF, inPsw, 1);
+
+            if(aux == null){
+              JOptionPane.showMessageDialog(null, "CPF ou senha errados!", "Erro", JOptionPane.ERROR_MESSAGE);
+              return;
+            }
+        }catch(Exception e){
+        }
+        
         this.setVisible(false);
-        new TelaPrincipal(11).setVisible(true);
+        new TelaPrincipal(aux).setVisible(true);
     }//GEN-LAST:event_btnOKPfMouseClicked
 
     private void btnOkPjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkPjMouseClicked
@@ -414,23 +443,34 @@ public class telaDeLogin extends javax.swing.JFrame {
         
         if(inCNPJ.equals(patCNPJ)){
             
-            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCNPJpj.setText(patCNPJ);
             txtPaswPj.setText("");
             return;
         }
         
         if(inPsw.length() < 5){
-            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Insira uma senha valida!", "Erro", JOptionPane.ERROR_MESSAGE);
             txtCNPJpj.setText(patCNPJ);
             txtPaswPj.setText("");
             return;
         }
         
         // aqui iremos checar se esse usuário está no banco de dados
+        Usuario aux = null;
+        try{
+
+            aux = this.usersDB.findOne(inCNPJ, inPsw, 2);
+
+            if(aux == null){
+              JOptionPane.showMessageDialog(null, "CNPJ ou senha errados!", "Erro", JOptionPane.ERROR_MESSAGE);
+              return;
+            }
+        }catch(Exception e){
+        }
         
         this.setVisible(false);
-        new TelaPrincipal(11).setVisible(true);
+        new TelaPrincipal(aux).setVisible(true);
     }//GEN-LAST:event_btnOkPjMouseClicked
 
     private void btnOKDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKDistrActionPerformed

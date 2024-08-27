@@ -49,6 +49,6 @@ public class PessoaJuridica extends Usuario {
         @Override
     public String toString() {
         String h = this.hospital ? "true": "false";
-        return String.format("PESSOA_FISICA|%s|%s|%s\n", super.toString(), this.cnpj,h);
+        return String.format("PESSOA_JURIDICA|%s|%s|%s\n", super.toString(), this.cnpj,h);
     }
 }

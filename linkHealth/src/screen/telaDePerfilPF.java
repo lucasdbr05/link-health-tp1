@@ -4,6 +4,8 @@
  */
 package screen;
 
+import classes.PessoaFisica;
+
 /**
  *
  * @author emers
@@ -13,10 +15,28 @@ public class telaDePerfilPF extends javax.swing.JFrame {
     /**
      * Creates new form telaDePerfilPF
      */
-    public telaDePerfilPF() {
+    
+    private PessoaFisica user;
+    
+    public telaDePerfilPF(PessoaFisica inPF) {
         initComponents();
+        
+        this.user = inPF;
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
+        
+        this.txtCPF.setEnabled(false);
+        this.txtIdade.setEnabled(false);
+        this.txtNome.setEnabled(false);
+        this.btnAlterar.setEnabled(true);
+        this.btnExcluir.setEnabled(true);
+        this.btnOk.setEnabled(false);
+        
+        // setando as informações do usuário
+        
+        this.txtCPF.setText(user.getCpf());
+        this.txtNome.setText(user.getNome());
+        this.txtIdade.setText(Integer.toString(user.getIdade()));
     }
 
     /**
@@ -281,7 +301,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDePerfilPF().setVisible(true);
+                new telaDePerfilPF(null).setVisible(true);
             }
         });
     }
