@@ -19,6 +19,7 @@ class Database implements IDatabaseRepository{
         buffWrite.close();
     }
     
+    
     @Override
     public  String fileReader(String path) throws IOException {
         BufferedReader buffRead = new BufferedReader(new FileReader(path));
@@ -86,6 +87,18 @@ class Database implements IDatabaseRepository{
         String[] rowData = this.splitRowString(data);
 
         return (Integer.parseInt(rowData[idPosition]) + 1);
+    }
+
+    @Override
+    public void fileWriteRows(String path, String[] newData) throws IOException {
+        String data = "";
+        
+        for(String row: newData){
+            data += (row + '\n');
+            
+        }
+        
+        this.fileWriter(path, data);
     }
 
 }
