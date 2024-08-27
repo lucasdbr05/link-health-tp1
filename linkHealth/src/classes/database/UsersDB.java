@@ -11,7 +11,7 @@ import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
 
-public   class UsersDB extends Database implements IUsersDBRepository {
+public  class UsersDB extends Database implements IUsersDBRepository {
     
     static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
     
@@ -201,5 +201,5 @@ public   class UsersDB extends Database implements IUsersDBRepository {
         
         return newUserData;
     }
-    }
+}
 
