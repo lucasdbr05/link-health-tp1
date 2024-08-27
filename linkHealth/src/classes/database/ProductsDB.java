@@ -87,7 +87,6 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
     
     @Override
     public Produto update(Produto newUserData) throws IOException {
-        this.fileClear(file);
         String[] productRows = this.splitFileWrite(this.fileReader(file));
         
         
@@ -98,6 +97,7 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
             }
         }
         
+        this.fileClear(file);
         this.fileWriteRows(file, productRows);
         
         return newUserData;
