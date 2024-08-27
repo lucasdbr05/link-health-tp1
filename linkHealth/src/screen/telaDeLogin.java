@@ -422,7 +422,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         }
         
         this.setVisible(false);
-        new TelaPrincipal(aux.getId()).setVisible(true);
+        new TelaPrincipal(aux).setVisible(true);
     }//GEN-LAST:event_btnOKPfMouseClicked
 
     private void btnOkPjMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkPjMouseClicked
@@ -460,7 +460,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         }
         
         this.setVisible(false);
-        new TelaPrincipal(aux.getId()).setVisible(true);
+        new TelaPrincipal(aux).setVisible(true);
     }//GEN-LAST:event_btnOkPjMouseClicked
 
     /**

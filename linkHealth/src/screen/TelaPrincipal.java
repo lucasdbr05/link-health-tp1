@@ -4,6 +4,10 @@
  */
 package screen;
 
+import classes.PessoaFisica;
+import classes.PessoaJuridica;
+import classes.Usuario;
+
 /**
  *
  * @author emers
@@ -14,11 +18,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * Creates new form TelaPrincipalPJ
      */
     
-    private int userId;
+    private Usuario user;
     
-    public TelaPrincipal(int inID) {
+    public TelaPrincipal(Usuario inUser) {
         
-        this.userId = inID;
+        this.user = inUser;
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
@@ -145,7 +149,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
-        new telaDePerfilPJ().setVisible(true);
+
     }//GEN-LAST:event_btnPerfilMouseClicked
 
     private void btnCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatalogoMouseClicked
@@ -162,6 +166,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         // TODO add your handling code here:
+       
+        if(user instanceof PessoaJuridica){
+            
+            new telaDePerfilPJ((PessoaJuridica)(user)).setVisible(true);
+            return;
+        }
+        
+        if(user instanceof PessoaFisica){
+            
+            new telaDePerfilPF((PessoaFisica)(user)).setVisible(true);
+            return;
+        }
+        
+        //TODO: add the Perfil Screen of the Distribuidor
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     /**
@@ -195,7 +213,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPrincipal(11).setVisible(true);
+                new TelaPrincipal(null).setVisible(true);
             }
         });
     }

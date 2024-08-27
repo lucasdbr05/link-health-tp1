@@ -563,7 +563,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenhaPf.setText("");
         txtCPFpf.setText("");
         txtIdade.setText("");
-        new TelaPrincipal(usuario.getId()).setVisible(true);
+        new TelaPrincipal(usuario).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnOkPfActionPerformed
 
@@ -630,7 +630,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenhaPj.setText("");
         txtCNPJpj.setText("");
         chkHospital.setSelected(false);
-        new TelaPrincipal(usuario.getId()).setVisible(true);
+        new TelaPrincipal(usuario).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnOkjActionPerformed
 
