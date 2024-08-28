@@ -5,6 +5,8 @@
 package screen;
 
 import classes.PessoaJuridica;
+import classes.database.UsersDB;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,10 +18,12 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
      * Creates new form telaDePerfilPJ
      */
     private PessoaJuridica user;
+    private UsersDB userDb;
     
     public telaDePerfilPJ(PessoaJuridica par) {
         initComponents();
         this.user = par;
+        this.userDb = new UsersDB();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
         
@@ -120,21 +124,35 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
         txtNome.setBackground(new java.awt.Color(149, 236, 236));
         txtNome.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtNome.setForeground(new java.awt.Color(0, 102, 102));
+        txtNome.setCaretColor(new java.awt.Color(149, 236, 236));
+        txtNome.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+        txtNome.setSelectedTextColor(new java.awt.Color(149, 236, 236));
 
         txtCNPJ.setBackground(new java.awt.Color(149, 236, 236));
         txtCNPJ.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtCNPJ.setForeground(new java.awt.Color(0, 102, 102));
+        txtCNPJ.setDisabledTextColor(new java.awt.Color(0, 102, 102));
 
         btnAlterar.setBackground(new java.awt.Color(149, 236, 236));
         btnAlterar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnAlterar.setForeground(new java.awt.Color(0, 102, 102));
         btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnOk.setBackground(new java.awt.Color(149, 236, 236));
         btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnOk.setForeground(new java.awt.Color(0, 102, 102));
         btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setBackground(new java.awt.Color(149, 236, 236));
         btnExcluir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -155,15 +173,18 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(chkHosp)
+                        .addContainerGap(485, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(chkHosp))
-                .addContainerGap(373, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(txtCNPJ)
+                                .addGap(362, 362, 362))))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAlterar)
@@ -228,7 +249,72 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         // TODO add your handling code here:
+        
+        try{
+            this.userDb.deleteUsuario(this.user.getId());
+        } catch(Exception e){
+            
+            System.out.println(e);
+        }
+        
+        System.exit(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        // TODO add your handling code here:
+        
+        this.txtCNPJ.setEnabled(true);
+        this.txtNome.setEnabled(true);
+        this.chkHosp.setEnabled(true);
+        this.btnAlterar.setEnabled(false);
+        this.btnExcluir.setEnabled(false);
+        this.btnOk.setEnabled(true);
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+
+        String patCnpj  = "  .   .   /    -  ";
+        String inCNPJ = this.txtCNPJ.getText();
+        String inNome = this.txtNome.getText();
+        Boolean inHosp = this.chkHosp.isSelected();
+        
+        if(inCNPJ.equals(patCnpj)){
+            
+            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(inNome.equals("")){
+            
+            JOptionPane.showMessageDialog(null, "O campo de Nome não pode estar vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.user.setCnpj(inCNPJ);
+        this.user.setHospital(inHosp);
+        this.user.setNome(inNome);
+        
+        try{
+            this.userDb.update(this.user);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // trazendo os espaços de input para o estado original
+        
+        this.txtCNPJ.setEnabled(false);
+        this.txtNome.setEnabled(false);
+        this.chkHosp.setEnabled(false);
+        this.btnAlterar.setEnabled(true);
+        this.btnExcluir.setEnabled(true);
+        this.btnOk.setEnabled(false);
+        
+        // resetando as informações do usuário
+        
+        this.txtCNPJ.setText(user.getCnpj());
+        this.txtNome.setText(user.getNome());
+        this.chkHosp.setSelected(user.isHospital());
+    }//GEN-LAST:event_btnOkActionPerformed
 
     /**
      * @param args the command line arguments

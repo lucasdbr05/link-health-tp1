@@ -167,15 +167,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
         // TODO add your handling code here:
        
-        if(user instanceof PessoaJuridica){
+        if(this.user instanceof PessoaJuridica){
             
-            new telaDePerfilPJ((PessoaJuridica)(user)).setVisible(true);
+            new telaDePerfilPJ((PessoaJuridica)(this.user)).setVisible(true);
             return;
         }
         
-        if(user instanceof PessoaFisica){
+        if(this.user instanceof PessoaFisica){
             
-            new telaDePerfilPF((PessoaFisica)(user)).setVisible(true);
+            new telaDePerfilPF((PessoaFisica)(this.user)).setVisible(true);
             return;
         }
         

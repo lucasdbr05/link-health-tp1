@@ -5,6 +5,8 @@
 package screen;
 
 import classes.PessoaFisica;
+import classes.database.UsersDB;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,11 +19,14 @@ public class telaDePerfilPF extends javax.swing.JFrame {
      */
     
     private PessoaFisica user;
+    private UsersDB userDb;
     
     public telaDePerfilPF(PessoaFisica inPF) {
         initComponents();
         
         this.user = inPF;
+        this.userDb = new UsersDB();
+        
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
         
@@ -132,6 +137,11 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         btnOk.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnOk.setForeground(new java.awt.Color(0, 102, 102));
         btnOk.setText("OK");
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setBackground(new java.awt.Color(149, 236, 236));
         btnExcluir.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -264,12 +274,82 @@ public class telaDePerfilPF extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCPFActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        // ao apertar esse botão o usuário é permitido a fazer alterações
+        // em seus dados
+        this.txtCPF.setEnabled(true);
+        this.txtIdade.setEnabled(true);
+        this.txtNome.setEnabled(true);
+        this.btnAlterar.setEnabled(false);
+        this.btnExcluir.setEnabled(false);
+        this.btnOk.setEnabled(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        // Deleta o usuario e termina a aplicação
+        
+        try{
+            this.userDb.deleteUsuario(this.user.getId());
+        } catch(Exception e){
+
+            System.out.println(e);
+        }
+
+        System.exit(0);
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        
+        String patCpf = "   .   .   -  ";
+        String inCPF = this.txtCPF.getText();
+        String inIdade = this.txtIdade.getText();
+        String inNome = this.txtNome.getText();
+        
+        if(inCPF.equals(patCpf)){
+            
+            JOptionPane.showMessageDialog(null, "Insira um CPF valido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(inNome.equals("")){
+            
+            JOptionPane.showMessageDialog(null, "O campo de nome deve ser preenchido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int idade = 0;
+        
+        try{
+            
+            idade = Integer.parseInt(inIdade);
+        } catch(Exception e){
+            
+            JOptionPane.showMessageDialog(null, "Insira uma idade valida!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.user.setCpf(inCPF);
+        this.user.setIdade(idade);
+        this.user.setNome(inNome);
+        
+        try{
+            this.userDb.update(this.user);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        this.txtCPF.setEnabled(false);
+        this.txtIdade.setEnabled(false);
+        this.txtNome.setEnabled(false);
+        this.btnAlterar.setEnabled(true);
+        this.btnExcluir.setEnabled(true);
+        this.btnOk.setEnabled(false);
+        
+        // setando as informações do usuário
+        
+        this.txtCPF.setText(user.getCpf());
+        this.txtNome.setText(user.getNome());
+        this.txtIdade.setText(Integer.toString(user.getIdade()));
+    }//GEN-LAST:event_btnOkActionPerformed
 
     /**
      * @param args the command line arguments

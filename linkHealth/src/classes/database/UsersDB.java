@@ -52,6 +52,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
             Usuario user = this.fromStringToUserObject(row);
             
             System.out.println(user.getNome());
+            // checa se existe uma senha já criada
             if(tipoLog == 1 && user instanceof PessoaFisica && (patCpf.equals(inCPF)) && (user.getSenha().equals(inPasw))){
                 return user;
             }
@@ -61,13 +62,25 @@ public  class UsersDB extends Database implements IUsersDBRepository {
             if(tipoLog == 2 && user instanceof PessoaJuridica && patCnpj.equals(inCPF) && (user.getSenha().equals(inPasw)))
                 return user;
             
-            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0"))){
+            // checa se existe um cpf ou cnpj já cadastrado
+            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && (inPasw.equals("0"))){
                 return user;
             }
-            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0")))
+            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && (inPasw.equals("0")))
                 return user;
             
-            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw) || inPasw.equals("0")))
+            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && (inPasw.equals("0")))
+                return user;
+            
+            // checa se o login do usuario está correto
+            
+            if(tipoLog == 1 && user instanceof PessoaFisica && ((PessoaFisica)user).getCpf().equals(inCPF) && (user.getSenha().equals(inPasw))){
+                return user;
+            }
+            if(tipoLog == 0 && user instanceof Distribuidor && ((Distribuidor)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw)))
+                return user;
+            
+            if(tipoLog == 2 && user instanceof PessoaJuridica && ((PessoaJuridica)user).getCnpj().equals(inCPF) && (user.getSenha().equals(inPasw)))
                 return user;
         }
         
@@ -166,8 +179,8 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         }
         else if(userSplited[0].equals( "PESSOA_JURIDICA")){
 
-            String cnpj= userSplited[6];
-            boolean isHospital = userSplited[7].equals("true") ? true: false;
+            String cnpj= userSplited[7];
+            boolean isHospital = userSplited[8].equals("true") ? true: false;
 
 
             PessoaJuridica pj = new PessoaJuridica(id, nome, senha, address, formaDePagamento, cnpj, isHospital);
@@ -185,14 +198,26 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
     @Override
     public Usuario update(Usuario newUserData) throws IOException {
-        this.fileClear(file);
-        String[] usersRows = this.splitFileWrite(this.fileReader(file));
         
+        String[] usersRows = this.splitFileWrite(this.fileReader(file));
+        this.fileClear(file);
+        
+        String data = "";
+        
+        // Isso aqui vai atualizar os dados
+        
+        if(newUserData instanceof PessoaFisica){
+             
+            data = ((PessoaFisica)(newUserData)).toString();
+        } else if(newUserData instanceof PessoaJuridica){
+            
+            data = ((PessoaJuridica)(newUserData)).toString();
+        }
         
         for(int i=0; i< usersRows.length; i++) {
             Usuario user = this.fromStringToUserObject(usersRows[i]);
             if(newUserData.getId() == user.getId()) {
-                usersRows[i] = newUserData.toString();
+                usersRows[i] = data;
             }
         }
         

@@ -64,6 +64,6 @@ public class PessoaFisica extends Usuario{
     @Override
     public String toString() {
         String r = this.receita ? "true": "false";
-        return String.format("PESSOA_FISICA|%s|%s|%d|%s\n", super.toString(), this.cpf, this.idade,r);
+        return String.format("PESSOA_FISICA|%s|%s|%d|%s", super.toString(), this.cpf, this.idade,r);
     }
 }

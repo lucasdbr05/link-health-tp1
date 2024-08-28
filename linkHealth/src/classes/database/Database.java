@@ -93,10 +93,12 @@ class Database implements IDatabaseRepository{
     public void fileWriteRows(String path, String[] newData) throws IOException {
         String data = "";
         
+        
         for(String row: newData){
             data += (row + '\n');
-            
         }
+        
+        System.out.printf(data);
         
         this.fileWriter(path, data);
     }
