@@ -2,11 +2,13 @@ package classes.database;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import classes.Distribuidor;
 import classes.FormaDePagamento;
 import classes.PessoaFisica;
 import classes.PessoaJuridica;
+import classes.Produto;
 import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
@@ -105,7 +107,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
             System.out.println("DD");
             data = ((PessoaJuridica)usuario).toString();
         } else if (usuario instanceof Distribuidor){
-            //TODO: HAHAHA
+            data = ((Distribuidor)usuario).toString();
         }
 
         this.fileWriter(file, data);
@@ -140,8 +142,8 @@ public  class UsersDB extends Database implements IUsersDBRepository {
     }
 
     @Override
-    public Usuario fromStringToUserObject(String userSplited2) {
-        String[] userSplited = this.splitRowString(userSplited2);
+    public Usuario fromStringToUserObject(String userRow) {
+        String[] userSplited = this.splitRowString(userRow);
 
         int id = Integer.parseInt(userSplited[1]);
         String nome = userSplited[2];
@@ -175,8 +177,12 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
         }
         else if (userSplited[0].equals( "DISTRIBUIDOR")){
-            return new PessoaFisica();
+            String cnpj = userSplited[6];
+            ArrayList<Produto> produto = new ArrayList<Produto>();
+            boolean acceptPF = userSplited[7].equals("true");
 
+            Distribuidor distribuidor = new Distribuidor(id, nome,senha, address, formaDePagamento, cnpj, produto, acceptPF);
+            return distribuidor;
         }
 
         return new PessoaFisica();
