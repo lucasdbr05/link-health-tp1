@@ -111,13 +111,6 @@ public class Compra {
         this.codigoStatus = codigoStatus;
     }
 
-    public HashMap<Produto, Integer> getPacote() {
-        return pacote;
-    }
-
-    public void setPacote(HashMap<Produto, Integer> pacote) {
-        this.pacote = pacote;
-    }
 
     public boolean isEntregaOuRetirada() {
         return entregaOuRetirada;
