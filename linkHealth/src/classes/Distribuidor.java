@@ -11,15 +11,15 @@ public class Distribuidor extends Usuario {
 
 
     
-    public Distribuidor(String nome, String senha, int id, ArrayList<String> endereco,
+    public Distribuidor(int id, String nome, String senha , ArrayList<String> endereco,
             ArrayList<FormaDePagamento> formasDePagamento, String cnpj, ArrayList<Produto> produtos,
-            HashMap<Produto, Integer> estoque, boolean aceitaPessoaFisica, HashMap<Produto, Double> precos) {
+            boolean aceitaPessoaFisica) {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cnpj = cnpj;
-        this.produtos = produtos;
-        this.estoque = estoque;
         this.aceitaPessoaFisica = aceitaPessoaFisica;
-        this.precos = precos;
+        this.produtos = produtos;
+        this.precos = this.buildPrecos();
+        this.estoque = this.buildEstoque();
     }
 
     public Distribuidor(
@@ -88,5 +88,11 @@ public class Distribuidor extends Usuario {
     public void addProduct(Produto produto) {
         this.precos.put(produto, this.precos.getOrDefault(produto, 0.0) + produto.getPrecoDeCusto());
         this.estoque.put(produto, this.estoque.getOrDefault(produto, 0) + produto.getQuantidade());
+    }
+
+    @Override
+    public String toString() {
+        String acceptPessoaFisica = aceitaPessoaFisica ? "true" : "false";
+        return String.format("%s|%s|%s", super.toString(),this.cnpj, acceptPessoaFisica);
     }
 }
