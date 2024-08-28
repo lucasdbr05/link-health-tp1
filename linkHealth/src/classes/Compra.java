@@ -1,3 +1,4 @@
+
 package classes;
 
 import java.util.ArrayList;
@@ -16,7 +17,6 @@ public class Compra {
     private int id;
     private Status status;
     private int codigoStatus;
-    private HashMap<Produto, Integer> pacote;
     private boolean entregaOuRetirada;
     private Carrinho carrinhoIni;
 
@@ -25,14 +25,13 @@ public class Compra {
         this.status = status;
     }
 
-    public Compra(Status status, boolean entregaOuRetirada, HashMap<Produto, Integer> inPacote, Carrinho carrinhoIni, int _id) {
+    public Compra(Status status, boolean entregaOuRetirada, Carrinho carrinhoIni, int _id) {
         
         //o codigo de status é gerado aleatoriamente
         
         this.status = status;
         this.entregaOuRetirada = entregaOuRetirada;
         this.carrinhoIni = carrinhoIni;
-        this.pacote = inPacote; 
         this.id = _id;
         
     }
@@ -87,19 +86,6 @@ public class Compra {
         return "COMPRA NAO ENCONTRADA";
     }
     
-    public ArrayList<Map.Entry<Produto, Integer>> checaProdutos(){
-        
-        //tratar o codigo da compra antes de chamar o checaProdutos;
-        
-        ArrayList<Map.Entry<Produto, Integer>> produtos = new ArrayList<Map.Entry<Produto, Integer>>();
-        
-        for (Map.Entry<Produto, Integer> entrada : this.pacote.entrySet()){
-               
-            produtos.add(entrada);
-        }
-        
-        return produtos;
-    }
 
     public int getId() {
         return id;

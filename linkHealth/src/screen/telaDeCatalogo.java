@@ -34,7 +34,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        AddCarrinho = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Catálogo de produtos");
@@ -101,11 +101,16 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/catalog_icon_215654.png"))); // NOI18N
         jLabel3.setText("Catálogo:");
 
-        jButton1.setBackground(new java.awt.Color(149, 236, 236));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_circle_create_expand_new_plus_icon_123218.png"))); // NOI18N
-        jButton1.setText("Adicionar ao Carrinho");
+        AddCarrinho.setBackground(new java.awt.Color(149, 236, 236));
+        AddCarrinho.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        AddCarrinho.setForeground(new java.awt.Color(0, 102, 102));
+        AddCarrinho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add_circle_create_expand_new_plus_icon_123218.png"))); // NOI18N
+        AddCarrinho.setText("Adicionar ao Carrinho");
+        AddCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddCarrinhoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,7 +120,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 977, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(AddCarrinho))
                 .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
@@ -141,7 +146,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(14, 14, 14)
-                .addComponent(jButton1)
+                .addComponent(AddCarrinho)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, Short.MAX_VALUE))
@@ -168,6 +173,11 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void AddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_AddCarrinhoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +215,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton AddCarrinho;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
