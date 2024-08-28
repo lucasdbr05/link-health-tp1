@@ -1,3 +1,1 @@
-PESSOA_FISICA|1|a|junior||||111.111.111-11|10|false
-PESSOA_JURIDICA|2|b|vsfdPriscila||||22.222.222/2222-22|false
-PESSOA_FISICA|3|b|deucerto||||121.211.112-11|12|false
+

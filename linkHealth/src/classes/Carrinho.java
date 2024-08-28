@@ -16,17 +16,14 @@ public class Carrinho {
     private HashMap<Produto, Integer> quantidade;
     
     private double total;
-    private Usuario usuario;
-
    
-    public Carrinho(Usuario _user)
+    public Carrinho()
     {
-        usuario = _user;
         produtosDesejados = new HashMap<>();
         total = 0;
     }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, int _quantidade)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, int _quantidade, Usuario usuario)
     {
         if(usuario instanceof PessoaJuridica)
         {

@@ -6,8 +6,7 @@ public class PessoaJuridica extends Usuario {
 
     private String cnpj;
     private boolean hospital = false;
-
-
+    private Carrinho meuCarrinho;
     
 
     public PessoaJuridica(int id,String nome, String senha, ArrayList<String> endereco,
@@ -15,6 +14,7 @@ public class PessoaJuridica extends Usuario {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cnpj = cnpj;
         this.hospital = hospital;
+        this.meuCarrinho = new Carrinho();
     }
 
     public PessoaJuridica(String _nome, String _senha, String _cnpj, boolean _hospital) {

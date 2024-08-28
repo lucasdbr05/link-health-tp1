@@ -7,6 +7,7 @@ public class PessoaFisica extends Usuario{
     private String cpf;
     private int idade;
     private boolean receita = false;
+    private Carrinho meuCarrinho;
 
     public PessoaFisica(){};
     
@@ -16,6 +17,7 @@ public class PessoaFisica extends Usuario{
         this.cpf = cpf;
         this.idade = idade;
         this.receita = receita;
+        this.meuCarrinho = new Carrinho();
     }
 
     public PessoaFisica(String _nome, String _senha, String _cpf, int _idade)
