@@ -53,7 +53,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
             Usuario user = this.fromStringToUserObject(row);
             
-            System.out.println(user.getNome());
+            System.out.println(user.getId());
             // checa se existe uma senha já criada
             if(tipoLog == 1 && user instanceof PessoaFisica && (patCpf.equals(inCPF)) && (user.getSenha().equals(inPasw))){
                 return user;
@@ -163,7 +163,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         String senha = userSplited[3];
         ArrayList<String> address = new ArrayList<String>();
 
-        for(String s: userSplited[4].split("#")) {
+        for(String s: userSplited[4].split(";")) {
             address.add(s);
         }
 
@@ -172,18 +172,21 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         // Usando uma logica analoga a logica do endereço
         // recuperamos as formas de pagamento desse usuario
         // armazeanadas no banco de dados
-        
-        System.out.println(userSplited[6]);
+
         
         for(String s : userSplited[5].split(";")){
             
-            String[] aux = s.split("/");
+            if(s.equals("")) continue;
+            
+            String[] aux = s.split("#");
             
             Boolean debito = (aux[1].equals("true") ? true : false);
             Boolean credito = (aux[2].equals("true") ? true : false);
             
             formaDePagamento.put(aux[0], new FormaDePagamento(aux[0], debito, credito, Integer.parseInt(aux[3])));
         }
+                
+        System.out.println(userSplited[6]);
         
         if(userSplited[0].equals("PESSOA_FISICA")){
             String cpf = userSplited[6];
