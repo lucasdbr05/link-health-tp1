@@ -89,6 +89,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnCatalogoMouseClicked(evt);
             }
         });
+        btnCatalogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatalogoActionPerformed(evt);
+            }
+        });
 
         btnAcompPedi.setBackground(new java.awt.Color(149, 236, 236));
         btnAcompPedi.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -150,6 +155,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPerfilMouseClicked
 
+        if(this.user instanceof PessoaJuridica){
+
+            new telaDePerfilPJ((PessoaJuridica)(this.user)).setVisible(true);
+            return;
+        }
+        
+        if(this.user instanceof PessoaFisica){
+            
+            new telaDePerfilPF((PessoaFisica)(this.user)).setVisible(true);
+            return;
+        }
     }//GEN-LAST:event_btnPerfilMouseClicked
 
     private void btnCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatalogoMouseClicked
@@ -181,6 +197,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         //TODO: add the Perfil Screen of the Distribuidor
     }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCatalogoActionPerformed
 
     /**
      * @param args the command line arguments
