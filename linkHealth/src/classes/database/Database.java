@@ -50,7 +50,6 @@ class Database implements IDatabaseRepository{
             buffWrite.close();
         } catch (IOException ex) {
             BufferedWriter buffWrite = new BufferedWriter(new FileWriter(path));
-            System.out.printf("%s -> %s\n", "nense", row);
             buffWrite.append(row + "\n");
             buffWrite.close();
         }

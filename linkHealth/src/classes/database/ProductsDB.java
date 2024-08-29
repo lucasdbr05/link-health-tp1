@@ -1,5 +1,6 @@
 package classes.database;
 
+import classes.ENV;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ import classes.database.repositories.IProductsDBRepository;
 
 public  class ProductsDB extends Database implements IProductsDBRepository {
     
-    static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\produtos.txt";
+    static String file = String.format("%s\\produtos.txt", ENV.databasePath);
     
     // quem for rodar não esquece de colocar a path pro seu arquivo
     // não sei como padronizar isso

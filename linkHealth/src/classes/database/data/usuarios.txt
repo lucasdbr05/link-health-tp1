@@ -1,0 +1,3 @@
+DISTRIBUIDOR|1|liminha|nense|||26.837.128/3162-87|true
+PESSOA_JURIDICA|2|dianso|jajbsica|||32.153.619/0291-32|true
+DISTRIBUIDOR|3|isnona|iabsiauc|||12.783.291/2938-71|false

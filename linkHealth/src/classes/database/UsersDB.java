@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import classes.Distribuidor;
+import classes.ENV;
 import classes.FormaDePagamento;
 import classes.PessoaFisica;
 import classes.PessoaJuridica;
@@ -15,7 +16,7 @@ import classes.database.repositories.IUsersDBRepository;
 
 public  class UsersDB extends Database implements IUsersDBRepository {
     
-    static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\usuarios.txt";
+    static String file = String.format("%s\\usuarios.txt", ENV.databasePath);
     
     // quem for rodar não esquece de colocar a path pro seu arquivo
     // não sei como padronizar isso
@@ -45,7 +46,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         // Se o CPF ou CNPJ for o pattern estou checando se essa senha existe
         // com esse CPF
         
-        System.out.println("Achei aqui!!");
 
         for(String row: usersRows) {
 
@@ -53,7 +53,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
             Usuario user = this.fromStringToUserObject(row);
             
-            System.out.println(user.getId());
             // checa se existe uma senha já criada
             if(tipoLog == 1 && user instanceof PessoaFisica && (patCpf.equals(inCPF)) && (user.getSenha().equals(inPasw))){
                 return user;

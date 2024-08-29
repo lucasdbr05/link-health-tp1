@@ -4,6 +4,11 @@
  */
 package screen;
 
+import classes.Distribuidor;
+import classes.Usuario;
+import classes.database.UsersDB;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Notebook
@@ -13,8 +18,29 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
     /**
      * Creates new form telaDePerfilDistribuidor
      */
-    public telaDePerfilDistribuidor() {
+    
+    Distribuidor user;
+    UsersDB userDB;
+    public telaDePerfilDistribuidor(Distribuidor user) {
+        this.user = user;
+        this.userDB = new UsersDB();
         initComponents();
+        
+        this.txtCNPJ.setEnabled(false);
+        this.txtName.setEnabled(false);
+        this.hasAcceptPF.setEnabled(false);
+        this.btnSubmit.setEnabled(false);
+        this.excludeBTN.setEnabled(true);
+        this.editButton.setEnabled(true);
+        // setando as informações do usuário
+        
+        this.txtCNPJ.setText(this.user.getCnpj());
+        this.txtName.setText(this.user.getNome());
+        this.hasAcceptPF.setSelected(this.user.isAceitaPessoaFisica());
+
+        
+        
+        
     }
 
     /**
@@ -30,14 +56,14 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        editButton = new javax.swing.JButton();
+        excludeBTN = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        hasAcceptPF = new javax.swing.JRadioButton();
+        txtCNPJ = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,30 +98,35 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(78, 171, 176));
 
-        jButton1.setBackground(new java.awt.Color(149, 236, 236));
-        jButton1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
-        jButton1.setText("Editar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        editButton.setBackground(new java.awt.Color(149, 236, 236));
+        editButton.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        editButton.setForeground(new java.awt.Color(0, 102, 102));
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
+        editButton.setText("Editar");
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(149, 236, 236));
-        jButton2.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lixeira_menor.png"))); // NOI18N
-        jButton2.setText("Excluir");
-
-        jButton3.setBackground(new java.awt.Color(149, 236, 236));
-        jButton3.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(0, 102, 102));
-        jButton3.setText("OK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        excludeBTN.setBackground(new java.awt.Color(149, 236, 236));
+        excludeBTN.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        excludeBTN.setForeground(new java.awt.Color(0, 102, 102));
+        excludeBTN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lixeira_menor.png"))); // NOI18N
+        excludeBTN.setText("Excluir");
+        excludeBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                excludeBTNActionPerformed(evt);
+            }
+        });
+
+        btnSubmit.setBackground(new java.awt.Color(149, 236, 236));
+        btnSubmit.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(0, 102, 102));
+        btnSubmit.setText("OK");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
             }
         });
 
@@ -103,29 +134,34 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Nome:");
 
-        jTextField1.setBackground(new java.awt.Color(149, 236, 236));
+        txtName.setBackground(new java.awt.Color(149, 236, 236));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));
         jLabel4.setText("CNPJ:");
 
-        jRadioButton1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jRadioButton1.setText("Aceita pessoa física:");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        hasAcceptPF.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        hasAcceptPF.setForeground(new java.awt.Color(0, 102, 102));
+        hasAcceptPF.setText("Aceita pessoa física:");
+        hasAcceptPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                hasAcceptPFActionPerformed(evt);
             }
         });
 
-        jFormattedTextField1.setBackground(new java.awt.Color(149, 236, 236));
-        jFormattedTextField1.setForeground(new java.awt.Color(0, 102, 102));
+        txtCNPJ.setBackground(new java.awt.Color(149, 236, 236));
+        txtCNPJ.setForeground(new java.awt.Color(0, 102, 102));
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###.####-##")));
+            txtCNPJ.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jFormattedTextField1.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        txtCNPJ.setFont(new java.awt.Font("Arial Black", 1, 12)); // NOI18N
+        txtCNPJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCNPJActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,23 +171,23 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(117, 117, 117)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jRadioButton1)))
+                                .addComponent(txtName))
+                            .addComponent(hasAcceptPF)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jButton1)
+                        .addComponent(editButton)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton2)
+                        .addComponent(excludeBTN)
                         .addGap(34, 34, 34)
-                        .addComponent(jButton3)))
+                        .addComponent(btnSubmit)))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -160,18 +196,18 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCNPJ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jRadioButton1)
+                .addComponent(hasAcceptPF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(editButton)
+                    .addComponent(btnSubmit)
+                    .addComponent(excludeBTN))
                 .addGap(47, 47, 47))
         );
 
@@ -199,17 +235,75 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void hasAcceptPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hasAcceptPFActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_hasAcceptPFActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        String patCnpj  = "  .   .   /    -  ";
+        String inCNPJ = this.txtCNPJ.getText();
+        String inNome = this.txtName.getText();
+        Boolean inAcceptPF = this.hasAcceptPF.isSelected();
+        
+        if(inCNPJ.contains(" ")){
+            JOptionPane.showMessageDialog(null, "Insira um CNPJ valido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if(inNome.equals("")){
+            JOptionPane.showMessageDialog(null, "O campo de Nome não pode estar vazio!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.user.setCnpj(inCNPJ);
+        this.user.setAceitaPessoaFisica(inAcceptPF);
+        this.user.setNome(inNome);
+        
+        try{
+            this.userDB.update(this.user);
+        } catch(Exception e){
+            System.out.println(e);
+        }
+        
+        // trazendo os espaços de input para o estado original
+        
+        this.txtCNPJ.setEnabled(false);
+        this.txtName.setEnabled(false);
+        this.hasAcceptPF.setEnabled(false);
+        this.editButton.setEnabled(true);
+        this.excludeBTN.setEnabled(true);
+        this.btnSubmit.setEnabled(false);
+        
+        // resetando as informações do usuário
+        
+        this.txtCNPJ.setText(user.getCnpj());
+        this.txtName.setText(user.getNome());
+        this.hasAcceptPF.setSelected(user.isAceitaPessoaFisica());
+    }//GEN-LAST:event_btnSubmitActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+        this.txtCNPJ.setEnabled(true);
+        this.txtName.setEnabled(true);
+        this.hasAcceptPF.setEnabled(true);
+        this.editButton.setEnabled(true);
+        this.excludeBTN.setEnabled(false);
+        this.btnSubmit.setEnabled(false);
+    }//GEN-LAST:event_editButtonActionPerformed
+
+    private void txtCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNPJActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txtCNPJActionPerformed
+
+    private void excludeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excludeBTNActionPerformed
+        try{
+            this.userDB.deleteUsuario(this.user.getId());
+        } catch(Exception e){
+
+            System.out.println(e);
+        }
+
+        System.exit(0);
+    }//GEN-LAST:event_excludeBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,23 +335,23 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDePerfilDistribuidor().setVisible(true);
+                new telaDePerfilDistribuidor(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JButton editButton;
+    private javax.swing.JButton excludeBTN;
+    private javax.swing.JRadioButton hasAcceptPF;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JFormattedTextField txtCNPJ;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
 }

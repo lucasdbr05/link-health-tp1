@@ -1,5 +1,6 @@
 package screen;
 
+import classes.Distribuidor;
 import classes.Usuario;
 
 public class telaPrincipalDistribuidor extends javax.swing.JFrame {
@@ -114,7 +115,7 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        new telaDePerfilDistribuidor().setVisible(true);
+        new telaDePerfilDistribuidor(((Distribuidor)this.user)).setVisible(true);
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed

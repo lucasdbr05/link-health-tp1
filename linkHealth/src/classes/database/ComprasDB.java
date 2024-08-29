@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 import classes.Compra;
 import classes.database.repositories.IComprasDBRepository;
+import classes.ENV;
 
 public class ComprasDB extends Database implements IComprasDBRepository {
     
-    static String file = "C:\\Users\\emers\\OneDrive\\Documentos\\projetos\\projeto-tp1\\link-health-tp1\\linkHealth\\src\\classes\\database\\data\\compras.txt";
+    static String file = String.format("%s\\compras.txt", ENV.databasePath);
     
     // quem for rodar não esquece de colocar a path pro seu arquivo
     // não sei como padronizar isso
