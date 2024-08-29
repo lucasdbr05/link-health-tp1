@@ -15,7 +15,9 @@ public class telaDeCarrinho extends javax.swing.JFrame {
      */
     public telaDeCarrinho() {
         initComponents();
+        
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

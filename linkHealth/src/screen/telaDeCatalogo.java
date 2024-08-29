@@ -4,6 +4,17 @@
  */
 package screen;
 
+import classes.PessoaFisica;
+import classes.Produto;
+import classes.Usuario;
+import classes.database.ProductsDB;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author Notebook
@@ -13,10 +24,42 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     /**
      * Creates new form telaDeCatalogo
      */
-    public telaDeCatalogo() {
-        initComponents();
-    }
+    private Usuario user;
+    private ProductsDB prodDB;
+    private ArrayList<Produto> produtos;
+  
+    public telaDeCatalogo(Usuario u){
 
+        prodDB = new ProductsDB();
+        try {
+            produtos =  prodDB.findAll();
+        } catch (IOException ex) {
+            
+        }
+        initComponents();
+        user = u;
+    }
+    
+    public void carregarTabelaProdutos()
+    {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"id", "Produto", "Preço", "Distribuidor", "Exige Receita"}, 0);
+        for(int i = 0; i < produtos.size(); i++)
+        {
+            Object linha[] = new Object[]{produtos.get(i).getId(),
+                                        produtos.get(i).getNome(),
+                                        produtos.get(i).,
+                                        produtos.get(i).getRg(),
+                                        produtos.get(i).isExigeReceita();
+            modelo.addRow(linha);
+        }
+        
+        tblClientes.setModel(modelo);
+        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblClientes.getColumnModel().getColumn(2).setPreferredWidth(20);
+        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblClientes.getColumnModel().getColumn(4).setPreferredWidth(20);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,17 +120,17 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         jTable1.setBackground(new java.awt.Color(0, 255, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Produto", "Preço", "Distribuidor", "Exige receita"
+                "id", "Produto", "Preço", "Distribuidor", "Exige receita"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -95,6 +138,9 @@ public class telaDeCatalogo extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
@@ -173,10 +219,14 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
-
+    
     private void AddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoActionPerformed
         // TODO add your handling code here:
-        
+        Produto prod =  
+        if(user instanceof PessoaFisica)
+        {
+            ((PessoaFisica) user).getCarrinho().carrinhoAdd(_produto, _distribuidor, WIDTH, user);
+        }
     }//GEN-LAST:event_AddCarrinhoActionPerformed
 
     /**
@@ -209,7 +259,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeCatalogo().setVisible(true);
+                new telaDeCatalogo(null).setVisible(true);
             }
         });
     }
