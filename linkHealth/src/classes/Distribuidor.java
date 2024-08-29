@@ -12,7 +12,7 @@ public class Distribuidor extends Usuario {
 
     
     public Distribuidor(int id, String nome, String senha , ArrayList<String> endereco,
-            ArrayList<FormaDePagamento> formasDePagamento, String cnpj, ArrayList<Produto> produtos,
+            HashMap<String, FormaDePagamento> formasDePagamento, String cnpj, ArrayList<Produto> produtos,
             boolean aceitaPessoaFisica) {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cnpj = cnpj;
@@ -93,6 +93,6 @@ public class Distribuidor extends Usuario {
     @Override
     public String toString() {
         String acceptPessoaFisica = aceitaPessoaFisica ? "true" : "false";
-        return String.format("%s|%s|%s", super.toString(),this.cnpj, acceptPessoaFisica);
+        return String.format("DISTRIBUIDOR|%s|%s|%s", super.toString(),this.cnpj, acceptPessoaFisica);
     }
 }

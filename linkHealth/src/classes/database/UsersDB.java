@@ -163,26 +163,44 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         String senha = userSplited[3];
         ArrayList<String> address = new ArrayList<String>();
 
-        for(String s: userSplited[4].split(";")) {
+        for(String s: userSplited[4].split("#")) {
             address.add(s);
         }
 
-        ArrayList<FormaDePagamento> formaDePagamento = new ArrayList<FormaDePagamento>(); // TODO: FIND A WAY TO STORE IT IN DATABASE (userSplited[5])
+        HashMap<String, FormaDePagamento> formaDePagamento = new HashMap<String, FormaDePagamento>();
+        
+        // Usando uma logica analoga a logica do endereço
+        // recuperamos as formas de pagamento desse usuario
+        // armazeanadas no banco de dados
+        
+        System.out.println(userSplited[6]);
+        
+        for(String s : userSplited[5].split(";")){
+            
+            String[] aux = s.split("/");
+            
+            Boolean debito = (aux[1].equals("true") ? true : false);
+            Boolean credito = (aux[2].equals("true") ? true : false);
+            
+            formaDePagamento.put(aux[0], new FormaDePagamento(aux[0], debito, credito, Integer.parseInt(aux[3])));
+        }
         
         if(userSplited[0].equals("PESSOA_FISICA")){
-            String cpf = userSplited[7];
-            int idade = Integer.parseInt(userSplited[8]);
+            String cpf = userSplited[6];
+            int idade = Integer.parseInt(userSplited[7]);
             
-            boolean receita = userSplited[9].equals("true") ? true: false;
+            boolean receita = userSplited[8].equals("true") ? true: false;
 
 
             PessoaFisica pf = new PessoaFisica(id, nome, senha, address, formaDePagamento, cpf, idade, receita);
+            
+            System.out.println(cpf);
             return pf;
         }
         else if(userSplited[0].equals( "PESSOA_JURIDICA")){
 
-            String cnpj= userSplited[7];
-            boolean isHospital = userSplited[8].equals("true") ? true: false;
+            String cnpj= userSplited[6];
+            boolean isHospital = userSplited[7].equals("true") ? true: false;
 
 
             PessoaJuridica pj = new PessoaJuridica(id, nome, senha, address, formaDePagamento, cnpj, isHospital);

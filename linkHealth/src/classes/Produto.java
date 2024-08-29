@@ -16,9 +16,16 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public Produto(String nome, Integer id, Double precoDeCusto, boolean exigeReceita, Integer estoque, Integer dId) {
+    public Produto(String nome, Integer id, Double precoDeCusto,  boolean exigeReceita, Integer estoque, Integer dId) {
         this.nome = nome;
         this.id = id;
+        this.precoDeCusto = precoDeCusto;
+        this.exigeReceita = exigeReceita;
+        this.distId = dId;
+    }
+    
+    public Produto(String nome, Double precoDeCusto, boolean exigeReceita, Integer estoque, Integer dId) {
+        this.nome = nome;
         this.precoDeCusto = precoDeCusto;
         this.exigeReceita = exigeReceita;
         this.distId = dId;

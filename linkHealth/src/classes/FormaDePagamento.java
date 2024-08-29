@@ -31,9 +31,9 @@ public class FormaDePagamento {
     @Override
     public String toString() {
         return (
-                this.cartao + "/" + (this.debito ? "true" : "false") + "/"
+                this.cartao + "#" + (this.debito ? "true" : "false") + "#"
                 + (this.credito ? "true" : "false")
-                + "/" + Integer.toString(this.senha) + "/"
+                + "#" + Integer.toString(this.senha) + "#"
                 );
     }
 }
