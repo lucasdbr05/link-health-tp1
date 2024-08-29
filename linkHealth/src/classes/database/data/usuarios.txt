@@ -1,1 +1,3 @@
+PESSOA_FISICA|1|ed|junior|deu bom;Santos;Santos 2;;a;jjjj;|||111.111.111-11|10|false
+PESSOA_JURIDICA|2|josias|junior1||||11.111.111/1111-11|false
 

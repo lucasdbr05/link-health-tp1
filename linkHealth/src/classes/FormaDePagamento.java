@@ -27,4 +27,13 @@ public class FormaDePagamento {
         
         return false;
     }
+
+    @Override
+    public String toString() {
+        return (
+                this.cartao + "/" + (this.debito ? "true" : "false") + "/"
+                + (this.credito ? "true" : "false")
+                + "/" + Integer.toString(this.senha) + "/"
+                );
+    }
 }

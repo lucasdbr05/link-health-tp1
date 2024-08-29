@@ -113,9 +113,9 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
         Double preco = Double.parseDouble(productSplited[2]);
         Integer quantity = Integer.parseInt(productSplited[3]);
         boolean exigeReceita = productSplited[4].equals("true");
-        Produto produto =  new Produto(nome, id, preco, exigeReceita, quantity);
-        
-        
+        Integer distId = Integer.parseInt(productSplited[5]);
+        Produto produto =  new Produto(nome, id, preco, exigeReceita, quantity, distId);
+                
         return produto;
     }
 }

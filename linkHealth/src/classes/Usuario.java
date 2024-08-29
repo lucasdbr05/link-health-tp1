@@ -49,8 +49,8 @@ public abstract class Usuario {
         return endereco;
     }
 
-    public void setEnderco(ArrayList<String> endereco) {
-        this.endereco = endereco;
+    public void setEnderco(String endereco) {
+        this.endereco.add(endereco);
     }
 
     public int getId() {
@@ -87,7 +87,7 @@ public abstract class Usuario {
         String address = "";
 
         for(String s: this.endereco) {
-            address += s;
+            address += s + ";";
         }
         return String.format("%d|%s|%s|%s||", this.id, this.nome, this.senha,address );
     }
