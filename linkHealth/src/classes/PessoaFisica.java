@@ -28,6 +28,14 @@ public class PessoaFisica extends Usuario{
         this.idade = _idade;
     
     }
+    public void setCarrinho(Carrinho c)
+    {
+        this.meuCarrinho = c;
+    }
+    public Carrinho getCarrinho()
+    {
+        return this.meuCarrinho;
+    }
     
     public void setCpf(String cpf)
     {
