@@ -4,10 +4,13 @@
  */
 package screen;
 
+import classes.Distribuidor;
 import classes.PessoaFisica;
+import classes.PessoaJuridica;
 import classes.Produto;
 import classes.Usuario;
 import classes.database.ProductsDB;
+import classes.database.UsersDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,6 +41,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         }
         initComponents();
         user = u;
+        AddCarrinho.setEnabled(false);
     }
     
     public void carregarTabelaProdutos()
@@ -45,20 +49,48 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"id", "Produto", "Preço", "Distribuidor", "Exige Receita"}, 0);
         for(int i = 0; i < produtos.size(); i++)
         {
-            Object linha[] = new Object[]{produtos.get(i).getId(),
-                                        produtos.get(i).getNome(),
-                                        produtos.get(i).,
-                                        produtos.get(i).getRg(),
-                                        produtos.get(i).isExigeReceita();
-            modelo.addRow(linha);
+            if(user instanceof PessoaFisica)
+            {
+                UsersDB usersDB = new UsersDB();
+                Usuario dist = null;
+                try {
+                    dist = usersDB.findOne(produtos.get(i).getDistId());
+                } catch (IOException ex) {
+                }
+                Object linha[];
+                linha = new Object[]{produtos.get(i).getId(),
+                    produtos.get(i).getNome(),
+                    ((Distribuidor)dist).getPrecos().get(produtos.get(i)),
+                    dist.getNome(),
+                    produtos.get(i).isExigeReceita()};
+                
+                modelo.addRow(linha);
+            }
+            if(user instanceof PessoaJuridica)
+            {
+                UsersDB usersDB = new UsersDB();
+                Usuario dist = null;
+                try {
+                    dist = usersDB.findOne(produtos.get(i).getDistId());
+                } catch (IOException ex) {
+                }
+                Object linha[];
+                linha = new Object[]{produtos.get(i).getId(),
+                    produtos.get(i).getNome(),
+                    produtos.get(i).getPrecoDeCusto(),
+                    dist.getNome(),
+                    produtos.get(i).isExigeReceita()};
+                
+                modelo.addRow(linha);
+            }
         }
         
-        tblClientes.setModel(modelo);
-        tblClientes.getColumnModel().getColumn(0).setPreferredWidth(20);
-        tblClientes.getColumnModel().getColumn(1).setPreferredWidth(100);
-        tblClientes.getColumnModel().getColumn(2).setPreferredWidth(20);
-        tblClientes.getColumnModel().getColumn(3).setPreferredWidth(20);
-        tblClientes.getColumnModel().getColumn(4).setPreferredWidth(20);
+        tblCatalogo.setModel(modelo);
+        tblCatalogo.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblCatalogo.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblCatalogo.getColumnModel().getColumn(2).setPreferredWidth(20);
+        tblCatalogo.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblCatalogo.getColumnModel().getColumn(4).setPreferredWidth(20);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -75,7 +107,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCatalogo = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         AddCarrinho = new javax.swing.JButton();
 
@@ -117,8 +149,8 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(51, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(0, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCatalogo.setBackground(new java.awt.Color(0, 255, 255));
+        tblCatalogo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -137,9 +169,14 @@ public class telaDeCatalogo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        tblCatalogo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCatalogoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCatalogo);
+        if (tblCatalogo.getColumnModel().getColumnCount() > 0) {
+            tblCatalogo.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -222,12 +259,30 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     
     private void AddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoActionPerformed
         // TODO add your handling code here:
-        Produto prod =  
-        if(user instanceof PessoaFisica)
+        Produto prod = produtos.get(tblCatalogo.getSelectedRow());
+        if(user instanceof PessoaFisica pessoaFisica)
         {
-            ((PessoaFisica) user).getCarrinho().carrinhoAdd(_produto, _distribuidor, WIDTH, user);
+            UsersDB usersDB = new UsersDB();
+            Usuario dist = null;
+            try {
+                dist = usersDB.findOne(prod.getDistId());
+            } catch (IOException ex) {
+            }
+            pessoaFisica.getCarrinho().carrinhoAdd(prod,(Distribuidor)dist , user);
         }
+        AddCarrinho.setEnabled(false);
     }//GEN-LAST:event_AddCarrinhoActionPerformed
+
+    private void tblCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCatalogoMouseClicked
+        // TODO add your handling code here:
+        int i = tblCatalogo.getSelectedRow();
+        if(i >= 0 && i < produtos.size())
+        {
+            AddCarrinho.setEnabled(true);
+        }
+        
+        
+    }//GEN-LAST:event_tblCatalogoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -273,6 +328,6 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblCatalogo;
     // End of variables declaration//GEN-END:variables
 }

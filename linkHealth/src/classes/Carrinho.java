@@ -23,7 +23,7 @@ public class Carrinho {
         total = 0;
     }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, int _quantidade, Usuario usuario)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario)
     {
         if(usuario instanceof PessoaJuridica)
         {

@@ -1,9 +1,13 @@
 package screen;
 
-public class telaPrincipalDistribuidor extends javax.swing.JFrame {
+import classes.Usuario;
 
-    public telaPrincipalDistribuidor() {
+public class telaPrincipalDistribuidor extends javax.swing.JFrame {
+    
+    private Usuario user;
+    public telaPrincipalDistribuidor(Usuario u) {
         initComponents();
+        user = u;
     }
 
     /**
@@ -118,7 +122,7 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        new telaDeCadastroProduto().setVisible(true);
+        new telaDeCadastroProduto(null).setVisible(true);
     }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstoqueMouseClicked
@@ -161,7 +165,7 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaPrincipalDistribuidor().setVisible(true);
+                new telaPrincipalDistribuidor(null).setVisible(true);
             }
         });
     }

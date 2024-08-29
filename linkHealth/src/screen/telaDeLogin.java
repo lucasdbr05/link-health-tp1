@@ -394,7 +394,7 @@ public class telaDeLogin extends javax.swing.JFrame {
         }catch(Exception e){
         }
         this.setVisible(false);
-        new telaPrincipalDistribuidor().setVisible(true);
+        new telaPrincipalDistribuidor(aux).setVisible(true);
     }//GEN-LAST:event_btnOKDistrMouseClicked
 
     private void btnOKPfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOKPfMouseClicked
