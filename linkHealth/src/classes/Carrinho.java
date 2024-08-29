@@ -30,6 +30,11 @@ public class Carrinho {
     {
         return this.quantidade;
     }
+    public double getTotal()
+    {
+        return this.total;
+    }
+    
     public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario)
     {
         if(usuario instanceof PessoaJuridica)

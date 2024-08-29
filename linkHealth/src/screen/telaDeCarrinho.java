@@ -5,14 +5,18 @@
 package screen;
 
 import classes.Carrinho;
+import classes.Distribuidor;
 import classes.PessoaFisica;
 import classes.PessoaJuridica;
 import classes.Produto;
 import classes.Usuario;
+import classes.database.UsersDB;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,7 +30,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     private ArrayList<Produto> produtos;
     private ArrayList<Double> precos;
     private ArrayList<Integer> quantidades;
-   
+    
     private Usuario user;
     private Carrinho car;
     public telaDeCarrinho(Usuario u) {
@@ -34,6 +38,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         user = u;
         if(user instanceof PessoaFisica) car = ((PessoaFisica)user).getCarrinho();
         else if(user instanceof PessoaJuridica) car = ((PessoaJuridica)user).getCarrinho();
+        lblTotal.setText("R$" + car.getTotal());
        for (Map.Entry<Produto, Double> set :
              car.getMapaPreco().entrySet()) {
  
@@ -45,9 +50,63 @@ public class telaDeCarrinho extends javax.swing.JFrame {
  
             quantidades.add(set.getValue());
         }
+        btnRemover.setEnabled(false);
     }
     
-
+    public void carregarTabelaProdutos()
+    {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Distribuidor", "Preço", "Quantidade",  "Preço"}, 0);
+        for(int i = 0; i < produtos.size(); i++)
+        {
+            if(user instanceof PessoaFisica)
+            {
+                UsersDB usersDB = new UsersDB();
+                Usuario dist = null;
+                try {
+                    dist = usersDB.findOne(produtos.get(i).getDistId());
+                } catch (IOException ex) {
+                }
+                double valor = precos.get(i) * quantidades.get(i);
+                Object linha[];
+                
+                linha = new Object[]{
+                    produtos.get(i).getNome(),
+                    dist.getNome(),
+                    precos.get(i),
+                    quantidades.get(i),
+                    valor};
+                
+                modelo.addRow(linha);
+            }
+            if(user instanceof PessoaJuridica)
+            {
+                UsersDB usersDB = new UsersDB();
+                Usuario dist = null;
+                try {
+                    dist = usersDB.findOne(produtos.get(i).getDistId());
+                } catch (IOException ex) {
+                }
+                double valor = precos.get(i) * quantidades.get(i);
+                Object linha[];
+                
+                linha = new Object[]{
+                    produtos.get(i).getNome(),
+                    dist.getNome(),
+                    precos.get(i),
+                    quantidades.get(i),
+                    valor};
+                
+                modelo.addRow(linha);
+            }
+        }
+        
+        tblCarrinho.setModel(modelo);
+        tblCarrinho.getColumnModel().getColumn(0).setPreferredWidth(20);
+        tblCarrinho.getColumnModel().getColumn(1).setPreferredWidth(100);
+        tblCarrinho.getColumnModel().getColumn(2).setPreferredWidth(20);
+        tblCarrinho.getColumnModel().getColumn(3).setPreferredWidth(20);
+        tblCarrinho.getColumnModel().getColumn(4).setPreferredWidth(20);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +118,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCarrinho = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
@@ -75,8 +134,8 @@ public class telaDeCarrinho extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(0, 255, 255));
 
-        jTable1.setBackground(new java.awt.Color(0, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCarrinho.setBackground(new java.awt.Color(0, 255, 255));
+        tblCarrinho.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -95,13 +154,18 @@ public class telaDeCarrinho extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
+        tblCarrinho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCarrinhoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCarrinho);
+        if (tblCarrinho.getColumnModel().getColumnCount() > 0) {
+            tblCarrinho.getColumnModel().getColumn(0).setResizable(false);
+            tblCarrinho.getColumnModel().getColumn(1).setResizable(false);
+            tblCarrinho.getColumnModel().getColumn(2).setResizable(false);
+            tblCarrinho.getColumnModel().getColumn(3).setResizable(false);
+            tblCarrinho.getColumnModel().getColumn(4).setResizable(false);
         }
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
@@ -205,7 +269,35 @@ public class telaDeCarrinho extends javax.swing.JFrame {
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
         // TODO add your handling code here:
+        int i  = tblCarrinho.getSelectedRow();
+        double valor = precos.get(i) * quantidades.get(i);
+        
+        
+        double total = car.getTotal();
+        total  = total - valor;
+        UsersDB usersDB = new UsersDB();
+        Usuario dist = null;
+        try {
+            dist = usersDB.findOne(produtos.get(i).getDistId());
+        } catch (IOException ex) {
+        }
+        car.carrinhoRemove(produtos.get(i),(Distribuidor) dist );
+        
+        produtos.remove(i);
+        precos.remove(i);
+        quantidades.remove(i);
+        lblTotal.setText("R$" + total);
     }//GEN-LAST:event_btnRemoverActionPerformed
+
+    private void tblCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrinhoMouseClicked
+        // TODO add your handling code here:
+        int i = tblCarrinho.getSelectedRow();
+        if(i >= 0 && i < produtos.size())
+        {
+            btnRemover.setEnabled(true);
+            
+        }
+    }//GEN-LAST:event_tblCarrinhoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,7 +341,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTable tblCarrinho;
     // End of variables declaration//GEN-END:variables
 }
