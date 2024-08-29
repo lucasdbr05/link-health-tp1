@@ -16,9 +16,16 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public Produto(String nome, Integer id, Double precoDeCusto, boolean exigeReceita, Integer estoque, Integer dId) {
+    public Produto(String nome, Integer id, Double precoDeCusto,  boolean exigeReceita, Integer estoque, Integer dId) {
         this.nome = nome;
         this.id = id;
+        this.precoDeCusto = precoDeCusto;
+        this.exigeReceita = exigeReceita;
+        this.distId = dId;
+    }
+    
+    public Produto(String nome, Double precoDeCusto, boolean exigeReceita, Integer estoque, Integer dId) {
+        this.nome = nome;
         this.precoDeCusto = precoDeCusto;
         this.exigeReceita = exigeReceita;
         this.distId = dId;
@@ -66,6 +73,6 @@ public class Produto {
     @Override
     public String toString() {
         String receita = this.exigeReceita ? "true":"false";
-        return String.format("%d|%s|%.2f|%d|%s", this.id, this.nome, this.precoDeCusto, this.quantidade, receita);
+        return String.format("%d|%s|%.2f|%d|%s|%d", this.id, this.nome, this.precoDeCusto, this.quantidade, receita, this.distId);
     }
 }

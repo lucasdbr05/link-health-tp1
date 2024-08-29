@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public abstract class Usuario {
     
@@ -9,12 +10,12 @@ public abstract class Usuario {
     protected String nome, senha;
     protected int id;
     protected ArrayList<String> endereco;
-    protected ArrayList<FormaDePagamento> formasDePagamento;
+    protected HashMap<String, FormaDePagamento> formasDePagamento;
 
     public Usuario(){};
 
     public Usuario(String nome, String senha, int id, ArrayList<String> endereco,
-            ArrayList<FormaDePagamento> formasDePagamento) {
+            HashMap<String, FormaDePagamento> formasDePagamento) {
         this.nome = nome;
         this.senha = senha;
         this.id = id;
@@ -26,7 +27,7 @@ public abstract class Usuario {
         this.nome = nome;
         this.senha = senha;
         this.endereco = new ArrayList<String>();
-        this.formasDePagamento = new ArrayList<FormaDePagamento>();
+        this.formasDePagamento = new HashMap<String, FormaDePagamento>();
     }
 
     public String getNome() {
@@ -49,8 +50,11 @@ public abstract class Usuario {
         return endereco;
     }
 
-    public void setEnderco(ArrayList<String> endereco) {
-        this.endereco = endereco;
+    public void setEnderco(String endereco) {
+        // Como o usuario pode ter a necessidade de apresentar mais de um endereço
+        // Ele podera cadastrar um novo enderço
+        this.endereco.add(endereco);
+        // deixamos a adição de um endereço como algo para o usuario fazer ao acessar seu perfil
     }
 
     public int getId() {
@@ -60,22 +64,23 @@ public abstract class Usuario {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public void cadastraNewEndereco(String endereco){
-        
-        //Como o usuario pode ter a necessidade de apresentar mais de um endereço
-        //Ele podera cadastrar um novo enderço
-        this.endereco.add(endereco);
-        
-        //alterar no gerenciador de arquivos tambem
-    }
-    
+
     public void cadastraFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
         
         //cadastra uma nova forma de Pagamento para o usuario        
         FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
+        // assumimos a mesma postura do q o endereço e deixamos para o usuario adicionar um metodo
+        // quando acessar sua tela de perfil
+        formasDePagamento.put(cartao, formaDePagamento);
+    }
+    
+    public void removeFormaDePagamento(String cartao){
         
-        formasDePagamento.add(formaDePagamento);
+        // a gente remove um cartao para atualizar ou apenas remover mesmo
+        // essa opção está disponivel para o usuario na tela de edição de uma forma
+        // de pagamento
+        
+        formasDePagamento.remove(cartao);
     }
     public String mostrarDadosUsuario()
     {
@@ -84,12 +89,17 @@ public abstract class Usuario {
 
     @Override
     public String toString() {
-        String address = "";
+        String address = "", forms = "";
 
         for(String s: this.endereco) {
-            address += s;
+            address += s + ";";
         }
-        return String.format("%d|%s|%s|%s||", this.id, this.nome, this.senha,address );
+        
+        for(FormaDePagamento form : formasDePagamento.values())    
+            forms += form + ";";
+        
+        
+        return String.format("%d|%s|%s|%s|%s", this.id, this.nome, this.senha, address, forms);
     }
 
     

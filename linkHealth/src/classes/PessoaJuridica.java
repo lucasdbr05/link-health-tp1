@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PessoaJuridica extends Usuario {
 
@@ -10,7 +11,7 @@ public class PessoaJuridica extends Usuario {
     
 
     public PessoaJuridica(int id,String nome, String senha, ArrayList<String> endereco,
-            ArrayList<FormaDePagamento> formasDePagamento, String cnpj, boolean hospital) {
+            HashMap<String, FormaDePagamento> formasDePagamento, String cnpj, boolean hospital) {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cnpj = cnpj;
         this.hospital = hospital;

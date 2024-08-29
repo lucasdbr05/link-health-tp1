@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PessoaFisica extends Usuario{
     
@@ -12,7 +13,7 @@ public class PessoaFisica extends Usuario{
     public PessoaFisica(){};
     
     public PessoaFisica(int id, String nome, String senha, ArrayList<String> endereco,
-            ArrayList<FormaDePagamento> formasDePagamento, String cpf, int idade, boolean receita) {
+            HashMap<String, FormaDePagamento> formasDePagamento, String cpf, int idade, boolean receita) {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cpf = cpf;
         this.idade = idade;
