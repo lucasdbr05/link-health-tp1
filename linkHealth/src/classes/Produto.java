@@ -7,6 +7,7 @@ public class Produto {
        private boolean exigeReceita;
        private Integer quantidade; // this needs improvements :)
        private Integer distId;
+       
     public Integer getQuantidade() {
         return quantidade;
     }
