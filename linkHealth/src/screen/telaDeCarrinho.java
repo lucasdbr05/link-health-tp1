@@ -4,6 +4,16 @@
  */
 package screen;
 
+import classes.Carrinho;
+import classes.PessoaFisica;
+import classes.PessoaJuridica;
+import classes.Produto;
+import classes.Usuario;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
  *
  * @author Notebook
@@ -13,9 +23,28 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     /**
      * Creates new form telaDeCarrinho
      */
-    public telaDeCarrinho() {
+    private ArrayList<Produto> produtos;
+    private ArrayList<Double> precos;
+    private ArrayList<Integer> quantidades;
+   
+    private Usuario user;
+    private Carrinho car;
+    public telaDeCarrinho(Usuario u) {
         initComponents();
-        
+        user = u;
+        if(user instanceof PessoaFisica) car = ((PessoaFisica)user).getCarrinho();
+        else if(user instanceof PessoaJuridica) car = ((PessoaJuridica)user).getCarrinho();
+       for (Map.Entry<Produto, Double> set :
+             car.getMapaPreco().entrySet()) {
+ 
+            produtos.add(set.getKey());
+            precos.add(set.getValue());
+        }
+        for (Map.Entry<Produto, Integer> set :
+             car.getQuantidade().entrySet()) {
+ 
+            quantidades.add(set.getValue());
+        }
     }
     
 
@@ -33,8 +62,9 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        lblTotal = new javax.swing.JLabel();
+        btnComprar = new javax.swing.JButton();
+        btnRemover = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seu carrinho");
@@ -83,16 +113,25 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Preço Total:");
 
-        jLabel3.setFont(new java.awt.Font("JetBrains Mono Medium", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel3.setText("R$ 0,00");
+        lblTotal.setFont(new java.awt.Font("JetBrains Mono Medium", 0, 14)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(0, 102, 102));
+        lblTotal.setText("R$ 0,00");
 
-        jButton1.setBackground(new java.awt.Color(78, 171, 176));
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setText("Comprar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnComprar.setBackground(new java.awt.Color(78, 171, 176));
+        btnComprar.setForeground(new java.awt.Color(0, 102, 102));
+        btnComprar.setText("Comprar");
+        btnComprar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnComprarActionPerformed(evt);
+            }
+        });
+
+        btnRemover.setBackground(new java.awt.Color(78, 171, 176));
+        btnRemover.setForeground(new java.awt.Color(0, 102, 102));
+        btnRemover.setText("Remover");
+        btnRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRemoverActionPerformed(evt);
             }
         });
 
@@ -103,30 +142,41 @@ public class telaDeCarrinho extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRemover)
+                        .addGap(22, 22, 22))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(27, 27, 27)
-                .addComponent(jLabel3)
+                .addComponent(lblTotal)
                 .addGap(38, 38, 38)
-                .addComponent(jButton1)
+                .addComponent(btnComprar)
                 .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel1)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnRemover)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jButton1))
+                    .addComponent(lblTotal)
+                    .addComponent(btnComprar))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -148,10 +198,14 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRemoverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,18 +237,19 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeCarrinho().setVisible(true);
+                new telaDeCarrinho(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnComprar;
+    private javax.swing.JButton btnRemover;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblTotal;
     // End of variables declaration//GEN-END:variables
 }
