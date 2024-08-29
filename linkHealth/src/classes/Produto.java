@@ -39,6 +39,13 @@ public class Produto {
     public void setId(Integer id) {
         this.id = id;
     }
+     public Integer getDistId() {
+        return distId;
+    }
+
+    public void setDistId(Integer id) {
+        this.distId = id;
+    }
 
     public Double getPrecoDeCusto() {
         return precoDeCusto;

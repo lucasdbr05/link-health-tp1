@@ -5,6 +5,7 @@
 package screen;
 
 import classes.Produto;
+import classes.Usuario;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
 
@@ -17,8 +18,10 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
     /**
      * Creates new form telaDeCadastroProduto
      */
-    public telaDeCadastroProduto() {
+    private Usuario user;
+    public telaDeCadastroProduto(Usuario u) {
         initComponents();
+        user = u;
     }
 
     /**
@@ -252,7 +255,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         double preco = parseDouble(txtPreco.getText());
         boolean receita = (rdBtnSim.isSelected());
         int qnt = parseInt(txtQuantidade.getText());
-        Produto produto = new Produto(nome, id, preco, receita, qnt);
+        Produto produto = new Produto(nome, id, preco, receita, qnt, user.getId());
         
         txtId.setText("");
         txtPreco.setText("");
@@ -291,7 +294,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeCadastroProduto().setVisible(true);
+                new telaDeCadastroProduto(null).setVisible(true);
             }
         });
     }

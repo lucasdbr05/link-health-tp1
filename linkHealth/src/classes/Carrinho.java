@@ -22,8 +22,20 @@ public class Carrinho {
         produtosDesejados = new HashMap<>();
         total = 0;
     }
+    public HashMap<Produto,Double> getMapaPreco()
+    {
+        return produtosDesejados;
+    }
+    public HashMap<Produto,Integer> getQuantidade()
+    {
+        return this.quantidade;
+    }
+    public double getTotal()
+    {
+        return this.total;
+    }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, int _quantidade, Usuario usuario)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario)
     {
         if(usuario instanceof PessoaJuridica)
         {
