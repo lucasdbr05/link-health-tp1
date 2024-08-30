@@ -4,10 +4,15 @@
  */
 package screen;
 
+import classes.Distribuidor;
 import classes.Produto;
 import classes.Usuario;
+import classes.database.ProductsDB;
+import java.io.IOException;
 import static java.lang.Double.parseDouble;
 import static java.lang.Integer.parseInt;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,10 +23,12 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
     /**
      * Creates new form telaDeCadastroProduto
      */
-    private Usuario user;
-    public telaDeCadastroProduto(Usuario u) {
+    private Distribuidor user;
+    private ProductsDB productDB;
+    public telaDeCadastroProduto(Distribuidor u) {
         initComponents();
         user = u;
+        productDB = new ProductsDB(); 
     }
 
     /**
@@ -257,11 +264,19 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         int qnt = parseInt(txtQuantidade.getText());
         Produto produto = new Produto(nome, id, preco, receita, qnt, this.user.getId());
         
+        try {
+            this.productDB.create(produto);
+        } catch (IOException ex) {
+            
+        }
         txtId.setText("");
         txtPreco.setText("");
         rdBtnSim.setSelected(false);
         rdBtnNao.setSelected(false);
         txtQuantidade.setText("");
+        
+        this.setVisible(false);
+        new telaDeEstoque(this.user).setVisible(true);
     }//GEN-LAST:event_btnSalvarProdActionPerformed
 
     /**

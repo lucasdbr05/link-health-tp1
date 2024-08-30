@@ -39,6 +39,22 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
 
         return produtos;
     }
+    
+     @Override
+    public ArrayList<Produto> findAllByUser(int distribuidorId) throws IOException {
+        ArrayList<Produto> produtos = new ArrayList<Produto>();
+        String[] productsRows = this.splitFileWrite(this.fileReader(file));
+
+        for(String row: productsRows) {
+            if(row.isBlank()) continue;
+            
+            Produto produto = this.fromStringToProductObject(row);
+            if(distribuidorId == produto.getDistId())
+                produtos.add(produto);
+        }
+
+        return produtos;
+    }
 
     @Override
     public Produto create(Produto produto) throws IOException {
@@ -109,17 +125,16 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
     @Override
     public Produto fromStringToProductObject(String productString) {
         String[] productSplited = this.splitRowString(productString);
-    
+       
         int id = Integer.parseInt(productSplited[0]);
-        // int distributorId = Integer.parseInt(productSplited[1]); VAMO TER ESSA RELAÇÃOZINHA OU NÃO
         String nome = productSplited[1];
         Double preco = Double.parseDouble(productSplited[2]);
-        Integer quantity = Integer.parseInt(productSplited[3]);
+        int quantity = Integer.parseInt(productSplited[3]);
         boolean exigeReceita = productSplited[4].equals("true");
-        Integer distId = Integer.parseInt(productSplited[5]);
+        int distId = Integer.parseInt(productSplited[5]);
         Produto produto =  new Produto(nome, id, preco, exigeReceita, quantity, distId);
                 
         return produto;
-    }
+    }    
 }
 

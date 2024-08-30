@@ -5,7 +5,7 @@ public class Produto {
        private Integer id;
        private Double precoDeCusto;
        private boolean exigeReceita;
-       private Integer quantidade; // this needs improvements :)
+       private Integer quantidade; 
        private Integer distId;
        
     public Integer getQuantidade() {
@@ -22,6 +22,7 @@ public class Produto {
         this.precoDeCusto = precoDeCusto;
         this.exigeReceita = exigeReceita;
         this.distId = dId;
+        this.quantidade = estoque;
     }
     
     public Produto(String nome, Double precoDeCusto, boolean exigeReceita, Integer estoque, Integer dId) {

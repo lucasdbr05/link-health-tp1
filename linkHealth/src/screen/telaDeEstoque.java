@@ -4,6 +4,15 @@
  */
 package screen;
 
+import classes.Distribuidor;
+import classes.Produto;
+import classes.database.ProductsDB;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author emers
@@ -13,10 +22,41 @@ public class telaDeEstoque extends javax.swing.JFrame {
     /**
      * Creates new form telaDeEstoque
      */
-    public telaDeEstoque() {
+    Distribuidor distribuidor;
+    ArrayList<Produto> estoque;
+    ProductsDB productsDB; 
+    public telaDeEstoque(Distribuidor dist) {
         initComponents();
+        this.productsDB = new ProductsDB();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
+        this.distribuidor = dist;
+        this.carregarTabelaProdutos();
+        
+    }
+    
+        public final void carregarTabelaProdutos(){
+        try {
+            this.estoque = this.productsDB.findAllByUser(distribuidor.getId());
+        } catch (IOException ex) {
+        }
+         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome","ID","Preço de Custo", "Quantidade"},0);
+        for(int i=0;i<this.estoque.size();i++){
+            Object linha[] = new Object[]{this.estoque.get(i).getNome(),
+                                        this.estoque.get(i).getId(),
+                                        this.estoque.get(i).getPrecoDeCusto(),
+                                        this.estoque.get(i).getQuantidade()};
+            modelo.addRow(linha);
+        }
+         
+        //Tabela recebe modelo
+        tblProdutos.setModel(modelo);
+        
+        //Configurar largura da tabela
+        tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(10);
+        tblProdutos.getColumnModel().getColumn(1).setPreferredWidth(5);
+        tblProdutos.getColumnModel().getColumn(2).setPreferredWidth(30);
+        tblProdutos.getColumnModel().getColumn(3).setPreferredWidth(20);
     }
 
     /**
@@ -161,7 +201,7 @@ public class telaDeEstoque extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
+        new telaDeCadastroProduto(distribuidor).setVisible(true);
     }//GEN-LAST:event_btnNewActionPerformed
 
     /**
@@ -194,7 +234,7 @@ public class telaDeEstoque extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeEstoque().setVisible(true);
+                new telaDeEstoque(null).setVisible(true);
             }
         });
     }
