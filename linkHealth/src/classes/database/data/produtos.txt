@@ -1,1 +1,0 @@
-//id|nome|precoDeCusto|quantidade|exigeReceita

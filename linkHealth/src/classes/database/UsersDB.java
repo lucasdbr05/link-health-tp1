@@ -49,8 +49,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
         for(String row: usersRows) {
 
-            System.out.println(row);
-
             Usuario user = this.fromStringToUserObject(row);
             
             // checa se existe uma senha já criada
@@ -116,7 +114,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         if(usuario instanceof PessoaFisica){
             data = ((PessoaFisica)usuario).toString();
         } else if (usuario instanceof PessoaJuridica) {
-            System.out.println("DD");
             data = ((PessoaJuridica)usuario).toString();
         } else if (usuario instanceof Distribuidor){
             data = ((Distribuidor)usuario).toString();
@@ -185,7 +182,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
             formaDePagamento.put(aux[0], new FormaDePagamento(aux[0], debito, credito, Integer.parseInt(aux[3])));
         }
                 
-        System.out.println(userSplited[6]);
         
         if(userSplited[0].equals("PESSOA_FISICA")){
             String cpf = userSplited[6];
@@ -196,7 +192,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
             PessoaFisica pf = new PessoaFisica(id, nome, senha, address, formaDePagamento, cpf, idade, receita);
             
-            System.out.println(cpf);
             return pf;
         }
         else if(userSplited[0].equals( "PESSOA_JURIDICA")){

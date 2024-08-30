@@ -1,3 +1,9 @@
 DISTRIBUIDOR|1|liminha|nense|||26.837.128/3162-87|true
 PESSOA_JURIDICA|2|dianso|jajbsica|||32.153.619/0291-32|true
 DISTRIBUIDOR|3|isnona|iabsiauc|||12.783.291/2938-71|false
+PESSOA_FISICA|4|iojaijsd|asdsakd|||182.937.912-87|21|false
+PESSOA_FISICA|5|ihoad|dasua|||182.398.217-39|1213|false
+PESSOA_FISICA|6|dasndja|bksdjvbks|||123.812.703-87|2131|false
+PESSOA_FISICA|7|iadsoud|ansoubas|||127.123.718-27|125|false
+PESSOA_FISICA|8|asiodu|aiscubai|||125.734.712-43|1212|false
+PESSOA_FISICA|9|asidoa|aocoacs|||172.371.286-71|21387|false

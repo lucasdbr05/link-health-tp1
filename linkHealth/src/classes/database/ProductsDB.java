@@ -31,6 +31,8 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
         String[] productsRows = this.splitFileWrite(this.fileReader(file));
 
         for(String row: productsRows) {
+            if(row.isBlank()) continue;
+            
             Produto user = this.fromStringToProductObject(row);
             produtos.add(user);
         }
