@@ -302,7 +302,7 @@ public class TelaCadastroFormaPayment extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chcDebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chcDebActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_chcDebActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -324,15 +324,15 @@ public class TelaCadastroFormaPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtDataVencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataVencActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDataVencActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
-        // TODO add your handling code here:
+        
         
         String patCpf = "   .   .   -  ";
         String patDate =  "/ /    ";

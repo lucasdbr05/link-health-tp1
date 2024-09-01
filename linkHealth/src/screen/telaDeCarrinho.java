@@ -27,9 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class telaDeCarrinho extends javax.swing.JFrame {
 
-    /**
-     * Creates new form telaDeCarrinho
-     */
+    
     private ArrayList<Produto> produtos;
     private ArrayList<Double> precos;
     private ArrayList<Integer> quantidades;
@@ -272,12 +270,12 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        // TODO add your handling code here:
+        
         
     }//GEN-LAST:event_btnComprarActionPerformed
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
-        // TODO add your handling code here:
+        
         int i  = tblCarrinho.getSelectedRow();
         double valor = precos.get(i) * quantidades.get(i);
         
@@ -299,7 +297,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void tblCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrinhoMouseClicked
-        // TODO add your handling code here:
+        
         int i = tblCarrinho.getSelectedRow();
         if(i >= 0 && i < produtos.size())
         {

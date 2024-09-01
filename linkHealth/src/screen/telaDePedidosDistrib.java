@@ -155,7 +155,7 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeStatusActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnChangeStatusActionPerformed
 
     /**

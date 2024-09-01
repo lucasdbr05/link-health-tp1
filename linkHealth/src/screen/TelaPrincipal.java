@@ -181,7 +181,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAcompPediMouseClicked
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
-        // TODO add your handling code here:
+        
        
         if(this.user instanceof PessoaJuridica){
             
@@ -199,7 +199,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCatalogoActionPerformed
 
     /**

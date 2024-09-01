@@ -475,11 +475,11 @@ public class telaDeLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkPjMouseClicked
 
     private void btnOKDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKDistrActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnOKDistrActionPerformed
 
     private void btnOKPfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKPfActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnOKPfActionPerformed
 
     /**
