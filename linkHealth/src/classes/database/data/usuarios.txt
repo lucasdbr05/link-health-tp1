@@ -1,2 +1,5 @@
-PESSOA_FISICA|1|Isabela|isa123|;Lago norte;||030.163.381-90|19|false
-DISTRIBUIDOR|2|Loja|12345|||12.345.678/9000-00|true
+PESSOA_FISICA|1|matheus|subreg|laranjeiras;|120#true#true#123#1232131#12/31/2323#123.321.312-21#;|111.111.111-11|12|false
+PESSOA_FISICA|2|fred|fluzas|||222.222.222-22|99|false
+PESSOA_JURIDICA|3|a|junnior|;astra;|12212#false#true#231#12331#32/13/3213#123.232.132-13#;|11.111.111/1111-11|false
+PESSOA_JURIDICA|4|ester|junior1|||22.222.222/2222-22|true
+

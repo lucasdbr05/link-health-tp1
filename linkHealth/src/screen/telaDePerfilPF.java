@@ -4,6 +4,7 @@
  */
 package screen;
 
+import classes.FormaDePagamento;
 import classes.PessoaFisica;
 import classes.database.UsersDB;
 import java.io.IOException;
@@ -50,7 +51,12 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         this.txtIdade.setText(Integer.toString(user.getIdade()));
         for(String ender : this.user.getEnderco()){
             this.cboxEndereços.addItem(ender);
-        }      
+        }
+        
+        for(String num : this.user.getFormasDePagamento().keySet()){
+            
+            this.cboxFormasPagamento.addItem(num);
+        }
     }
 
     /**
@@ -79,8 +85,8 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         btnAlterEnder = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cboxFormasPagamento = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAddNewPay = new javax.swing.JButton();
+        btnEditPay = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -207,15 +213,25 @@ public class telaDePerfilPF extends javax.swing.JFrame {
         cboxFormasPagamento.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         cboxFormasPagamento.setForeground(new java.awt.Color(0, 102, 102));
 
-        jButton1.setBackground(new java.awt.Color(149, 236, 236));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(0, 102, 102));
-        jButton1.setText("Adicionar nova forma de pagamento");
+        btnAddNewPay.setBackground(new java.awt.Color(149, 236, 236));
+        btnAddNewPay.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnAddNewPay.setForeground(new java.awt.Color(0, 102, 102));
+        btnAddNewPay.setText("Adicionar nova forma de pagamento");
+        btnAddNewPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddNewPayActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(149, 236, 236));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("Alterar forma de pagamento");
+        btnEditPay.setBackground(new java.awt.Color(149, 236, 236));
+        btnEditPay.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnEditPay.setForeground(new java.awt.Color(0, 102, 102));
+        btnEditPay.setText("Alterar forma de pagamento");
+        btnEditPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditPayActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -270,8 +286,8 @@ public class telaDePerfilPF extends javax.swing.JFrame {
                         .addGap(94, 94, 94))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton1))
+                            .addComponent(btnEditPay)
+                            .addComponent(btnAddNewPay))
                         .addGap(29, 29, 29))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -300,7 +316,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnAddNewPay)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -309,7 +325,7 @@ public class telaDePerfilPF extends javax.swing.JFrame {
                             .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(btnEditPay)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -508,6 +524,21 @@ public class telaDePerfilPF extends javax.swing.JFrame {
             this.cboxEndereços.addItem(x);
     }//GEN-LAST:event_btnAlterEnderActionPerformed
 
+    private void btnAddNewPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddNewPayActionPerformed
+        
+        this.setVisible(false);
+        new TelaCadastroFormaPayment(this.user).setVisible(true);
+    }//GEN-LAST:event_btnAddNewPayActionPerformed
+
+    private void btnEditPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditPayActionPerformed
+        this.setVisible(false);
+        
+        FormaDePagamento aux = this.user.pegarFormaPagamento(this.cboxFormasPagamento.getSelectedItem().toString());
+                
+        this.user.removeFormaDePagamento(this.cboxFormasPagamento.getSelectedItem().toString());
+        new TelaCadastroFormaPayment(aux, this.user).setVisible(true);
+    }//GEN-LAST:event_btnEditPayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -545,14 +576,14 @@ public class telaDePerfilPF extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddEnder;
+    private javax.swing.JButton btnAddNewPay;
     private javax.swing.JButton btnAlterEnder;
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnEditPay;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnOk;
     private javax.swing.JComboBox<String> cboxEndereços;
     private javax.swing.JComboBox<String> cboxFormasPagamento;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

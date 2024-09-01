@@ -392,6 +392,7 @@ public class telaDeLogin extends javax.swing.JFrame {
               return;
             }
         }catch(Exception e){
+            System.out.println(e);
         }
         this.setVisible(false);
         new telaPrincipalDistribuidor(aux).setVisible(true);
