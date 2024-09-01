@@ -1,5 +1,6 @@
 package classes.database;
 
+import classes.Carrinho;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import classes.Compra;
 import classes.database.repositories.IComprasDBRepository;
 import classes.ENV;
+import java.util.HashMap;
 
 public class ComprasDB extends Database implements IComprasDBRepository {
     
@@ -110,9 +112,27 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         String[] productSplited = this.splitRowString(productString);
     
         int id = Integer.parseInt(productSplited[0]);
+        boolean isEntrega = productSplited[2].equals("true");
         
-        // String produtos = VAMO TER ESSA RELAÇÃOZINHA de botar produtos OU NÃO?
+        HashMap<Integer, Double> prices = new HashMap<Integer, Double>();
+        HashMap<Integer, Integer> qtts = new HashMap<Integer, Integer>();
+
+        int total = 0;
+        for(String s: productSplited[3].split("&")){
+            String[] sSplited = s.split(";");
+            Integer carId = Integer.parseInt(sSplited[0]);
+            Double price = Double.parseDouble(sSplited[1]);
+            Integer qtt = Integer.parseInt(sSplited[2]);
+            
+            total += price * qtt;
+            qtts.put(id, qtt);
+            prices.put(id, price);
+            
+        }
+        Carrinho carrinho = new Carrinho(prices, qtts, total);
+
         
-        return new Compra(id, Compra.fromStringToStatus(productSplited[1]));
+        
+        return new Compra(Compra.fromStringToStatus(productSplited[1]),isEntrega, carrinho,id  );
     }
 }

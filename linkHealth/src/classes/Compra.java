@@ -131,8 +131,9 @@ public class Compra {
     @Override
     public String toString(){
         String productsFromBuy = "";
-        //TODO: ADICIONAR PRODUTOS DA COMPRA
+        String isEntrega = this.entregaOuRetirada ? "true":"false";
 
-        return String.format("%d|%s|", this.id, this.checaStatus());
+
+        return String.format("%d|%s|%s|%s", this.id, this.checaStatus(), isEntrega, this.carrinhoIni.toString());
     }
 }

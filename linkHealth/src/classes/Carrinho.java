@@ -5,6 +5,7 @@
 package classes;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -16,6 +17,12 @@ public class Carrinho {
     private HashMap<Integer, Integer> quantidade;
     
     private double total;
+    
+    public Carrinho(HashMap<Integer, Double> precos, HashMap<Integer, Integer> quantidade, double total) {
+        this.produtosDesejados = precos;
+        this.quantidade = quantidade;
+        this.total = total;
+    }
    
     public Carrinho()
     {
@@ -74,6 +81,18 @@ public class Carrinho {
         quantidade.remove(_produto);
         v -= 1;
         quantidade.put(_produto.getId(), v);
+    }
+
+    @Override
+    public String toString() {
+        String ret = "";
+        
+        for (Map.Entry<Integer, Double> set: produtosDesejados.entrySet()) {
+            ret += String.format("%d;%.2f;%d", set.getKey(), set.getValue(), quantidade.get(set.getKey())) + "&";
+        }
+        
+        
+        return ret;
     }
  
     
