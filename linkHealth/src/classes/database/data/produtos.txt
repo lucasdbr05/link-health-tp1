@@ -1,2 +1,1 @@
-1|produto1|10.00|5|false|2
-2|bdisubc|11.00|19|true|3
+

@@ -179,7 +179,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
             Boolean debito = (aux[1].equals("true") ? true : false);
             Boolean credito = (aux[2].equals("true") ? true : false);
             
-            formaDePagamento.put(aux[0], new FormaDePagamento(aux[0], debito, credito, Integer.parseInt(aux[3])));
+            formaDePagamento.put(aux[0], new FormaDePagamento(aux[6], aux[0], aux[4], aux[5], debito, credito, Integer.parseInt(aux[3])));
         }
                 
         

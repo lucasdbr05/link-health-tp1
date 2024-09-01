@@ -65,14 +65,22 @@ public abstract class Usuario {
         this.id = id;
     }
 
-    public void cadastraFormaDePagamento(String cartao, boolean debito, boolean credito, int senha){
+    public void cadastraFormaDePagamento(String cartao, FormaDePagamento formaDePagamento){
         
-        //cadastra uma nova forma de Pagamento para o usuario        
-        FormaDePagamento formaDePagamento = new FormaDePagamento(cartao, debito, credito, senha);
+        //cadastra uma nova forma de Pagamento para o usuario       
         // assumimos a mesma postura do q o endereço e deixamos para o usuario adicionar um metodo
         // quando acessar sua tela de perfil
         formasDePagamento.put(cartao, formaDePagamento);
     }
+    public FormaDePagamento pegarFormaPagamento(String cartao){
+        
+        return formasDePagamento.get(cartao);
+    }
+
+    public HashMap<String, FormaDePagamento> getFormasDePagamento() {
+        return formasDePagamento;
+    }
+    
     
     public void removeFormaDePagamento(String cartao){
         
