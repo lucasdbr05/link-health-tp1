@@ -74,6 +74,7 @@ public class Produto {
     @Override
     public String toString() {
         String receita = this.exigeReceita ? "true":"false";
-        return String.format("%d|%s|%.2f|%d|%s|%d", this.id, this.nome, this.precoDeCusto, this.quantidade, receita, this.distId);
+        String preco = String.format("%.2f", this.precoDeCusto).replace(",", ".");
+        return String.format("%d|%s|%s|%d|%s|%d", this.id, this.nome, preco, this.quantidade, receita, this.distId);
     }
 }
