@@ -1,3 +1,12 @@
 PESSOA_FISICA|1|Isabela|isa123|;Lago norte;||030.163.381-90|19|false
 DISTRIBUIDOR|2|Loja|12345|||12.345.678/9000-00|true
 DISTRIBUIDOR|3|nense|nense|||33.647.553/0001-90|true
+PESSOA_FISICA|4|oidfvhhbfdiv|oygsygda|||612.736.122-87|122|false
+PESSOA_FISICA|5|ajhsvdvas|hdfbis|||622.376.876-34|2622|false
+PESSOA_FISICA|6|uahiuhsd|ysgvivs|||761.287.418-27|142|false
+PESSOA_FISICA|7|hbakbckhabhk|bsabskbckah|||726.187.322-78|12122|false
+PESSOA_FISICA|8|ihvadsjhf|ausasuh|||718.225.837-51|12|false
+PESSOA_FISICA|9|asdouahs|asdosja|||687.638.274-68|122|false
+PESSOA_FISICA|10|dlaalsihdl|aosjnkajskj|||222.163.817-22|22412|false
+PESSOA_FISICA|11|ajbsdb|uhaisuhcis|||712.638.763-12|1227|false
+PESSOA_FISICA|12|asdgia|sajhkdasjh|||322.374.928-37|376843|false
