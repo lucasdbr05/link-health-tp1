@@ -270,9 +270,9 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                 aux1 += aux.charAt(i);
             }
         }
-        
-        System.out.println(aux1);
-        double preco = Double.parseDouble(aux1);
+
+          double preco = parseDouble(aux1);
+
         boolean receita = (rdBtnSim.isSelected());
         int qnt = parseInt(txtQuantidade.getText());
         Produto produto = new Produto(nome, id, preco, receita, qnt, this.user.getId());
