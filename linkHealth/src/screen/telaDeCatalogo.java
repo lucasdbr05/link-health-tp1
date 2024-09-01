@@ -13,6 +13,9 @@ import classes.database.ProductsDB;
 import classes.database.UsersDB;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -30,6 +33,10 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private Usuario user;
     private ProductsDB prodDB;
     private ArrayList<Produto> produtos;
+    private HashSet<String> filtros = new HashSet();
+    private ArrayList<String> ordenar;
+    private String filter = "Todos";
+    private String orderBy = "Padrão";
   
     public telaDeCatalogo(Usuario u){
 
@@ -41,45 +48,79 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         }
         initComponents();
         user = u;
+        this.initFilters();
+        this.carregarTabelaProdutos();
         AddCarrinho.setEnabled(false);
     }
     
+    public ArrayList<Produto> handleProdutos(){ 
+        ArrayList<Produto> ret = new ArrayList<Produto>();
+        
+        for(Produto p: this.produtos) {
+            if(this.filter.equals("Todos") || this.filter.equals(p.getNome())){
+                ret.add(p);
+            }
+        }
+        
+        
+        Collections.sort(ret, new Comparator<Produto>() {
+            @Override
+            public int compare(Produto a, Produto b) {
+                if(orderBy.equals("Mais Caro")) return a.getPrecoDeCusto() > b.getPrecoDeCusto() ? -1 : 1;
+                if(orderBy.equals("Mais Barato"))  return a.getPrecoDeCusto() < b.getPrecoDeCusto() ? -1 : 1;
+                return a.getId() - b.getId();
+            }
+        });
+        
+        return ret;
+    }
+    
+    public void initFilters(){
+        for(Produto produto: this.produtos) {
+            this.filtros.add(produto.getNome());
+        }
+        
+        ArrayList<String> filters = new ArrayList<String>();
+        filters.add("Todos");
+        for(String p: this.filtros) {
+            filters.add(p);
+        }
+        cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(filters.toArray(String[]::new)));
+
+    }
+
     public void carregarTabelaProdutos()
     {
         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"id", "Produto", "Preço", "Distribuidor", "Exige Receita"}, 0);
-        for(int i = 0; i < produtos.size(); i++)
+        
+        ArrayList<Produto> filteredProdutos = this.handleProdutos();
+        for(int i = 0; i < filteredProdutos.size(); i++)
         {
+            UsersDB usersDB = new UsersDB();
+            Usuario dist = null;
+            try {
+                dist = usersDB.findOne(filteredProdutos.get(i).getDistId());
+            } catch (IOException ex) {
+            }
             if(user instanceof PessoaFisica)
             {
-                UsersDB usersDB = new UsersDB();
-                Usuario dist = null;
-                try {
-                    dist = usersDB.findOne(produtos.get(i).getDistId());
-                } catch (IOException ex) {
-                }
                 Object linha[];
-                linha = new Object[]{produtos.get(i).getId(),
-                    produtos.get(i).getNome(),
-                    ((Distribuidor)dist).getPrecos().get(produtos.get(i)),
+                linha = new Object[]{filteredProdutos.get(i).getId(),
+                    filteredProdutos.get(i).getNome(),
+                    filteredProdutos.get(i).getPrecoDeCusto(),
                     dist.getNome(),
-                    produtos.get(i).isExigeReceita()};
+                    filteredProdutos.get(i).isExigeReceita()};
                 
                 modelo.addRow(linha);
             }
             if(user instanceof PessoaJuridica)
             {
-                UsersDB usersDB = new UsersDB();
-                Usuario dist = null;
-                try {
-                    dist = usersDB.findOne(produtos.get(i).getDistId());
-                } catch (IOException ex) {
-                }
                 Object linha[];
-                linha = new Object[]{produtos.get(i).getId(),
-                    produtos.get(i).getNome(),
-                    produtos.get(i).getPrecoDeCusto(),
+                linha = new Object[]{filteredProdutos.get(i).getId(),
+                    filteredProdutos.get(i).getNome(),
+                    filteredProdutos.get(i).getPrecoDeCusto(),
                     dist.getNome(),
-                    produtos.get(i).isExigeReceita()};
+                    filteredProdutos.get(i).isExigeReceita()};
                 
                 modelo.addRow(linha);
             }
@@ -102,10 +143,10 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbFilter = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbOrderBy = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCatalogo = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -119,12 +160,12 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
 
-        jComboBox1.setBackground(new java.awt.Color(51, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Anti Alérgico", "Tosse", "..." }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cmbFilter.setBackground(new java.awt.Color(51, 255, 255));
+        cmbFilter.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
+        cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Anti Alérgico", "Tosse", "..." }));
+        cmbFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cmbFilterActionPerformed(evt);
             }
         });
 
@@ -138,12 +179,12 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
         jLabel2.setText("Ordenar por:");
 
-        jComboBox2.setBackground(new java.awt.Color(51, 255, 255));
-        jComboBox2.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Mais Barato", "Mais Caro", "Mais Vendido" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cmbOrderBy.setBackground(new java.awt.Color(51, 255, 255));
+        cmbOrderBy.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
+        cmbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Mais Barato", "Mais Caro", "Mais Vendido" }));
+        cmbOrderBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cmbOrderByActionPerformed(evt);
             }
         });
 
@@ -211,11 +252,11 @@ public class telaDeCatalogo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(107, 107, 107)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
         jPanel1Layout.setVerticalGroup(
@@ -224,9 +265,9 @@ public class telaDeCatalogo extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbOrderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(14, 14, 14)
                 .addComponent(AddCarrinho)
@@ -249,13 +290,16 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void cmbFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFilterActionPerformed
+        
+        this.filter = cmbFilter.getSelectedItem().toString();
+        this.carregarTabelaProdutos();
+    }//GEN-LAST:event_cmbFilterActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    private void cmbOrderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbOrderByActionPerformed
+        this.orderBy = cmbOrderBy.getSelectedItem().toString();
+        this.carregarTabelaProdutos();
+    }//GEN-LAST:event_cmbOrderByActionPerformed
     
     private void AddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoActionPerformed
         // TODO add your handling code here:
@@ -321,8 +365,8 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCarrinho;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cmbFilter;
+    private javax.swing.JComboBox<String> cmbOrderBy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
