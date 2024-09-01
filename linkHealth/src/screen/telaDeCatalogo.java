@@ -165,6 +165,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
         cmbFilter.setBackground(new java.awt.Color(51, 255, 255));
         cmbFilter.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
+        cmbFilter.setForeground(new java.awt.Color(0, 102, 102));
         cmbFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Anti Alérgico", "Tosse", "..." }));
         cmbFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,6 +185,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
         cmbOrderBy.setBackground(new java.awt.Color(51, 255, 255));
         cmbOrderBy.setFont(new java.awt.Font("JetBrains Mono ExtraBold", 0, 12)); // NOI18N
+        cmbOrderBy.setForeground(new java.awt.Color(0, 102, 102));
         cmbOrderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Mais Barato", "Mais Caro", "Mais Vendido" }));
         cmbOrderBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
