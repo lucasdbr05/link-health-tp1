@@ -259,7 +259,18 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nome = txtNome.getText();
         int id = parseInt(txtId.getText());
-        double preco = parseDouble(txtPreco.getText());
+        String aux = txtPreco.getText();
+        String aux1 = "";
+        for(int i = 0; i < aux.length(); i++)
+        {
+            if(aux.charAt(i) == ',')
+            {
+                aux1 += '.';
+            } else {
+                aux1 += aux.charAt(i);
+            }
+        }
+        double preco = parseDouble(aux1);
         boolean receita = (rdBtnSim.isSelected());
         int qnt = parseInt(txtQuantidade.getText());
         Produto produto = new Produto(nome, id, preco, receita, qnt, this.user.getId());
