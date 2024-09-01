@@ -1,2 +1,3 @@
 PESSOA_FISICA|1|Isabela|isa123|;Lago norte;||030.163.381-90|19|false
 DISTRIBUIDOR|2|Loja|12345|||12.345.678/9000-00|true
+DISTRIBUIDOR|3|nense|nense|||33.647.553/0001-90|true
