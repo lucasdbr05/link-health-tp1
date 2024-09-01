@@ -33,6 +33,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     private Usuario user;
     private ProductsDB prodDB;
     private ArrayList<Produto> produtos;
+    private ArrayList<Produto> filteredProdutos;
     private HashSet<String> filtros = new HashSet();
     private ArrayList<String> ordenar;
     private String filter = "Todos";
@@ -43,11 +44,13 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         prodDB = new ProductsDB();
         try {
             produtos =  prodDB.findAll();
+            filteredProdutos = prodDB.findAll();
         } catch (IOException ex) {
             
         }
         initComponents();
         user = u;
+        
         this.initFilters();
         this.carregarTabelaProdutos();
         AddCarrinho.setEnabled(false);
@@ -302,19 +305,20 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbOrderByActionPerformed
     
     private void AddCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCarrinhoActionPerformed
-        // TODO add your handling code here:
-        Produto prod = produtos.get(tblCatalogo.getSelectedRow());
-        if(user instanceof PessoaFisica pessoaFisica)
+        int index = tblCatalogo.getSelectedRow();
+        if(index<0) return; 
+        Produto prod = filteredProdutos.get(index);
+        
+        if(user instanceof PessoaFisica)
         {
-            UsersDB usersDB = new UsersDB();
-            Usuario dist = null;
-            try {
-                dist = usersDB.findOne(prod.getDistId());
-            } catch (IOException ex) {
-            }
-            pessoaFisica.getCarrinho().carrinhoAdd(prod,(Distribuidor)dist , user);
+            this.setVisible(false);
+            new telaAdicionarCarrinho(((PessoaFisica)user), prod).setVisible(true);
         }
-        AddCarrinho.setEnabled(false);
+        else if(user instanceof PessoaJuridica)
+        {
+            this.setVisible(false);
+            new telaAdicionarCarrinho(((PessoaJuridica)user), prod).setVisible(true);
+        }
     }//GEN-LAST:event_AddCarrinhoActionPerformed
 
     private void tblCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCatalogoMouseClicked

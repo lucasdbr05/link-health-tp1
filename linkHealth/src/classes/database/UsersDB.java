@@ -206,10 +206,14 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         }
         else if (userSplited[0].equals( "DISTRIBUIDOR")){
             String cnpj = userSplited[6];
-            ArrayList<Produto> produto = new ArrayList<Produto>();
+            ArrayList<Produto> produtos = new ArrayList<Produto>();
+            try {
+                produtos = new ProductsDB().findAllByUser(id);
+            } catch (IOException ex) {
+            }
             boolean acceptPF = userSplited[7].equals("true");
 
-            Distribuidor distribuidor = new Distribuidor(id, nome,senha, address, formaDePagamento, cnpj, produto, acceptPF);
+            Distribuidor distribuidor = new Distribuidor(id, nome,senha, address, formaDePagamento, cnpj, produtos, acceptPF);
             return distribuidor;
         }
 

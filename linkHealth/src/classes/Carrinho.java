@@ -12,21 +12,22 @@ import java.util.HashMap;
  */
 public class Carrinho {
     
-    private HashMap<Produto, Double> produtosDesejados;
-    private HashMap<Produto, Integer> quantidade;
+    private HashMap<Integer, Double> produtosDesejados;
+    private HashMap<Integer, Integer> quantidade;
     
     private double total;
    
     public Carrinho()
     {
         produtosDesejados = new HashMap<>();
+        quantidade = new HashMap<>();
         total = 0;
     }
-    public HashMap<Produto,Double> getMapaPreco()
+    public HashMap<Integer,Double> getMapaPreco()
     {
         return produtosDesejados;
     }
-    public HashMap<Produto,Integer> getQuantidade()
+    public HashMap<Integer,Integer> getQuantidade()
     {
         return this.quantidade;
     }
@@ -40,24 +41,29 @@ public class Carrinho {
         if(usuario instanceof PessoaJuridica)
         {
             double _preco = _produto.getPrecoDeCusto();
-            produtosDesejados.put(_produto,_preco );
+            produtosDesejados.put(_produto.getId(),_preco );
             total += _preco;
         }
         else
         {
-            double _preco = _distribuidor.getPrecos().get(_produto); 
-            produtosDesejados.put(_produto,_preco );
+            System.out.println(_distribuidor.getPrecos());
+            System.out.println(_produto.getId());
+            double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
+            produtosDesejados.put(_produto.getId(),_preco );
             total += _preco;
         }
         
-        if(quantidade.get(_produto) != null) quantidade.put(_produto, 1);
+        this.quantidade.put(_produto.getId(), this.quantidade.getOrDefault(_produto.getId(), 0) + _produto.getQuantidade());
+        return;
+        /*
+        if(quantidade.get(_produto) != null) quantidade.put(_produto.getId(), 1);
         else
         {
             int v = quantidade.get(_produto);
             quantidade.remove(_produto);
             v += 1;
-            quantidade.put(_produto, v);
-        }
+            quantidade.put(_produto.getId(), v);
+        } */
     }
     public void carrinhoRemove(Produto _produto, Distribuidor _distribuidor)
     {
@@ -67,7 +73,7 @@ public class Carrinho {
         int v = quantidade.get(_produto);
         quantidade.remove(_produto);
         v -= 1;
-        quantidade.put(_produto, v);
+        quantidade.put(_produto.getId(), v);
     }
  
     

@@ -10,12 +10,15 @@ import classes.PessoaFisica;
 import classes.PessoaJuridica;
 import classes.Produto;
 import classes.Usuario;
+import classes.database.ProductsDB;
 import classes.database.UsersDB;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -33,19 +36,25 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     
     private Usuario user;
     private Carrinho car;
+    private ProductsDB prodDB = new ProductsDB();
     public telaDeCarrinho(Usuario u) {
         initComponents();
         user = u;
+        
         if(user instanceof PessoaFisica) car = ((PessoaFisica)user).getCarrinho();
         else if(user instanceof PessoaJuridica) car = ((PessoaJuridica)user).getCarrinho();
         lblTotal.setText("R$" + car.getTotal());
-       for (Map.Entry<Produto, Double> set :
+       for (Map.Entry<Integer, Double> set :
              car.getMapaPreco().entrySet()) {
  
-            produtos.add(set.getKey());
+            try {
+                produtos.add(prodDB.findOne(set.getKey()));
+            } catch (IOException ex) {
+                Logger.getLogger(telaDeCarrinho.class.getName()).log(Level.SEVERE, null, ex);
+            }
             precos.add(set.getValue());
         }
-        for (Map.Entry<Produto, Integer> set :
+        for (Map.Entry<Integer, Integer> set :
              car.getQuantidade().entrySet()) {
  
             quantidades.add(set.getValue());

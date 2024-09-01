@@ -24,6 +24,8 @@ public class PessoaJuridica extends Usuario {
         
         this.cnpj = _cnpj;
         this.hospital = _hospital;
+        this.meuCarrinho = new Carrinho();
+
     }
     
     public void setCarrinho(Carrinho c)

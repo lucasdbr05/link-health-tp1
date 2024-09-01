@@ -8,7 +8,7 @@ public class PessoaFisica extends Usuario{
     private String cpf;
     private int idade;
     private boolean receita = false;
-    private Carrinho meuCarrinho;
+    private Carrinho meuCarrinho ;
 
     public PessoaFisica(){};
     
@@ -27,6 +27,7 @@ public class PessoaFisica extends Usuario{
         super(_nome, _senha);
         this.cpf = _cpf;
         this.idade = _idade;
+        this.meuCarrinho = new Carrinho();
     
     }
     public void setCarrinho(Carrinho c)

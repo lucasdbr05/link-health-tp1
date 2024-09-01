@@ -1,13 +1,17 @@
 package classes;
+import classes.database.ProductsDB;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Distribuidor extends Usuario {
     private String cnpj;
     private ArrayList<Produto> produtos;
-    private HashMap<Produto, Integer> estoque = new HashMap<>();
+    private HashMap<Integer, Integer> estoque = new HashMap<>();
     private boolean aceitaPessoaFisica;
-    private HashMap<Produto, Double> precos = new HashMap<>();
+    private HashMap<Integer, Double> precos = new HashMap<>();
 
 
     
@@ -17,7 +21,11 @@ public class Distribuidor extends Usuario {
         super(nome, senha, id, endereco, formasDePagamento);
         this.cnpj = cnpj;
         this.aceitaPessoaFisica = aceitaPessoaFisica;
-        this.produtos = produtos;
+        try {
+            this.produtos = new ProductsDB().findAllByUser(id);
+        } catch (IOException ex) {
+            Logger.getLogger(Distribuidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.precos = this.buildPrecos();
         this.estoque = this.buildEstoque();
     }
@@ -31,7 +39,11 @@ public class Distribuidor extends Usuario {
         super(_nome, _senha);
         this.cnpj = _cnpj;
         this.aceitaPessoaFisica = _aceitaPessoaFisica;
-        this.produtos = new ArrayList<Produto>();
+        try {
+            this.produtos = new ProductsDB().findAllByUser(id);
+        } catch (IOException ex) {
+            Logger.getLogger(Distribuidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // Fazer o cadastro primeiro depois registrar os produtos
         this.estoque = buildEstoque();
         this.precos = buildPrecos();
@@ -46,11 +58,11 @@ public class Distribuidor extends Usuario {
         return produtos;
     }
 
-    public HashMap<Produto, Integer> getEstoque() {
+    public HashMap<Integer, Integer> getEstoque() {
         return estoque;
     }
 
-    public HashMap<Produto, Double> getPrecos() {
+    public HashMap<Integer, Double> getPrecos() {
         return precos;
     }
 
@@ -70,24 +82,24 @@ public class Distribuidor extends Usuario {
         this.aceitaPessoaFisica = aceitaPessoaFisica;
     }
 
-    public HashMap<Produto, Integer> buildEstoque() {
-        HashMap<Produto, Integer> estoqueMap = new HashMap<>();
+    public HashMap<Integer, Integer> buildEstoque() {
+        HashMap<Integer, Integer> estoqueMap = new HashMap<>();
         for (int i = 0; i < this.produtos.size(); i ++) {
-            estoqueMap.put(this.produtos.get(i), this.produtos.get(i).getQuantidade());
+            estoqueMap.put(this.produtos.get(i).getId(), this.produtos.get(i).getQuantidade());
         }
         return estoqueMap;
     }
     
-    public HashMap<Produto, Double> buildPrecos() {
-        HashMap<Produto, Double> precosMap = new HashMap<>();
+    public HashMap<Integer, Double> buildPrecos() {
+        HashMap<Integer, Double> precosMap = new HashMap<>();
         for (int i = 0; i < this.produtos.size(); i ++) {
-            precosMap.put(this.produtos.get(i), this.produtos.get(i).getQuantidade()*this.produtos.get(i).getPrecoDeCusto());
+            precosMap.put(this.produtos.get(i).getId(), this.produtos.get(i).getQuantidade()*this.produtos.get(i).getPrecoDeCusto());
         }
         return precosMap;
     }
     public void addProduct(Produto produto) {
-        this.precos.put(produto, this.precos.getOrDefault(produto, 0.0) + produto.getPrecoDeCusto());
-        this.estoque.put(produto, this.estoque.getOrDefault(produto, 0) + produto.getQuantidade());
+        this.precos.put(produto.getId(), this.precos.getOrDefault(produto.getId(), 0.0) + produto.getPrecoDeCusto());
+        this.estoque.put(produto.getId(), this.estoque.getOrDefault(produto.getId(), 0) + produto.getQuantidade());
     }
 
     @Override
