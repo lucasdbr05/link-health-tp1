@@ -12,6 +12,7 @@ import classes.database.UsersDB;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,6 +28,9 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     private ComprasDB comprDB;
     private ArrayList<Compra> compras;
     private String orderBy = "Padrão";
+    private String entregRetir = "Todos";
+    private String stat = "Todos";
+    private double price =  -1;
     
     public telaDeAcompanharPedidos(Usuario user) {
         
@@ -38,10 +42,10 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         
         try{
             
-            this.compras = this.comprDB.findAll();
+           this.compras = this.comprDB.findAll();
         }catch(Exception e){
         }
-        
+     
         this.carregarTabela();
     }
     
@@ -57,6 +61,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         for(Compra buy : buys){
             Object linha[];
             
+            
             String stat = "Cancelado";
             
             if(buy.getStatus() == Compra.fromStringToStatus("PENDENTE"))
@@ -65,11 +70,16 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             if(buy.getStatus() == Compra.fromStringToStatus("PAGO"))
                     stat = "Pago";
             
+            String entegRetir = buy.isEntregaOuRetirada() ? "Entrega" : "Retirada";
             linha =  new Object[] {
                 stat,
                 Double.toString(buy.getCarrinhoIni().getTotal()),
-                buy.isEntregaOuRetirada() ? "Entrega" : "Retirada"
+                entegRetir
             };
+            
+            if(stat.compareTo(this.stat) != 0 && this.stat.compareTo("Todos") != 0) continue;
+            if(entegRetir.compareTo(this.entregRetir) != 0 && this.entregRetir.compareTo("Todos") != 0) continue;
+            if(buy.getCarrinhoIni().getTotal() != this.price && this.price != -1) continue;
             
             modelo.addRow(linha);
         }
@@ -105,16 +115,16 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         lblStatus = new javax.swing.JLabel();
         lblTipo = new javax.swing.JLabel();
-        txtStatus = new javax.swing.JTextField();
-        txtTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCompras = new javax.swing.JTable();
         lblPreco = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cboxOrder = new javax.swing.JComboBox<>();
         btnPesquisar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnOK = new javax.swing.JButton();
+        cboxStatus = new javax.swing.JComboBox<>();
+        cboxEntrRetir = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(149, 236, 236));
@@ -131,28 +141,6 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         lblTipo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lblTipo.setForeground(new java.awt.Color(0, 102, 102));
         lblTipo.setText("Tipo de Entrega:");
-
-        txtStatus.setEditable(false);
-        txtStatus.setBackground(new java.awt.Color(78, 171, 176));
-        txtStatus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txtStatus.setForeground(new java.awt.Color(0, 102, 102));
-        txtStatus.setEnabled(false);
-        txtStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStatusActionPerformed(evt);
-            }
-        });
-
-        txtTipo.setEditable(false);
-        txtTipo.setBackground(new java.awt.Color(78, 171, 176));
-        txtTipo.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txtTipo.setForeground(new java.awt.Color(0, 102, 102));
-        txtTipo.setEnabled(false);
-        txtTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTipoActionPerformed(evt);
-            }
-        });
 
         tblCompras.setBackground(new java.awt.Color(78, 171, 176));
         tblCompras.setModel(new javax.swing.table.DefaultTableModel(
@@ -202,10 +190,15 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setText("Ordenar:");
 
-        jComboBox1.setBackground(new java.awt.Color(78, 171, 176));
-        jComboBox1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Mais caro", "Mais barato" }));
+        cboxOrder.setBackground(new java.awt.Color(78, 171, 176));
+        cboxOrder.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        cboxOrder.setForeground(new java.awt.Color(0, 102, 102));
+        cboxOrder.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Padrão", "Mais caro", "Mais barato" }));
+        cboxOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxOrderActionPerformed(evt);
+            }
+        });
 
         btnPesquisar.setBackground(new java.awt.Color(78, 171, 176));
         btnPesquisar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -217,10 +210,35 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(78, 171, 176));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 102, 102));
-        jButton2.setText("OK");
+        btnOK.setBackground(new java.awt.Color(78, 171, 176));
+        btnOK.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnOK.setForeground(new java.awt.Color(0, 102, 102));
+        btnOK.setText("OK");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+
+        cboxStatus.setBackground(new java.awt.Color(78, 171, 176));
+        cboxStatus.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        cboxStatus.setForeground(new java.awt.Color(0, 102, 102));
+        cboxStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Pendente", "Pago", "Cancelado" }));
+        cboxStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxStatusActionPerformed(evt);
+            }
+        });
+
+        cboxEntrRetir.setBackground(new java.awt.Color(78, 171, 176));
+        cboxEntrRetir.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        cboxEntrRetir.setForeground(new java.awt.Color(0, 102, 102));
+        cboxEntrRetir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Entrega", "Retirada" }));
+        cboxEntrRetir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxEntrRetirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -234,28 +252,23 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                         .addComponent(lblPreco)
                         .addGap(34, 34, 34)
                         .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)
-                        .addComponent(jButton2))
+                        .addGap(40, 40, 40)
+                        .addComponent(btnPesquisar)
+                        .addGap(27, 27, 27)
+                        .addComponent(btnOK))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblTipo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(btnPesquisar)))))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboxOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblTipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cboxEntrRetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,26 +278,24 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(19, 19, 19)
-                        .addComponent(btnPesquisar)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
+                            .addComponent(cboxOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStatus))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTipo)
-                            .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblStatus)
+                            .addComponent(cboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTipo)
+                            .addComponent(cboxEntrRetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisar)
+                            .addComponent(btnOK))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -308,21 +319,65 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtIdActionPerformed
 
-    private void txtStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStatusActionPerformed
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         
-    }//GEN-LAST:event_txtStatusActionPerformed
+        this.btnPesquisar.setEnabled(false);
+        this.cboxEntrRetir.setEnabled(false);
+        this.cboxOrder.setEnabled(false);
+        this.cboxStatus.setEnabled(false);
+        this.btnOK.setEnabled(true);
+        this.txtPreco.setEnabled(true);
 
-    private void txtTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTipoActionPerformed
-        
-    }//GEN-LAST:event_txtTipoActionPerformed
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void cboxOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxOrderActionPerformed
+
+        this.orderBy = this.cboxOrder.getSelectedItem().toString();
+
+        this.carregarTabela();
+    }//GEN-LAST:event_cboxOrderActionPerformed
 
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        
+
     }//GEN-LAST:event_txtPrecoActionPerformed
 
-    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPesquisarActionPerformed
+    private void cboxStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxStatusActionPerformed
+        
+        this.stat = this.cboxStatus.getSelectedItem().toString();
+        
+        this.carregarTabela();
+    }//GEN-LAST:event_cboxStatusActionPerformed
+
+    private void cboxEntrRetirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxEntrRetirActionPerformed
+        
+        this.entregRetir = this.cboxEntrRetir.getSelectedItem().toString();
+        
+        this.carregarTabela();
+    }//GEN-LAST:event_cboxEntrRetirActionPerformed
+
+    private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
+        
+        String inNum = this.txtPreco.getText();
+        
+        double preco = -1;
+        try {
+            
+            preco = Double.parseDouble(inNum);
+        } catch (Exception e) {
+            
+            JOptionPane.showMessageDialog(null, "Insira um preço valido!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        this.price = preco;
+        this.btnPesquisar.setEnabled(true);
+        this.cboxEntrRetir.setEnabled(true);
+        this.cboxOrder.setEnabled(true);
+        this.cboxStatus.setEnabled(true);
+        this.btnOK.setEnabled(false);
+        this.txtPreco.setEnabled(false);
+        this.carregarTabela();
+    }//GEN-LAST:event_btnOKActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,9 +415,11 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOK;
     private javax.swing.JButton btnPesquisar;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboxEntrRetir;
+    private javax.swing.JComboBox<String> cboxOrder;
+    private javax.swing.JComboBox<String> cboxStatus;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -371,7 +428,5 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel lblTipo;
     private javax.swing.JTable tblCompras;
     private javax.swing.JTextField txtPreco;
-    private javax.swing.JTextField txtStatus;
-    private javax.swing.JTextField txtTipo;
     // End of variables declaration//GEN-END:variables
 }
