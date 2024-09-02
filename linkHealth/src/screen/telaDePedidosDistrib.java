@@ -78,7 +78,17 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     
     public void carregarTabela(){
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome do Cliente", "Produto", "Entrega ou Retirada", "Quantidade", "Valor Total"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome do Cliente", "Produto", "Entrega ou Retirada", "Quantidade", "Valor Total"}, 0){
+            
+            @Override
+            public boolean isCellEditable
+            (int row, int column
+
+                ) {
+           //all cells false
+           return false;
+            }
+        };
         
         
         

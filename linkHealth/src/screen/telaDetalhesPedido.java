@@ -7,10 +7,14 @@ package screen;
 import classes.Carrinho;
 import classes.Compra;
 import classes.Produto;
+import classes.Status;
 import classes.Usuario;
+import classes.database.ComprasDB;
 import classes.database.ProductsDB;
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**

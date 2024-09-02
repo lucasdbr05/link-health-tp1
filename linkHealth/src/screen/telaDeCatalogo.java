@@ -94,7 +94,13 @@ public class telaDeCatalogo extends javax.swing.JFrame {
 
     public void carregarTabelaProdutos()
     {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"id", "Produto", "Preço", "Distribuidor", "Exige Receita"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"id", "Produto", "Preço", "Distribuidor", "Exige Receita"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         
         ArrayList<Produto> filteredProdutos = this.handleProdutos();
         for(int i = 0; i < filteredProdutos.size(); i++)

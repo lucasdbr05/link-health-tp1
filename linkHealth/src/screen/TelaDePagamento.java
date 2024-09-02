@@ -8,6 +8,8 @@ import classes.Compra;
 import classes.FormaDePagamento;
 import classes.Status;
 import classes.Usuario;
+import classes.database.ComprasDB;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
@@ -190,8 +192,13 @@ public class TelaDePagamento extends javax.swing.JFrame {
 
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         
+        ComprasDB comprasDb = new ComprasDB();
         this.buy.setStatus(Status.PAGO);
-        new telaDetalhesPedido(user, buy).setVisible(true);
+        try {
+            comprasDb.update(this.buy);
+        } catch (IOException ex) {
+        }
+        new telaDeAcompanharPedidos(user).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnOKActionPerformed
 

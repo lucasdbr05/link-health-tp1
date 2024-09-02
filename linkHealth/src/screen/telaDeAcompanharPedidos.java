@@ -53,7 +53,13 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     
     public void carregarTabela(){
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Status", "Preço", "Entrega ou retirada"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Status", "Preço", "Entrega ou retirada"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               //all cells false
+               return false;
+            }
+        };
         
         ArrayList<Compra> buys = this.handleCompras();
         
@@ -97,8 +103,8 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         Collections.sort(retorno, new Comparator<Compra>() {
             @Override
             public int compare(Compra a, Compra b) {
-                if(orderBy.equals("Mais Caro")) return a.getCarrinhoIni().getTotal() > b.getCarrinhoIni().getTotal() ? -1 : 1;
-                if(orderBy.equals("Mais Barato"))  return a.getCarrinhoIni().getTotal() < b.getCarrinhoIni().getTotal() ? -1 : 1;
+                if(orderBy.equals("Mais caro")) return a.getCarrinhoIni().getTotal() > b.getCarrinhoIni().getTotal() ? -1 : 1;
+                if(orderBy.equals("Mais barato"))  return a.getCarrinhoIni().getTotal() < b.getCarrinhoIni().getTotal() ? -1 : 1;
                 return (a.getCarrinhoIni().getTotal() - b.getCarrinhoIni().getTotal()) < 0 ? -1 : 1;
             }
         });
@@ -175,13 +181,17 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblCompras.setEnabled(false);
         tblCompras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblComprasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblCompras);
+        if (tblCompras.getColumnModel().getColumnCount() > 0) {
+            tblCompras.getColumnModel().getColumn(0).setResizable(false);
+            tblCompras.getColumnModel().getColumn(1).setResizable(false);
+            tblCompras.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         lblPreco.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lblPreco.setForeground(new java.awt.Color(0, 102, 102));
@@ -226,6 +236,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         btnOK.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnOK.setForeground(new java.awt.Color(0, 102, 102));
         btnOK.setText("OK");
+        btnOK.setEnabled(false);
         btnOK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOKActionPerformed(evt);
@@ -266,7 +277,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,7 +369,6 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         this.cboxStatus.setEnabled(false);
         this.btnOK.setEnabled(true);
         this.txtPreco.setEnabled(true);
-
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void cboxOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxOrderActionPerformed
@@ -407,6 +417,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         this.cboxStatus.setEnabled(true);
         this.btnOK.setEnabled(false);
         this.txtPreco.setEnabled(false);
+        this.txtPreco.setText("");
         this.carregarTabela();
     }//GEN-LAST:event_btnOKActionPerformed
 
@@ -414,6 +425,8 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         Compra _compra = this.compras.get(tblCompras.getSelectedRow());
         
         new telaDetalhesPedido(this.user, _compra).setVisible(true);
+        
+        this.setVisible(false);
     }//GEN-LAST:event_btnSeeDetailsActionPerformed
 
     private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked

@@ -72,7 +72,13 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     
     public void carregarTabelaProdutos()
     {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Distribuidor", "Preço Unitário", "Quantidade",  "Preço Total"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Distribuidor", "Preço Unitário", "Quantidade",  "Preço Total"}, 0){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
         for(int i = 0; i < produtos.size(); i++)
         {
             if(user instanceof PessoaFisica)

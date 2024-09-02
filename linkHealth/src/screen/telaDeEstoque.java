@@ -40,7 +40,13 @@ public class telaDeEstoque extends javax.swing.JFrame {
             this.estoque = this.productsDB.findAllByUser(distribuidor.getId());
         } catch (IOException ex) {
         }
-         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome","ID","Preço de Custo", "Quantidade"},0);
+         DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome","ID","Preço de Custo", "Quantidade"},0){
+             @Override
+             public boolean isCellEditable(int row, int column) {
+                 //all cells false
+                 return false;
+             }
+         };
         for(int i=0;i<this.estoque.size();i++){
             Object linha[] = new Object[]{this.estoque.get(i).getNome(),
                                         this.estoque.get(i).getId(),
