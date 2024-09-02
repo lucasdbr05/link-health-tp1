@@ -105,6 +105,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnAcompPediMouseClicked(evt);
             }
         });
+        btnAcompPedi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcompPediActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,7 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarrinhoMouseClicked
 
     private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
-        new telaDeAcompanharPedidos().setVisible(true);
+        new telaDeAcompanharPedidos(this.user).setVisible(true);
     }//GEN-LAST:event_btnAcompPediMouseClicked
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
@@ -201,6 +206,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
         
     }//GEN-LAST:event_btnCatalogoActionPerformed
+
+    private void btnAcompPediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcompPediActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAcompPediActionPerformed
 
     /**
      * @param args the command line arguments
