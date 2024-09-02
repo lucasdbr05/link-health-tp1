@@ -92,9 +92,10 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
         for(int i=0, j=0; i< productRows.length; i++) {
             if(productRows[i].isBlank()) continue;
             Produto product = this.fromStringToProductObject(productRows[i]);
-            if(id == product.getId()) {
-                removedProduct = product;
-                continue;
+            if(id == product.getId()){
+                product.setQuantidade(0);
+                
+                productRows[i] = product.toString();
             }
             newRows[j++] = productRows[i]; 
         }
