@@ -132,7 +132,7 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
 
     private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
         
-        new telaDePedidosDistrib().setVisible(true);
+        new telaDePedidosDistrib(user).setVisible(true);
     }//GEN-LAST:event_btnPedidosMouseClicked
 
     /**

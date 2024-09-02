@@ -90,6 +90,14 @@ public class Compra {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public int getCompradorId() {
+        return this.compradorId;
+    }
+
+    public void setCompradorId(int id) {
+        this.compradorId = id;
+    }
 
     public Status getStatus() {
         return status;

@@ -4,10 +4,19 @@
  */
 package screen;
 
+import classes.Carrinho;
+import classes.Compra;
+import classes.Produto;
 import classes.Usuario;
 import classes.database.ComprasDB;
 import classes.database.ProductsDB;
 import classes.database.UsersDB;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,11 +31,81 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     private ComprasDB comprDB;
     private ProductsDB prodDB;
     private UsersDB usersDB;
-    ArrayList<Compras> 
-    public telaDePedidosDistrib() {
+    ArrayList<Compra> compras;
+    ArrayList<Compra>minhasCompras;
+    ArrayList<Produto> meusProdutos;
+    public telaDePedidosDistrib(Usuario user) {
         initComponents();
+        this.dist = user;
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
         setLocationRelativeTo(null);
+        
+        this.comprDB = new ComprasDB();
+        
+        try{
+            
+           this.compras = this.comprDB.findAll();
+        }catch(Exception e){
+        }
+        
+        for(int i = 0 ; i < compras.size(); i++)
+        {
+            Carrinho c = (compras.get(i)).getCarrinhoIni();
+            for (Map.Entry<Integer, Double> set :
+             c.getMapaPreco().entrySet())
+            {
+                Produto prod = null;
+                try {
+                    prod = prodDB.findOne(set.getKey());
+                    if(prod.getDistId() == dist.getId())
+                    {
+                        minhasCompras.add(compras.get(i));
+                        meusProdutos.add(prod);
+                    }
+                } catch (IOException ex) {
+            
+                }
+    
+            }
+            
+        }
+        this.carregarTabela();
+    }
+    
+    public void carregarTabela(){
+        
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Nome do Cliente", "Produto", "Entrega ou Retirada", "Quantidade", "Valor Total"}, 0);
+        
+        
+        
+        // se o atributo da compra - entregaOuRetirado for true -> entrga
+        // false -> retirada
+        
+        for(int i = 0; i < meusProdutos.size(); i++)
+        {
+            Object linha[];
+            String nome = null;
+            try {
+                    nome = (usersDB.findOne((minhasCompras.get(i)).getCompradorId())).getNome();
+                } catch (IOException ex) {
+            
+                }
+            String EoR = minhasCompras.get(i).isEntregaOuRetirada() ? "Entrega" : "Retirada";;
+            int q = minhasCompras.get(i).getCarrinhoIni().getQttProduto(meusProdutos.get(i).getId());
+            double p = minhasCompras.get(i).getCarrinhoIni().getPrecoProduto(meusProdutos.get(i).getId());
+            double valor = p*q;
+            linha =  new Object[] {
+                nome,
+                meusProdutos.get(i).getNome(),
+                EoR,
+                q,
+                valor
+            };
+              
+            modelo.addRow(linha);
+        }
+        
+        tblPedidos.setModel(modelo);
     }
 
     /**
@@ -38,10 +117,9 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
-        jPanel1 = new javax.swing.JPanel();
-        btnChangeStatus = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         txtPesquisar = new javax.swing.JTextField();
 
@@ -49,6 +127,8 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
         setTitle("Seus pedidos");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
         setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(78, 171, 176));
 
         jScrollPane1.setBackground(new java.awt.Color(78, 171, 176));
         jScrollPane1.setForeground(new java.awt.Color(0, 102, 102));
@@ -62,19 +142,12 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nome do Cliente", "ID", "Status", "Entrega ou Retirada", "Quantidade de Produtos", "Valor Total"
+                "Nome do Cliente", "Produto", "Status", "Entrega ou Retirada", "Quantidade ", "Valor Total"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Double.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -93,19 +166,6 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
             tblPedidos.getColumnModel().getColumn(5).setResizable(false);
         }
 
-        jPanel1.setBackground(new java.awt.Color(78, 171, 176));
-
-        btnChangeStatus.setBackground(new java.awt.Color(149, 236, 236));
-        btnChangeStatus.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnChangeStatus.setForeground(new java.awt.Color(0, 102, 102));
-        btnChangeStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3643749-edit-pen-pencil-write-writing_113397.png"))); // NOI18N
-        btnChangeStatus.setText("Alterar Status");
-        btnChangeStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeStatusActionPerformed(evt);
-            }
-        });
-
         btnPesquisar.setBackground(new java.awt.Color(149, 236, 236));
         btnPesquisar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         btnPesquisar.setForeground(new java.awt.Color(0, 102, 102));
@@ -122,22 +182,25 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnChangeStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPesquisar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnPesquisar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnChangeStatus)
                     .addComponent(btnPesquisar)
                     .addComponent(txtPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,9 +209,7 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -156,17 +217,11 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnChangeStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeStatusActionPerformed
-        
-    }//GEN-LAST:event_btnChangeStatusActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,13 +253,12 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDePedidosDistrib().setVisible(true);
+                new telaDePedidosDistrib(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChangeStatus;
     private javax.swing.JButton btnPesquisar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
