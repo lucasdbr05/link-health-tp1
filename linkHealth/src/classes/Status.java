@@ -8,6 +8,10 @@ package classes;
  *
  * @author Notebook
  */
+
+/*
+* Se trata de um enum para armazenar se o cliente cancelou o produto, já pagou ou ainda é uma de suas pendencias
+*/
 public enum Status{
 
     PENDENTE,

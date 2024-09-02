@@ -5,7 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
+/*
+* A implementação da classe de Compra fica assim;
+* Classe gerada pelo carrinho
+* é o pedido após confirmado pelo usuário
+* por conta disso deve guardar quem foi o comprador
+* o Status dessa compra que pode variar de acordo com o Enum estabelecido
+* além de guardar o carrinho que gerou essa compra, com o objetivo de saber
+* quais produtos, preços e quantidades
+* apresenta metodos também para o manuseio da informação de seu status
+*/
 public class Compra {
     
     private int id;

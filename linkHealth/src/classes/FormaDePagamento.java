@@ -1,5 +1,12 @@
 package classes;
 
+
+/*
+* Essa classe armazena no sistema todos os atributos 
+* que um cartão pode ter para o usuario
+* facilita o processo do pagamento uma vez que essa forma
+* já deve estar cadastrada no usuario anteriormente
+*/
 public class FormaDePagamento {
     
     private String cartao, titular, venc, cpf;

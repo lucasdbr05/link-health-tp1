@@ -1,0 +1,2 @@
+DISTRIBUIDOR|1|adam|junior|||11.111.111/1111-11|true
+PESSOA_FISICA|2|jo|junior1|||111.111.111-11|12|false

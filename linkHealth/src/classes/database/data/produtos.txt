@@ -1,0 +1,2 @@
+1|amoxicilina|12.00|7|false|1
+
