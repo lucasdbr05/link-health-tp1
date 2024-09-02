@@ -15,6 +15,8 @@ public class Produto {
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+    
+    public Produto(){}
 
     public Produto(String nome, Integer id, Double precoDeCusto,  boolean exigeReceita, Integer estoque, Integer dId) {
         this.nome = nome;

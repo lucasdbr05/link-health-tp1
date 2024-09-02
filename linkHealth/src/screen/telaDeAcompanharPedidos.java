@@ -38,6 +38,8 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         
         initComponents();
         
+        btnSeeDetails.setEnabled(false);
+        
         this.comprDB = new ComprasDB();
         
         try{
@@ -125,6 +127,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         btnOK = new javax.swing.JButton();
         cboxStatus = new javax.swing.JComboBox<>();
         cboxEntrRetir = new javax.swing.JComboBox<>();
+        btnSeeDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(149, 236, 236));
@@ -167,6 +170,11 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblCompras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblComprasMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblCompras);
@@ -240,6 +248,16 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             }
         });
 
+        btnSeeDetails.setBackground(new java.awt.Color(78, 171, 176));
+        btnSeeDetails.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnSeeDetails.setForeground(new java.awt.Color(0, 102, 102));
+        btnSeeDetails.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/eye_visible_hide_hidden_show_icon_145988.png"))); // NOI18N
+        btnSeeDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeeDetailsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,7 +273,9 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(btnPesquisar)
                         .addGap(27, 27, 27)
-                        .addComponent(btnOK))
+                        .addComponent(btnOK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSeeDetails))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -268,35 +288,42 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                         .addComponent(lblTipo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboxEntrRetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(cboxOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblStatus)
-                            .addComponent(cboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26)
+                            .addComponent(cboxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTipo)
-                            .addComponent(cboxEntrRetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
+                            .addComponent(jLabel1)
+                            .addComponent(cboxOrder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTipo)
+                    .addComponent(cboxEntrRetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSeeDetails))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPreco, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnPesquisar)
-                            .addComponent(btnOK))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                .addContainerGap())
+                            .addComponent(btnOK)
+                            .addComponent(btnPesquisar))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -379,6 +406,21 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         this.carregarTabela();
     }//GEN-LAST:event_btnOKActionPerformed
 
+    private void btnSeeDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeDetailsActionPerformed
+        Compra _compra = this.compras.get(tblCompras.getSelectedRow());
+        
+        new telaDetalhesPedido(_compra).setVisible(true);
+    }//GEN-LAST:event_btnSeeDetailsActionPerformed
+
+    private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked
+        int i = tblCompras.getSelectedRow();
+        if(i >= 0 && i < this.compras.size())
+        {
+            btnSeeDetails.setEnabled(true);
+            
+        }
+    }//GEN-LAST:event_tblComprasMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -417,6 +459,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnOK;
     private javax.swing.JButton btnPesquisar;
+    private javax.swing.JButton btnSeeDetails;
     private javax.swing.JComboBox<String> cboxEntrRetir;
     private javax.swing.JComboBox<String> cboxOrder;
     private javax.swing.JComboBox<String> cboxStatus;

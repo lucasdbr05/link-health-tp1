@@ -288,7 +288,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
             }
             
             int id = this.comprasDB.getNextId(ComprasDB.getPath(), 0);
-            Compra compra = new Compra(Status.PENDENTE, false, car, id);
+            Compra compra = new Compra(Status.PENDENTE, false, car, id, user.getId());
             this.comprasDB.create(compra);
             
             if(user instanceof PessoaFisica){

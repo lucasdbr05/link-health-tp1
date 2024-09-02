@@ -114,10 +114,12 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         String[] productSplited = this.splitRowString(productString);
     
         int id = Integer.parseInt(productSplited[0]);
+        int compradorId = Integer.parseInt(productSplited[4]);
         boolean isEntrega = productSplited[2].equals("true");
         
         HashMap<Integer, Double> prices = new HashMap<Integer, Double>();
         HashMap<Integer, Integer> qtts = new HashMap<Integer, Integer>();
+        
 
         int total = 0;
         for(String s: productSplited[3].split("&")){
@@ -133,7 +135,7 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         }
         Carrinho carrinho = new Carrinho(prices, qtts, total);
         
-        return new Compra(Compra.fromStringToStatus(productSplited[1]),isEntrega, carrinho,id  );
+        return new Compra(Compra.fromStringToStatus(productSplited[1]),isEntrega, carrinho,id , compradorId);
     }
     
     public static String getPath(){

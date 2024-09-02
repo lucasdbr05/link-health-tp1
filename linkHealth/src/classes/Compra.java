@@ -13,13 +13,14 @@ public class Compra {
     private int codigoStatus;
     private boolean entregaOuRetirada;
     private Carrinho carrinhoIni;
+    private int compradorId;
 
     public Compra(int id, Status status){
         this.id = id;
         this.status = status;
     }
 
-    public Compra(Status status, boolean entregaOuRetirada, Carrinho carrinhoIni, int _id) {
+    public Compra(Status status, boolean entregaOuRetirada, Carrinho carrinhoIni, int _id, int _compradorId) {
         
         //o codigo de status é gerado aleatoriamente
         
@@ -27,6 +28,7 @@ public class Compra {
         this.entregaOuRetirada = entregaOuRetirada;
         this.carrinhoIni = carrinhoIni;
         this.id = _id;
+        this.compradorId = _compradorId;
         
     }
 
@@ -43,11 +45,11 @@ public class Compra {
         }
     }
     
-    public String checaStatus(){
+    public String getStringStatus(){
         
         
             
-        switch(status){
+        switch(this.status){
         
             case PENDENTE:
                 return "PENDENTE";
@@ -128,6 +130,6 @@ public class Compra {
         String isEntrega = this.entregaOuRetirada ? "true":"false";
 
 
-        return String.format("%d|%s|%s|%s", this.id, this.checaStatus(), isEntrega, this.carrinhoIni.toString());
+        return String.format("%d|%s|%s|%s|%d", this.id, this.getStringStatus(), isEntrega, this.carrinhoIni.toString(), this.compradorId);
     }
 }
