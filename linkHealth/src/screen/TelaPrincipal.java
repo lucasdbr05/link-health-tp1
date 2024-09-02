@@ -177,7 +177,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarrinhoMouseClicked
 
     private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
-        new telaDeAcompanharPedidos().setVisible(true);
+        new telaDeAcompanharPedidos(user).setVisible(true);
     }//GEN-LAST:event_btnAcompPediMouseClicked
 
     private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
