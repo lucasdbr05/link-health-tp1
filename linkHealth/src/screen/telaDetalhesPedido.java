@@ -28,6 +28,7 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
      */
     private Usuario user;
     Compra compra;
+    private ComprasDB compraDb = new ComprasDB();
     ProductsDB productDb = new ProductsDB();
     public telaDetalhesPedido(Usuario user, Compra compra) {
         initComponents();
@@ -45,6 +46,14 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
         } else{
             
             this.btnPagar.setVisible(false);
+        }
+        
+        if (this.compra.getStringStatus().equals("CANCELADO")) {
+
+            this.btnCancelar.setVisible(false);
+        } else {
+
+            this.btnCancelar.setVisible(true);
         }
         txtReceiving.setText(
            this.compra.isEntregaOuRetirada() ? "RETIRADO NA LOJA" : "ENTREGUE EM CASA"
@@ -113,6 +122,8 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         btnPagar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Detalhes pedidos");
@@ -193,6 +204,24 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
             }
         });
 
+        btnCancelar.setBackground(new java.awt.Color(78, 171, 176));
+        btnCancelar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(0, 102, 102));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+
+        btnVoltar.setBackground(new java.awt.Color(78, 171, 176));
+        btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/large_left_arrow_icon_263657 (1).png"))); // NOI18N
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,6 +246,12 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(70, 70, 70)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancelar)
+                .addGap(25, 25, 25))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnVoltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,13 +268,16 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtReceiving, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPagar))
+                    .addComponent(btnPagar)
+                    .addComponent(btnCancelar))
                 .addGap(35, 35, 35))
         );
 
@@ -272,6 +310,22 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
         new TelaDePagamento(this.user, compra).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnPagarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        try {
+            compra.setStatus(Status.CANCELADO);
+            this.compraDb.update(compra);            
+        } catch (IOException ex) {
+
+        }
+        new telaDeAcompanharPedidos(this.user).setVisible(true);
+            this.setVisible(false);
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        new telaDeAcompanharPedidos(this.user).setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -310,7 +364,9 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnPagar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

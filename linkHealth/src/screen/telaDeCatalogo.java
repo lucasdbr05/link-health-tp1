@@ -32,6 +32,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
      */
     private Usuario user;
     private ProductsDB prodDB;
+    private UsersDB usersDb = new UsersDB();
     private ArrayList<Produto> produtos= new ArrayList<Produto>();
     private ArrayList<Produto> filteredProdutos= new ArrayList<Produto>();
     private HashSet<String> filtros = new HashSet();
@@ -61,6 +62,14 @@ public class telaDeCatalogo extends javax.swing.JFrame {
         
         for(Produto p: this.produtos) {
             if(this.filter.equals("Todos") || this.filter.equals(p.getNome())){
+                
+                try {
+                    if(this.user instanceof PessoaFisica && !((Distribuidor)(this.usersDb.findOne(p.getDistId()))).isAceitaPessoaFisica())
+                        continue;
+                } catch (IOException ex) {
+                    Logger.getLogger(telaDeCatalogo.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 ret.add(p);
             }
         }

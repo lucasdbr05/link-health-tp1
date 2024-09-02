@@ -1,2 +1,4 @@
 1|PENDENTE|false|1;12.00;12&|2
 2|PENDENTE|false|1;12.00;6&|3
+3|CANCELADO|false|2;12.00;12&|5
+
