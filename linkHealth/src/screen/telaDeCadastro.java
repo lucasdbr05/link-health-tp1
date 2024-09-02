@@ -441,11 +441,11 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeDistrActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomeDistrActionPerformed
 
     private void btnOkDistrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkDistrActionPerformed
-        // TODO add your handling code here:
+        
         
         String nome = txtNomeDistr.getText();
         String senha = new String(txtSenhaDistr.getPassword());
@@ -568,11 +568,11 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOkPfActionPerformed
 
     private void txtNomePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePfActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomePfActionPerformed
 
     private void txtIdadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdadeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtIdadeActionPerformed
 
     private void chkHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkHospitalActionPerformed
@@ -581,7 +581,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_chkHospitalActionPerformed
 
     private void btnOkjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkjActionPerformed
-        // TODO add your handling code here:
+        
         String nome = txtNomePj.getText();
         String senha = new String(txtSenhaPj.getPassword());
         String cnpj = txtCNPJpj.getText();

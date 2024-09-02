@@ -324,7 +324,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
     }//GEN-LAST:event_AddCarrinhoActionPerformed
 
     private void tblCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCatalogoMouseClicked
-        // TODO add your handling code here:
+        
         int i = tblCatalogo.getSelectedRow();
         if(i >= 0 && i < produtos.size())
         {

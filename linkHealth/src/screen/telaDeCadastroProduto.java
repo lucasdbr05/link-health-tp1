@@ -232,31 +232,31 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void txtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void txtPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtPrecoActionPerformed
 
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void rdBtnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnSimActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_rdBtnSimActionPerformed
 
     private void rdBtnNaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdBtnNaoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_rdBtnNaoActionPerformed
 
     private void btnSalvarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarProdActionPerformed
-        // TODO add your handling code here:
+        
         String nome = txtNome.getText();
         int id = parseInt(txtId.getText());
         String aux = txtPreco.getText();

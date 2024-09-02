@@ -245,15 +245,15 @@ public class telaAdicionarCarrinho extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDistribuidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDistribuidorActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtDistribuidorActionPerformed
 
     private void txtProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProdutoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtProdutoActionPerformed
 
     private void txtUnitPrecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnitPrecoActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtUnitPrecoActionPerformed
 
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed

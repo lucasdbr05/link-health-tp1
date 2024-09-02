@@ -351,11 +351,11 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkHospActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkHospActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_chkHospActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        // TODO add your handling code here:
+        
         
         try{
             this.userDb.deleteUsuario(this.user.getId());
@@ -368,7 +368,7 @@ public class telaDePerfilPJ extends javax.swing.JFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        // TODO add your handling code here:
+        
         
         this.txtCNPJ.setEnabled(true);
         this.txtNome.setEnabled(true);

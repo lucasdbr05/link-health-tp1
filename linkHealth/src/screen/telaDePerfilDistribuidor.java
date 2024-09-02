@@ -236,7 +236,7 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hasAcceptPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hasAcceptPFActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_hasAcceptPFActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
@@ -291,7 +291,7 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void txtCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNPJActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtCNPJActionPerformed
 
     private void excludeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excludeBTNActionPerformed
