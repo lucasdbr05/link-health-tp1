@@ -4,6 +4,11 @@
  */
 package screen;
 
+import classes.Usuario;
+import classes.database.ComprasDB;
+import classes.database.ProductsDB;
+import classes.database.UsersDB;
+
 /**
  *
  * @author emers
@@ -13,6 +18,11 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     /**
      * Creates new form telaDePedidosDistrib
      */
+    private Usuario dist;
+    private ComprasDB comprDB;
+    private ProductsDB prodDB;
+    private UsersDB usersDB;
+    ArrayList<Compras> 
     public telaDePedidosDistrib() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));
