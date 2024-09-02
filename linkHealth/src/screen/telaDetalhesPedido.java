@@ -57,7 +57,16 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
     
     private void carregaTabelaDetalhes() {
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Preço Unitário", "Quantidade",  "Preço Total"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Preço Unitário", "Quantidade",  "Preço Total"}, 0){
+            @Override
+            public boolean isCellEditable
+            (int row, int column
+            
+                ) {
+                //all cells false
+                return false;
+            }
+        };
         Carrinho car = this.compra.getCarrinhoIni();
         for (Map.Entry<Integer, Double> set : car.getMapaPreco().entrySet()) {
  

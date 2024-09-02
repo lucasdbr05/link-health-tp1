@@ -89,7 +89,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             if(stat.compareTo(this.stat) != 0 && this.stat.compareTo("Todos") != 0) continue;
             if(entegRetir.compareTo(this.entregRetir) != 0 && this.entregRetir.compareTo("Todos") != 0) continue;
             if(buy.getCarrinhoIni().getTotal() != this.price && this.price != -1) continue;
-            
+           
             modelo.addRow(linha);
         }
         
@@ -98,9 +98,16 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     
     public ArrayList<Compra> handleCompras(){
         
-        ArrayList<Compra> retorno = (ArrayList<Compra>) compras.clone();
+        ArrayList<Compra> retorno = new ArrayList<Compra>();
         
-        
+        for(Compra compra : compras){
+            
+            if(compra.getCompradorId() != this.user.getId())
+                continue;
+            
+            retorno.add(compra);
+        }
+
         Collections.sort(retorno, new Comparator<Compra>() {
             @Override
             public int compare(Compra a, Compra b) {
@@ -425,8 +432,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         Compra _compra = this.buys.get(tblCompras.getSelectedRow());
         
         new telaDetalhesPedido(this.user, _compra).setVisible(true);
-        
-        
+        this.setVisible(false);
     }//GEN-LAST:event_btnSeeDetailsActionPerformed
 
     private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked
