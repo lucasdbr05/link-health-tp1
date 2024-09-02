@@ -1,4 +1,0 @@
-1|PAGO|false|1;10.00;20&|7
-2|PAGO|false|2;90.00;20&|5
-3|PENDENTE|false|2;90.00;2&|5
-

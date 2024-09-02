@@ -31,6 +31,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     private String entregRetir = "Todos";
     private String stat = "Todos";
     private double price =  -1;
+    ArrayList<Compra> buys;
     
     public telaDeAcompanharPedidos(Usuario user) {
         
@@ -61,7 +62,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             }
         };
         
-        ArrayList<Compra> buys = this.handleCompras();
+         this.buys = this.handleCompras();
         
         // se o atributo da compra - entregaOuRetirado for true -> entrga
         // false -> retirada
@@ -421,11 +422,11 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOKActionPerformed
 
     private void btnSeeDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeDetailsActionPerformed
-        Compra _compra = this.compras.get(tblCompras.getSelectedRow());
+        Compra _compra = this.buys.get(tblCompras.getSelectedRow());
         
         new telaDetalhesPedido(this.user, _compra).setVisible(true);
         
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnSeeDetailsActionPerformed
 
     private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked
