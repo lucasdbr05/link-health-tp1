@@ -118,6 +118,11 @@ public class telaDeEstoque extends javax.swing.JFrame {
         tblProdutos.setGridColor(new java.awt.Color(78, 171, 176));
         tblProdutos.setSelectionBackground(new java.awt.Color(149, 236, 236));
         tblProdutos.setSelectionForeground(new java.awt.Color(0, 102, 102));
+        tblProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProdutosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProdutos);
         if (tblProdutos.getColumnModel().getColumnCount() > 0) {
             tblProdutos.getColumnModel().getColumn(0).setResizable(false);
@@ -153,6 +158,11 @@ public class telaDeEstoque extends javax.swing.JFrame {
         btnExcluir.setForeground(new java.awt.Color(0, 102, 102));
         btnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/biggarbagebin_121980.png"))); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAcessar.setBackground(new java.awt.Color(78, 171, 176));
         btnAcessar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -197,12 +207,31 @@ public class telaDeEstoque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        
+        Produto p = this.estoque.get(tblProdutos.getSelectedRow());
+        new telaDeCadastroProduto(distribuidor, p).setVisible(true);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        new telaDeCadastroProduto(distribuidor).setVisible(true);
+        new telaDeCadastroProduto(distribuidor, null).setVisible(true);
     }//GEN-LAST:event_btnNewActionPerformed
+
+    private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
+        int i = tblProdutos.getSelectedRow();
+        if(i >= 0 && i < this.estoque.size())
+        {
+            btnExcluir.setEnabled(true);
+            btnAlterar.setEnabled(true);
+        }
+    }//GEN-LAST:event_tblProdutosMouseClicked
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        try {
+            Produto p = this.estoque.get(tblProdutos.getSelectedRow());
+            this.productsDB.deleteProduto(p.getId());
+            this.carregarTabelaProdutos();
+        } catch (IOException ex) {
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments

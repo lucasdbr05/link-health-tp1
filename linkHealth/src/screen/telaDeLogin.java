@@ -385,7 +385,7 @@ public class telaDeLogin extends javax.swing.JFrame {
 
             aux = this.usersDB.findOne(inCNPJ, inPsw, 0);
             
-            System.out.println(aux);
+
             
             if(aux == null){
               JOptionPane.showMessageDialog(null, "CNPJ ou senha errados!", "Erro", JOptionPane.ERROR_MESSAGE);

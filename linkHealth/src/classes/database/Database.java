@@ -102,7 +102,6 @@ class Database implements IDatabaseRepository{
             data += (row + '\n');
         }
         
-        System.out.printf(data);
         
         this.fileWriter(path, data);
     }

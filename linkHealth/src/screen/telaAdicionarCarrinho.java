@@ -259,7 +259,7 @@ public class telaAdicionarCarrinho extends javax.swing.JFrame {
     private void txtQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantidadeActionPerformed
         
         Double totalPrice = produto.getPrecoDeCusto() * Integer.parseInt(txtQuantidade.getText());
-        System.out.print(totalPrice);
+
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed

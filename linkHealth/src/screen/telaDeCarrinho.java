@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -283,6 +284,19 @@ public class telaDeCarrinho extends javax.swing.JFrame {
             int id = this.comprasDB.getNextId(ComprasDB.getPath(), 0);
             Compra compra = new Compra(Status.PENDENTE, false, car, id);
             this.comprasDB.create(compra);
+            
+            if(user instanceof PessoaFisica){
+                ((PessoaFisica)user).setCarrinho(new Carrinho());
+            } else if (user instanceof PessoaJuridica){
+                ((PessoaJuridica)user).setCarrinho(new Carrinho());
+            }
+            
+            JOptionPane.showMessageDialog(this, "Compra feita com sucesso!", "Compra Realizada", JOptionPane.INFORMATION_MESSAGE );
+            this.setVisible(false);
+            
+            new TelaPrincipal(user).setVisible(true);
+            
+        
         } catch (IOException ex) {
         }
         

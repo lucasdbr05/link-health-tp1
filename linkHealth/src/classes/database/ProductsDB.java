@@ -90,6 +90,7 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
         String[] newRows = new String[productRows.length -1];
        
         for(int i=0, j=0; i< productRows.length; i++) {
+            if(productRows[i].isBlank()) continue;
             Produto product = this.fromStringToProductObject(productRows[i]);
             if(id == product.getId()) {
                 removedProduct = product;
@@ -124,7 +125,9 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
 
     @Override
     public Produto fromStringToProductObject(String productString) {
+
         String[] productSplited = this.splitRowString(productString);
+        
        
         int id = Integer.parseInt(productSplited[0]);
         String nome = productSplited[1];
@@ -136,5 +139,9 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
                 
         return produto;
     }    
+    
+    public static String getPath(){
+        return ProductsDB.file;
+    }
 }
 

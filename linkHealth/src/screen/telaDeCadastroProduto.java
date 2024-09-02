@@ -25,10 +25,36 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
      */
     private Distribuidor user;
     private ProductsDB productDB;
-    public telaDeCadastroProduto(Distribuidor u) {
+    private Produto produto;
+    private boolean isCreation = true;
+    public telaDeCadastroProduto(Distribuidor u, Produto produto) {
         initComponents();
         user = u;
+        this.produto = produto;
         productDB = new ProductsDB(); 
+        
+        
+        this.isCreation = this.produto == null;
+        
+        txtId.setEnabled(false);
+        txtNome.setEnabled(this.isCreation);
+        
+        try {
+            int nextId = this.productDB.getNextId(ProductsDB.getPath(), 0);
+            if(isCreation)txtId.setText(Integer.toString(nextId));
+        } catch (IOException ex) {
+        }
+        System.out.println(isCreation);
+        System.out.println(this.produto);
+        if(!isCreation){
+            txtNome.setText(this.produto.getNome());
+            txtId.setText(Integer.toString(this.produto.getId()));
+            rdBtnSim.setSelected(this.produto.isExigeReceita());
+            rdBtnNao.setSelected(!this.produto.isExigeReceita());
+            txtPreco.setText(Double.toString(this.produto.getPrecoDeCusto()));
+            txtQuantidade.setText(Integer.toString(this.produto.getQuantidade()));
+            
+        }
     }
 
     /**
@@ -158,14 +184,6 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSalvarProd))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblId)
-                            .addComponent(lblPreco))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtPreco))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
@@ -177,15 +195,24 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtQuantidade)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rdBtnSim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdBtnNao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 15, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPreco)
+                            .addComponent(lblNome)
+                            .addComponent(lblId))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPreco)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtNome)
-                                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rdBtnSim, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rdBtnNao, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 12, Short.MAX_VALUE)))))
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(302, 302, 302))
         );
         jPanel1Layout.setVerticalGroup(
@@ -193,13 +220,13 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblId))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNome))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblId)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPreco)
                     .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -278,7 +305,10 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         Produto produto = new Produto(nome, id, preco, receita, qnt, this.user.getId());
         
         try {
-            this.productDB.create(produto);
+            if(this.isCreation)this.productDB.create(produto);
+            else{
+                this.productDB.update(produto);
+            }
         } catch (IOException ex) {
             
         }
@@ -322,7 +352,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeCadastroProduto(null).setVisible(true);
+                new telaDeCadastroProduto(null, null).setVisible(true);
             }
         });
     }
