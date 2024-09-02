@@ -78,6 +78,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 btnCarrinhoMouseClicked(evt);
             }
         });
+        btnCarrinho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCarrinhoActionPerformed(evt);
+            }
+        });
 
         btnCatalogo.setBackground(new java.awt.Color(149, 236, 236));
         btnCatalogo.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -175,14 +180,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnCatalogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCatalogoMouseClicked
         new telaDeCatalogo(this.user).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCatalogoMouseClicked
 
     private void btnCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCarrinhoMouseClicked
         new telaDeCarrinho(user).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnCarrinhoMouseClicked
 
     private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
-
+        this.setVisible(false);
         new telaDeAcompanharPedidos(this.user).setVisible(true);
     }//GEN-LAST:event_btnAcompPediMouseClicked
 
@@ -200,17 +207,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
             new telaDePerfilPF((PessoaFisica)(this.user)).setVisible(true);
             return;
         }
-        
+        this.setVisible(false);
         //TODO: add the Perfil Screen of the Distribuidor
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
-        
+    
     }//GEN-LAST:event_btnCatalogoActionPerformed
 
     private void btnAcompPediActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcompPediActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAcompPediActionPerformed
+
+    private void btnCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarrinhoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCarrinhoActionPerformed
 
     /**
      * @param args the command line arguments

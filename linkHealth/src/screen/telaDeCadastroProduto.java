@@ -79,7 +79,7 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         rdBtnNao = new javax.swing.JRadioButton();
         btnSalvarProd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastre um Produto");
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage());
         setResizable(false);

@@ -78,7 +78,7 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
     @Override
     public Produto deleteProduto(int id) throws IOException {
         
-        this.fileClear(file);
+        
         String[] productRows = this.splitFileWrite(this.fileReader(file));
         
         Produto removedProduct = null;
@@ -98,7 +98,7 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
             }
             newRows[j++] = productRows[i]; 
         }
-        
+        this.fileClear(file);
         this.fileWriteRows(file, newRows);
         return removedProduct;
     }

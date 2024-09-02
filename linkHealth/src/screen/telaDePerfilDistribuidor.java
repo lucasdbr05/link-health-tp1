@@ -65,7 +65,8 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         hasAcceptPF = new javax.swing.JRadioButton();
         txtCNPJ = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Perfil");
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
 
@@ -273,7 +274,7 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         this.editButton.setEnabled(true);
         this.excludeBTN.setEnabled(true);
         this.btnSubmit.setEnabled(false);
-        
+        this.setVisible(false);
         // resetando as informações do usuário
         
         this.txtCNPJ.setText(user.getCnpj());
@@ -287,7 +288,7 @@ public class telaDePerfilDistribuidor extends javax.swing.JFrame {
         this.hasAcceptPF.setEnabled(true);
         this.editButton.setEnabled(true);
         this.excludeBTN.setEnabled(false);
-        this.btnSubmit.setEnabled(false);
+        this.btnSubmit.setEnabled(true);
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void txtCNPJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCNPJActionPerformed

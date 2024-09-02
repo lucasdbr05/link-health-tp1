@@ -1,7 +1,2 @@
-1|Lucas|10.00|30|true|2
-<<<<<<< HEAD
-2|Amoxicilina|12.00|2|false|9
-=======
-2|produto2|10.00|1|false|8
->>>>>>> 16e824e3c0f8590f5916cc68600df11fb31d7080
+2|remedio2|90.00|30|false|12
 

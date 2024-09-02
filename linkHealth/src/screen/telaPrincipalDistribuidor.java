@@ -123,16 +123,14 @@ public class telaPrincipalDistribuidor extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstoqueActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-    }//GEN-LAST:event_btnPedidosActionPerformed
+        new telaDePedidosDistrib(user).setVisible(true);    }//GEN-LAST:event_btnPedidosActionPerformed
 
     private void btnEstoqueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstoqueMouseClicked
         
-        new telaDeEstoque(((Distribuidor)this.user)).setVisible(true);
     }//GEN-LAST:event_btnEstoqueMouseClicked
 
     private void btnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPedidosMouseClicked
         
-        new telaDePedidosDistrib(user).setVisible(true);
     }//GEN-LAST:event_btnPedidosMouseClicked
 
     /**

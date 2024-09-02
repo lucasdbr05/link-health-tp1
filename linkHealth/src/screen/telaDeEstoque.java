@@ -73,7 +73,6 @@ public class telaDeEstoque extends javax.swing.JFrame {
         btnNew = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnAcessar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Seu estoque");
@@ -164,30 +163,22 @@ public class telaDeEstoque extends javax.swing.JFrame {
             }
         });
 
-        btnAcessar.setBackground(new java.awt.Color(78, 171, 176));
-        btnAcessar.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
-        btnAcessar.setForeground(new java.awt.Color(0, 102, 102));
-        btnAcessar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/3844476-eye-see-show-view-watch_110339.png"))); // NOI18N
-        btnAcessar.setText("Acessar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(btnNew)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAlterar)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnExcluir)
-                .addGap(31, 31, 31)
-                .addComponent(btnAcessar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,8 +187,7 @@ public class telaDeEstoque extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNew)
                     .addComponent(btnAlterar)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnAcessar))
+                    .addComponent(btnExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
                 .addContainerGap())
@@ -209,10 +199,12 @@ public class telaDeEstoque extends javax.swing.JFrame {
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         Produto p = this.estoque.get(tblProdutos.getSelectedRow());
         new telaDeCadastroProduto(distribuidor, p).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
         new telaDeCadastroProduto(distribuidor, null).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void tblProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProdutosMouseClicked
@@ -269,7 +261,6 @@ public class telaDeEstoque extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAcessar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnNew;

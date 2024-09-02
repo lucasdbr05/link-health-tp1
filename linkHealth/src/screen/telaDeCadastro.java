@@ -494,7 +494,7 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenhaDistr.setText("");
         txtCNPJDistr.setText("");
         chkAceitaPF.setSelected(false);
-        
+        int DISPOSE_ON_CLOSE1 = initial_screen.DISPOSE_ON_CLOSE;
         this.setVisible(false);
         new telaPrincipalDistribuidor(usuario).setVisible(true);
         
@@ -565,8 +565,10 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtSenhaPf.setText("");
         txtCPFpf.setText("");
         txtIdade.setText("");
-        new TelaPrincipal(usuario).setVisible(true);
+        int DISPOSE_ON_CLOSE1 = initial_screen.DISPOSE_ON_CLOSE;
         this.setVisible(false);
+        new TelaPrincipal(usuario).setVisible(true);
+        
     }//GEN-LAST:event_btnOkPfActionPerformed
 
     private void txtNomePfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomePfActionPerformed
@@ -627,13 +629,15 @@ public class telaDeCadastro extends javax.swing.JFrame {
             
             System.out.println(e);
         }
-        
+        this.setVisible(false);
         txtNomePj.setText("");
         txtSenhaPj.setText("");
         txtCNPJpj.setText("");
         chkHospital.setSelected(false);
+        
+        int DISPOSE_ON_CLOSE1 = initial_screen.DISPOSE_ON_CLOSE;
         new TelaPrincipal(usuario).setVisible(true);
-        this.setVisible(false);
+        
     }//GEN-LAST:event_btnOkjActionPerformed
 
     private void btnOkDistrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkDistrMouseClicked
