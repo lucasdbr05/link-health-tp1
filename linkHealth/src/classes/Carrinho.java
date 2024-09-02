@@ -53,8 +53,7 @@ public class Carrinho {
         }
         else
         {
-            System.out.println(_distribuidor.getPrecos());
-            System.out.println(_produto.getId());
+
             double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
             produtosDesejados.put(_produto.getId(),_preco );
             total += _preco *qtt;
@@ -74,13 +73,12 @@ public class Carrinho {
     }
     public void carrinhoRemove(Produto _produto, Distribuidor _distribuidor)
     {
-        double _preco = _distribuidor.getPrecos().get(_produto); 
-        produtosDesejados.remove(_produto, _distribuidor);
-        total -= _preco;
-        int v = quantidade.get(_produto);
+        double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
+        produtosDesejados.remove(_produto.getId());
+        
+        int qtt = quantidade.get(_produto);
         quantidade.remove(_produto);
-        v -= 1;
-        quantidade.put(_produto.getId(), v);
+        total -= _preco * qtt;
     }
     
     public Double getPrecoProduto(int id) {
