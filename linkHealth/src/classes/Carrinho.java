@@ -1,16 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package classes;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author psisn
- */
+/*
+* Classe usada para gerenciar os produtos desejados por
+* uma pessoa física ou pessoa jurídica até que a compra seja executada
+* e os produtos do carrinho sejam passados para a compra
+*/
 public class Carrinho {
     
     private HashMap<Integer, Double> produtosDesejados;
