@@ -278,6 +278,7 @@
             <Property name="text" type="java.lang.String" value="Sim"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rdBtnSimMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdBtnSimActionPerformed"/>
           </Events>
         </Component>
@@ -295,6 +296,7 @@
             <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="rdBtnNaoMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdBtnNaoActionPerformed"/>
           </Events>
         </Component>

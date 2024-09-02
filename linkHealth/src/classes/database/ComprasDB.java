@@ -75,6 +75,7 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         String[] newRows = new String[buyRows.length -1];
        
         for(int i=0, j=0; i< buyRows.length; i++) {
+            if(buyRows[i].isBlank()) continue;
             Compra buys = this.fromStringToBuyObject(buyRows[i]);
             if(id == buys.getId()) {
                 removedProduct = buys;
@@ -95,6 +96,7 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         
         
         for(int i=0; i< buyRows.length; i++) {
+            if(buyRows[i].isBlank()) continue;
             Compra buy = this.fromStringToBuyObject(buyRows[i]);
             if(newUserData.getId() == buy.getId()) {
                 buyRows[i] = newUserData.toString();

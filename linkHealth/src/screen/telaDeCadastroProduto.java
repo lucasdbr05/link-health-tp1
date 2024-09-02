@@ -38,14 +38,13 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         
         txtId.setEnabled(false);
         txtNome.setEnabled(this.isCreation);
-        
+        rdBtnNao.setSelected(true);
         try {
             int nextId = this.productDB.getNextId(ProductsDB.getPath(), 0);
             if(isCreation)txtId.setText(Integer.toString(nextId));
         } catch (IOException ex) {
         }
-        System.out.println(isCreation);
-        System.out.println(this.produto);
+
         if(!isCreation){
             txtNome.setText(this.produto.getNome());
             txtId.setText(Integer.toString(this.produto.getId()));
@@ -148,6 +147,11 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         rdBtnSim.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         rdBtnSim.setForeground(new java.awt.Color(0, 102, 102));
         rdBtnSim.setText("Sim");
+        rdBtnSim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdBtnSimMouseClicked(evt);
+            }
+        });
         rdBtnSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtnSimActionPerformed(evt);
@@ -158,6 +162,11 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         rdBtnNao.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         rdBtnNao.setForeground(new java.awt.Color(0, 102, 102));
         rdBtnNao.setText("Não");
+        rdBtnNao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdBtnNaoMouseClicked(evt);
+            }
+        });
         rdBtnNao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtnNaoActionPerformed(evt);
@@ -315,12 +324,26 @@ public class telaDeCadastroProduto extends javax.swing.JFrame {
         txtId.setText("");
         txtPreco.setText("");
         rdBtnSim.setSelected(false);
-        rdBtnNao.setSelected(false);
+        rdBtnNao.setSelected(true);
         txtQuantidade.setText("");
         
         this.setVisible(false);
         new telaDeEstoque(this.user).setVisible(true);
     }//GEN-LAST:event_btnSalvarProdActionPerformed
+
+    private void rdBtnSimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtnSimMouseClicked
+        if(!rdBtnSim.isSelected()){
+            rdBtnSim.setSelected(true);
+            rdBtnNao.setSelected(false);
+        }
+    }//GEN-LAST:event_rdBtnSimMouseClicked
+
+    private void rdBtnNaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdBtnNaoMouseClicked
+        if(!rdBtnNao.isSelected()){
+            rdBtnNao.setSelected(true);
+            rdBtnSim.setSelected(false);
+        }
+    }//GEN-LAST:event_rdBtnNaoMouseClicked
 
     /**
      * @param args the command line arguments

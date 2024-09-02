@@ -152,6 +152,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
 
     @Override
     public Usuario fromStringToUserObject(String userRow) {
+        if(userRow.isBlank()) return null;
         String[] userSplited = this.splitRowString(userRow);
 
         int id = Integer.parseInt(userSplited[1]);
