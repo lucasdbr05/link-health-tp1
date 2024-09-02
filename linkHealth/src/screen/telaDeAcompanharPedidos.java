@@ -129,8 +129,11 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         cboxEntrRetir = new javax.swing.JComboBox<>();
         btnSeeDetails = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Seus pedidos");
         setBackground(new java.awt.Color(149, 236, 236));
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/initial_screen.jpg")).getImage()
+        );
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(149, 236, 236));
@@ -172,6 +175,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblCompras.setEnabled(false);
         tblCompras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblComprasMouseClicked(evt);
@@ -317,13 +321,13 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                                 .addComponent(txtPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnSeeDetails))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnOK)
                             .addComponent(btnPesquisar))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -409,7 +413,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     private void btnSeeDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeeDetailsActionPerformed
         Compra _compra = this.compras.get(tblCompras.getSelectedRow());
         
-        new telaDetalhesPedido(_compra).setVisible(true);
+        new telaDetalhesPedido(this.user, _compra).setVisible(true);
     }//GEN-LAST:event_btnSeeDetailsActionPerformed
 
     private void tblComprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblComprasMouseClicked

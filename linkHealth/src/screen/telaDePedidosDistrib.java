@@ -4,10 +4,12 @@
  */
 package screen;
 
+import classes.Compra;
 import classes.Usuario;
 import classes.database.ComprasDB;
 import classes.database.ProductsDB;
 import classes.database.UsersDB;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,7 +24,7 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
     private ComprasDB comprDB;
     private ProductsDB prodDB;
     private UsersDB usersDB;
-    ArrayList<Compras> 
+    ArrayList<Compra> compras; 
     public telaDePedidosDistrib() {
         initComponents();
         getContentPane().setBackground(new java.awt.Color(149, 236, 236));

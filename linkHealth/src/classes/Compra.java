@@ -46,8 +46,6 @@ public class Compra {
     }
     
     public String getStringStatus(){
-        
-        
             
         switch(this.status){
         
