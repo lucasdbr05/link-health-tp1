@@ -54,16 +54,16 @@ public class telaDePedidosDistrib extends javax.swing.JFrame {
         
         for(int i = 0 ; i < compras.size(); i++)
         {
-            System.out.println(compras.get(i));
+
             Carrinho c = (compras.get(i)).getCarrinhoIni();
-            System.out.println("->"+c);
+           
             for (Map.Entry<Integer, Double> set :
              c.getMapaPreco().entrySet())
             {
                 Produto prod = null;
                 try {
                     prod = prodDB.findOne(set.getKey());
-                    System.out.println(prod);
+
                     if(prod != null && prod.getDistId() == dist.getId())
                     {
                         minhasCompras.add(compras.get(i));

@@ -208,7 +208,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             return;
         }
         this.setVisible(false);
-        //TODO: add the Perfil Screen of the Distribuidor
     }//GEN-LAST:event_btnPerfilActionPerformed
 
     private void btnCatalogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatalogoActionPerformed
