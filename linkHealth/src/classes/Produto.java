@@ -1,4 +1,10 @@
 package classes;
+/*
+* Classe usada para representar a abstração de um produto a ser vendido
+* dentro da aplicação, o produto têm características de preço e de permitições
+* diferenciadas com usuários de papéis distintos 
+*/
+
 
 public class Produto {
        private String nome;

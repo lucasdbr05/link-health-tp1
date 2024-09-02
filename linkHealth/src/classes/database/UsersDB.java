@@ -18,8 +18,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
     
     static String file = String.format("%s\\usuarios.txt", ENV.databasePath);
     
-    // quem for rodar não esquece de colocar a path pro seu arquivo
-    // não sei como padronizar isso
     
     @Override
     public Usuario  findOne(int id) throws IOException {
