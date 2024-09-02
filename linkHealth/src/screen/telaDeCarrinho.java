@@ -281,6 +281,12 @@ public class telaDeCarrinho extends javax.swing.JFrame {
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
         try {
+            for(Map.Entry<Integer, Integer> item: this.car.getQuantidade().entrySet()){
+                Produto p= this.prodDB.findOne(item.getKey());
+                p.setQuantidade(p.getQuantidade() - item.getValue());
+                this.prodDB.update(p);
+            }
+            
             int id = this.comprasDB.getNextId(ComprasDB.getPath(), 0);
             Compra compra = new Compra(Status.PENDENTE, false, car, id);
             this.comprasDB.create(compra);

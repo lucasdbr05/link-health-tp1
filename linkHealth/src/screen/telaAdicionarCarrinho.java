@@ -13,6 +13,7 @@ import classes.database.UsersDB;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -263,7 +264,13 @@ public class telaAdicionarCarrinho extends javax.swing.JFrame {
     }//GEN-LAST:event_txtQuantidadeActionPerformed
 
     private void btnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarActionPerformed
-       Produto newProduct = new Produto(produto.getNome(), produto.getId(), produto.getPrecoDeCusto(), produto.isExigeReceita(), Integer.parseInt(txtQuantidade.getText()), produto.getDistId());
+       int qttDesired = Integer.parseInt(txtQuantidade.getText());
+       int qttTotalEstoque = Integer.parseInt(txtQttEstoque.getText());
+       if(qttDesired> qttTotalEstoque){
+           JOptionPane.showMessageDialog(null, "Quantidade desejada maior que o estoque da empresa", "Erro", JOptionPane.ERROR_MESSAGE);
+           return;
+       }
+        Produto newProduct = new Produto(produto.getNome(), produto.getId(), produto.getPrecoDeCusto(), produto.isExigeReceita(),qttDesired , produto.getDistId());
         if(usuario instanceof PessoaFisica){
            PessoaFisica pf = (PessoaFisica) usuario;
            pf.getCarrinho().carrinhoAdd(newProduct, (Distribuidor)dist, usuario, Integer.parseInt(txtQuantidade.getText()));

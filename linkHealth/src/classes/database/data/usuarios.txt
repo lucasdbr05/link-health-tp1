@@ -1,3 +1,0 @@
-PESSOA_FISICA|1|sadsd|vsdsvdsd|||342.364.823-76|323|false
-DISTRIBUIDOR|2|nense|nense|||33.647.553/0001-90|false
-PESSOA_FISICA|3|adadasd|42342342323|||423.342.342-34|23|false
