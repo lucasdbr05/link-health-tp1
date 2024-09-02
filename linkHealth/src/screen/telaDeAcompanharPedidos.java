@@ -5,10 +5,13 @@
 package screen;
 
 import classes.Compra;
+import classes.Produto;
 import classes.Usuario;
 import classes.database.ComprasDB;
 import classes.database.UsersDB;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -44,13 +47,51 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     
     public void carregarTabela(){
         
-        UsersDB userDb = new UsersDB();
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Status", "Preço", "Entrega ou retirada"}, 0);
         
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Preço", "Distribuidor"}, 0);
+        ArrayList<Compra> buys = this.handleCompras();
         
-         try{
-             
-         }
+        // se o atributo da compra - entregaOuRetirado for true -> entrga
+        // false -> retirada
+        
+        for(Compra buy : buys){
+            Object linha[];
+            
+            String stat = "Cancelado";
+            
+            if(buy.getStatus() == Compra.fromStringToStatus("PENDENTE"))
+                stat = "Pendente";
+            
+            if(buy.getStatus() == Compra.fromStringToStatus("PAGO"))
+                    stat = "Pago";
+            
+            linha =  new Object[] {
+                stat,
+                Double.toString(buy.getCarrinhoIni().getTotal()),
+                buy.isEntregaOuRetirada() ? "Entrega" : "Retirada"
+            };
+            
+            modelo.addRow(linha);
+        }
+        
+        tblCompras.setModel(modelo);
+    }
+    
+    public ArrayList<Compra> handleCompras(){
+        
+        ArrayList<Compra> retorno = (ArrayList<Compra>) compras.clone();
+        
+        
+        Collections.sort(retorno, new Comparator<Compra>() {
+            @Override
+            public int compare(Compra a, Compra b) {
+                if(orderBy.equals("Mais Caro")) return a.getCarrinhoIni().getTotal() > b.getCarrinhoIni().getTotal() ? -1 : 1;
+                if(orderBy.equals("Mais Barato"))  return a.getCarrinhoIni().getTotal() < b.getCarrinhoIni().getTotal() ? -1 : 1;
+                return (a.getCarrinhoIni().getTotal() - b.getCarrinhoIni().getTotal()) < 0 ? -1 : 1;
+            }
+        });
+         
+        return retorno;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +108,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         txtStatus = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblProdutos = new javax.swing.JTable();
+        tblCompras = new javax.swing.JTable();
         lblPreco = new javax.swing.JLabel();
         txtPreco = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -113,8 +154,8 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
             }
         });
 
-        tblProdutos.setBackground(new java.awt.Color(78, 171, 176));
-        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
+        tblCompras.setBackground(new java.awt.Color(78, 171, 176));
+        tblCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -140,7 +181,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblProdutos);
+        jScrollPane1.setViewportView(tblCompras);
 
         lblPreco.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lblPreco.setForeground(new java.awt.Color(0, 102, 102));
@@ -309,7 +350,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new telaDeAcompanharPedidos().setVisible(true);
+                new telaDeAcompanharPedidos(null).setVisible(true);
             }
         });
     }
@@ -324,7 +365,7 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
     private javax.swing.JLabel lblPreco;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTipo;
-    private javax.swing.JTable tblProdutos;
+    private javax.swing.JTable tblCompras;
     private javax.swing.JTextField txtPreco;
     private javax.swing.JTextField txtStatus;
     private javax.swing.JTextField txtTipo;
