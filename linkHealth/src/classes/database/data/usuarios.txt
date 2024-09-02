@@ -1,3 +1,6 @@
 DISTRIBUIDOR|1|liminha|liminha|||11.111.111/1111-11|true
 PESSOA_FISICA|2|sdadasd|sasdasd|||212.312.312-21|12|false
 PESSOA_FISICA|3|123213|12312313123|||112.312.313-12|312312|false
+DISTRIBUIDOR|4|andrezao|sadsadas|||31.312.123/1231-23|false
+PESSOA_FISICA|5|vira lata|qcf aaa|||313.123.123-12|12|false
+PESSOA_FISICA|6|dasds|sasdsadas|||213.123.123-12|2312|false

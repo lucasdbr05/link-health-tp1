@@ -1,2 +1,10 @@
 1|aaaa|12.00|3|true|1
+2|amoxilina|10.00|312|false|4
+3|xarope|12.55|10|false|4
+4|minoxidil|23.25|100|false|4
+5|fralda|12.00|112|false|4
+6|halls|5.00|132|true|4
+7|tinta para cabelo|12.00|1232132|true|4
+8|sabonete|20.00|123|false|4
+9|ritalina|12.00|2086|false|4
 
