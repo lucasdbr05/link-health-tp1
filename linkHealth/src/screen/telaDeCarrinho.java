@@ -10,6 +10,7 @@ import classes.PessoaFisica;
 import classes.PessoaJuridica;
 import classes.Produto;
 import classes.Usuario;
+import classes.database.ComprasDB;
 import classes.database.ProductsDB;
 import classes.database.UsersDB;
 import java.io.IOException;
@@ -28,13 +29,14 @@ import javax.swing.table.DefaultTableModel;
 public class telaDeCarrinho extends javax.swing.JFrame {
 
     
-    private ArrayList<Produto> produtos;
+    private ArrayList<Produto> produtos ;
     private ArrayList<Double> precos;
     private ArrayList<Integer> quantidades;
     
     private Usuario user;
     private Carrinho car;
     private ProductsDB prodDB = new ProductsDB();
+    private ComprasDB comprasDB = new ComprasDB();
     public telaDeCarrinho(Usuario u) {
         initComponents();
         user = u;
@@ -299,6 +301,7 @@ public class telaDeCarrinho extends javax.swing.JFrame {
         precos.remove(i);
         quantidades.remove(i);
         lblTotal.setText("R$" + total);
+        this.carregarTabelaProdutos();
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void tblCarrinhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCarrinhoMouseClicked

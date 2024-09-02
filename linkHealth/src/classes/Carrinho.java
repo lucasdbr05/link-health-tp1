@@ -76,8 +76,8 @@ public class Carrinho {
         double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
         produtosDesejados.remove(_produto.getId());
         
-        int qtt = quantidade.get(_produto);
-        quantidade.remove(_produto);
+        int qtt = quantidade.get(_produto.getId());
+        quantidade.remove(_produto.getId());
         total -= _preco * qtt;
     }
     

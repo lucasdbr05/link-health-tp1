@@ -32,8 +32,8 @@ public class telaDeCatalogo extends javax.swing.JFrame {
      */
     private Usuario user;
     private ProductsDB prodDB;
-    private ArrayList<Produto> produtos;
-    private ArrayList<Produto> filteredProdutos;
+    private ArrayList<Produto> produtos= new ArrayList<Produto>();
+    private ArrayList<Produto> filteredProdutos= new ArrayList<Produto>();
     private HashSet<String> filtros = new HashSet();
     private ArrayList<String> ordenar;
     private String filter = "Todos";
