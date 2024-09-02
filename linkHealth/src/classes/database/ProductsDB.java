@@ -22,7 +22,7 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
             Produto produto = this.fromStringToProductObject(row);
             if(produto.getId() == id) return produto;
         }
-        throw new UnsupportedOperationException("User not found");
+        return null;
     }
     
     @Override

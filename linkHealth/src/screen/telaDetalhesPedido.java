@@ -63,8 +63,9 @@ public class telaDetalhesPedido extends javax.swing.JFrame {
  
             Object linha[];
             Produto p = new Produto();
-            try {
+            try {       
                 p = this.productDb.findOne(set.getKey());
+                if(p == null) continue;
             } catch (IOException ex) {
             }
             double value = car.getPrecoProduto(set.getKey()) * car.getQttProduto(set.getKey());

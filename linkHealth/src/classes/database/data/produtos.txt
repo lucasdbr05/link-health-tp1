@@ -1,2 +1,2 @@
-2|remedio2|90.00|30|false|12
+2|remedio2|90.00|28|false|12
 

@@ -197,7 +197,6 @@ public class telaDeAcompanharPedidos extends javax.swing.JFrame {
         lblPreco.setForeground(new java.awt.Color(0, 102, 102));
         lblPreco.setText("Preço Total:");
 
-        txtPreco.setEditable(false);
         txtPreco.setBackground(new java.awt.Color(78, 171, 176));
         txtPreco.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txtPreco.setForeground(new java.awt.Color(0, 102, 102));
