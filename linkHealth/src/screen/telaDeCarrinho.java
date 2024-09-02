@@ -38,6 +38,9 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     public telaDeCarrinho(Usuario u) {
         initComponents();
         user = u;
+        this.produtos = new ArrayList<Produto>();
+        this.precos = new ArrayList<Double>();
+        this.quantidades = new ArrayList<Integer>();
         
         if(user instanceof PessoaFisica) car = ((PessoaFisica)user).getCarrinho();
         else if(user instanceof PessoaJuridica) car = ((PessoaJuridica)user).getCarrinho();
@@ -58,11 +61,13 @@ public class telaDeCarrinho extends javax.swing.JFrame {
             quantidades.add(set.getValue());
         }
         btnRemover.setEnabled(false);
+        
+        this.carregarTabelaProdutos();
     }
     
     public void carregarTabelaProdutos()
     {
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Distribuidor", "Preço", "Quantidade",  "Preço"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Produto", "Distribuidor", "Preço Unitário", "Quantidade",  "Preço Total"}, 0);
         for(int i = 0; i < produtos.size(); i++)
         {
             if(user instanceof PessoaFisica)
@@ -75,12 +80,12 @@ public class telaDeCarrinho extends javax.swing.JFrame {
                 }
                 double valor = precos.get(i) * quantidades.get(i);
                 Object linha[];
-                
+                int prodId =  produtos.get(i).getId();
                 linha = new Object[]{
                     produtos.get(i).getNome(),
                     dist.getNome(),
-                    precos.get(i),
-                    quantidades.get(i),
+                    car.getPrecoProduto(prodId),
+                    car.getQttProduto(prodId),
                     valor};
                 
                 modelo.addRow(linha);
@@ -95,12 +100,12 @@ public class telaDeCarrinho extends javax.swing.JFrame {
                 }
                 double valor = precos.get(i) * quantidades.get(i);
                 Object linha[];
-                
+                int prodId =  produtos.get(i).getId();
                 linha = new Object[]{
                     produtos.get(i).getNome(),
                     dist.getNome(),
-                    precos.get(i),
-                    quantidades.get(i),
+                    car.getPrecoProduto(prodId),
+                    car.getQttProduto(prodId),
                     valor};
                 
                 modelo.addRow(linha);

@@ -43,24 +43,23 @@ public class Carrinho {
         return this.total;
     }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario, int qtt)
     {
         if(usuario instanceof PessoaJuridica)
         {
             double _preco = _produto.getPrecoDeCusto();
             produtosDesejados.put(_produto.getId(),_preco );
-            total += _preco;
+            total += _preco * qtt;
         }
         else
         {
-            System.out.println(_distribuidor.getPrecos());
-            System.out.println(_produto.getId());
+
             double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
             produtosDesejados.put(_produto.getId(),_preco );
-            total += _preco;
+            total += _preco *qtt;
         }
         
-        this.quantidade.put(_produto.getId(), this.quantidade.getOrDefault(_produto.getId(), 0) + _produto.getQuantidade());
+        this.quantidade.put(_produto.getId(), this.quantidade.getOrDefault(_produto.getId(), 0) +qtt);
         return;
         /*
         if(quantidade.get(_produto) != null) quantidade.put(_produto.getId(), 1);
@@ -74,13 +73,20 @@ public class Carrinho {
     }
     public void carrinhoRemove(Produto _produto, Distribuidor _distribuidor)
     {
-        double _preco = _distribuidor.getPrecos().get(_produto); 
-        produtosDesejados.remove(_produto, _distribuidor);
-        total -= _preco;
-        int v = quantidade.get(_produto);
+        double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
+        produtosDesejados.remove(_produto.getId());
+        
+        int qtt = quantidade.get(_produto);
         quantidade.remove(_produto);
-        v -= 1;
-        quantidade.put(_produto.getId(), v);
+        total -= _preco * qtt;
+    }
+    
+    public Double getPrecoProduto(int id) {
+        return this.produtosDesejados.getOrDefault(id, 0.0);
+    }
+    
+    public Integer getQttProduto(int id) {
+        return this.quantidade.getOrDefault(id, 0);
     }
 
     @Override

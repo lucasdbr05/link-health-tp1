@@ -182,6 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCarrinhoMouseClicked
 
     private void btnAcompPediMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAcompPediMouseClicked
+
         new telaDeAcompanharPedidos(this.user).setVisible(true);
     }//GEN-LAST:event_btnAcompPediMouseClicked
 

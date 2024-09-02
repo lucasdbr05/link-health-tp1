@@ -93,12 +93,12 @@ public class Distribuidor extends Usuario {
     public HashMap<Integer, Double> buildPrecos() {
         HashMap<Integer, Double> precosMap = new HashMap<>();
         for (int i = 0; i < this.produtos.size(); i ++) {
-            precosMap.put(this.produtos.get(i).getId(), this.produtos.get(i).getQuantidade()*this.produtos.get(i).getPrecoDeCusto());
+            precosMap.put(this.produtos.get(i).getId(), this.produtos.get(i).getPrecoDeCusto());
         }
         return precosMap;
     }
     public void addProduct(Produto produto) {
-        this.precos.put(produto.getId(), this.precos.getOrDefault(produto.getId(), 0.0) + produto.getPrecoDeCusto());
+        this.precos.put(produto.getId(), produto.getPrecoDeCusto());
         this.estoque.put(produto.getId(), this.estoque.getOrDefault(produto.getId(), 0) + produto.getQuantidade());
     }
 
