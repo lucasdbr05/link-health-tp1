@@ -4,12 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-enum Status{
 
-    PENDENTE,
-    PAGO,
-    CANCELADO
-}
 
 public class Compra {
     

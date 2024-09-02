@@ -71,21 +71,26 @@ class Database implements IDatabaseRepository{
 
     @Override
     public int getNextId(String path, int idPosition) throws IOException{
-        String fileData = this.fileReader(path);
+        try{
+            String fileData = this.fileReader(path);
        
-        String[] dataSplited = this.splitFileWrite(fileData);
-            
-        String data = "";
-        for(int i=dataSplited.length-1; i>=0; i--){
-           if(!dataSplited[i].isBlank()) {
-               data = dataSplited[i];
-               break;
-           }   
+            String[] dataSplited = this.splitFileWrite(fileData);
+
+            String data = "";
+            for(int i=dataSplited.length-1; i>=0; i--){
+               if(!dataSplited[i].isBlank()) {
+                   data = dataSplited[i];
+                   break;
+               }   
+            }
+
+            String[] rowData = this.splitRowString(data);
+
+            return (Integer.parseInt(rowData[idPosition]) + 1);
+        } catch (Exception ex) {
+            return 1;
         }
         
-        String[] rowData = this.splitRowString(data);
-
-        return (Integer.parseInt(rowData[idPosition]) + 1);
     }
 
     @Override

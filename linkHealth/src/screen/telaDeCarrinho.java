@@ -5,10 +5,12 @@
 package screen;
 
 import classes.Carrinho;
+import classes.Compra;
 import classes.Distribuidor;
 import classes.PessoaFisica;
 import classes.PessoaJuridica;
 import classes.Produto;
+import classes.Status;
 import classes.Usuario;
 import classes.database.ComprasDB;
 import classes.database.ProductsDB;
@@ -277,7 +279,12 @@ public class telaDeCarrinho extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComprarActionPerformed
-        
+        try {
+            int id = this.comprasDB.getNextId(ComprasDB.getPath(), 0);
+            Compra compra = new Compra(Status.PENDENTE, false, car, id);
+            this.comprasDB.create(compra);
+        } catch (IOException ex) {
+        }
         
     }//GEN-LAST:event_btnComprarActionPerformed
 

@@ -133,4 +133,8 @@ public class ComprasDB extends Database implements IComprasDBRepository {
         
         return new Compra(Compra.fromStringToStatus(productSplited[1]),isEntrega, carrinho,id  );
     }
+    
+    public static String getPath(){
+        return ComprasDB.file;
+    }
 }

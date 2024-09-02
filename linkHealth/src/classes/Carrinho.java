@@ -94,7 +94,8 @@ public class Carrinho {
         String ret = "";
         
         for (Map.Entry<Integer, Double> set: produtosDesejados.entrySet()) {
-            ret += String.format("%d;%.2f;%d", set.getKey(), set.getValue(), quantidade.get(set.getKey())) + "&";
+            String val = String.format("%.2f", set.getValue()).replace(",", ".");
+            ret += String.format("%d;%s;%d", set.getKey(), val, quantidade.get(set.getKey())) + "&";
         }
         
         

@@ -1,5 +1,0 @@
-DISTRIBUIDOR|1|asdsdas|scdsvd|||62.183.628/7136-82|false
-PESSOA_FISICA|2|sadcas|sscds|||212.132.112-23|2243|false
-PESSOA_FISICA|3|sdadsada|dfbdsgbs|||223.422.342-34|23|false
-PESSOA_FISICA|4|afsaas|bdf dfb |||312.321.312-23|21|false
-PESSOA_FISICA|5|bkbsdah|jjbsbdvks|||213.132.131-22|12223|false
