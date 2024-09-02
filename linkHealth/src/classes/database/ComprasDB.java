@@ -129,8 +129,8 @@ public class ComprasDB extends Database implements IComprasDBRepository {
             Integer qtt = Integer.parseInt(sSplited[2]);
             
             total += price * qtt;
-            qtts.put(id, qtt);
-            prices.put(id, price);
+            qtts.put(carId, qtt);
+            prices.put(carId, price);
             
         }
         Carrinho carrinho = new Carrinho(prices, qtts, total);
