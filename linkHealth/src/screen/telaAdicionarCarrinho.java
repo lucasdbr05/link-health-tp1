@@ -266,14 +266,14 @@ public class telaAdicionarCarrinho extends javax.swing.JFrame {
        Produto newProduct = new Produto(produto.getNome(), produto.getId(), produto.getPrecoDeCusto(), produto.isExigeReceita(), Integer.parseInt(txtQuantidade.getText()), produto.getDistId());
         if(usuario instanceof PessoaFisica){
            PessoaFisica pf = (PessoaFisica) usuario;
-           pf.getCarrinho().carrinhoAdd(newProduct, (Distribuidor)dist, usuario);
+           pf.getCarrinho().carrinhoAdd(newProduct, (Distribuidor)dist, usuario, Integer.parseInt(txtQuantidade.getText()));
            
            
            this.setVisible(false);
            new telaDeCatalogo(pf).setVisible(true);
        }else if (usuario instanceof PessoaJuridica) {
            PessoaJuridica pj = (PessoaJuridica) usuario;
-           pj.getCarrinho().carrinhoAdd(newProduct, (Distribuidor)dist, usuario);
+           pj.getCarrinho().carrinhoAdd(newProduct, (Distribuidor)dist, usuario, Integer.parseInt(txtQuantidade.getText()));
            
            
            this.setVisible(false);

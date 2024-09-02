@@ -130,8 +130,6 @@ public class ComprasDB extends Database implements IComprasDBRepository {
             
         }
         Carrinho carrinho = new Carrinho(prices, qtts, total);
-
-        
         
         return new Compra(Compra.fromStringToStatus(productSplited[1]),isEntrega, carrinho,id  );
     }

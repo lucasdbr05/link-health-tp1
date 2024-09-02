@@ -43,13 +43,13 @@ public class Carrinho {
         return this.total;
     }
     
-    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario)
+    public void carrinhoAdd(Produto _produto, Distribuidor _distribuidor, Usuario usuario, int qtt)
     {
         if(usuario instanceof PessoaJuridica)
         {
             double _preco = _produto.getPrecoDeCusto();
             produtosDesejados.put(_produto.getId(),_preco );
-            total += _preco;
+            total += _preco * qtt;
         }
         else
         {
@@ -57,10 +57,10 @@ public class Carrinho {
             System.out.println(_produto.getId());
             double _preco = _distribuidor.getPrecos().get(_produto.getId()); 
             produtosDesejados.put(_produto.getId(),_preco );
-            total += _preco;
+            total += _preco *qtt;
         }
         
-        this.quantidade.put(_produto.getId(), this.quantidade.getOrDefault(_produto.getId(), 0) + _produto.getQuantidade());
+        this.quantidade.put(_produto.getId(), this.quantidade.getOrDefault(_produto.getId(), 0) +qtt);
         return;
         /*
         if(quantidade.get(_produto) != null) quantidade.put(_produto.getId(), 1);
@@ -81,6 +81,14 @@ public class Carrinho {
         quantidade.remove(_produto);
         v -= 1;
         quantidade.put(_produto.getId(), v);
+    }
+    
+    public Double getPrecoProduto(int id) {
+        return this.produtosDesejados.getOrDefault(id, 0.0);
+    }
+    
+    public Integer getQttProduto(int id) {
+        return this.quantidade.getOrDefault(id, 0);
     }
 
     @Override
