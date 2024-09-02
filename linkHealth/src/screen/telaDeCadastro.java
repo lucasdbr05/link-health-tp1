@@ -495,8 +495,10 @@ public class telaDeCadastro extends javax.swing.JFrame {
         txtCNPJDistr.setText("");
         chkAceitaPF.setSelected(false);
         
-        new telaPrincipalDistribuidor(usuario).setVisible(true);
         this.setVisible(false);
+        new telaPrincipalDistribuidor(usuario).setVisible(true);
+        
+       
     }//GEN-LAST:event_btnOkDistrActionPerformed
 
     private void chkAceitaPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAceitaPFActionPerformed
