@@ -5,6 +5,11 @@ PESSOA_FISICA|4|saddas|sadhiudsg|||676.387.213-72|213|false
 PESSOA_FISICA|5|ashdha|asdhhiuagsd|||123.122.573-62|213|false
 PESSOA_FISICA|6|adasdas|aojohca|||272.364.876-23|2423|false
 PESSOA_FISICA|7|liminha|liminha|||056.474.071-37|1321|false
+<<<<<<< HEAD
 PESSOA_FISICA|8|alex|junior|Santos;|1232131321#true#false#213#13211#23/31/2111#213.321.321-32#;|111.111.111-11|12|false
 DISTRIBUIDOR|9|wallace construções|junnior|||11.111.111/1111-11|true
 
+=======
+DISTRIBUIDOR|8|loja1|12345|||12.345.678/9000-00|true
+PESSOA_FISICA|9|isa|12345|||123.456.789-00|19|false
+>>>>>>> 16e824e3c0f8590f5916cc68600df11fb31d7080

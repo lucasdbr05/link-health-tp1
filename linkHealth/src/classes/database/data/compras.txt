@@ -1,2 +1,6 @@
 1|PENDENTE|false|1;10.00;20&|7
+<<<<<<< HEAD
 2|PENDENTE|false|2;12.00;10&|8
+=======
+2|PENDENTE|false|2;10.00;1&|9
+>>>>>>> 16e824e3c0f8590f5916cc68600df11fb31d7080
