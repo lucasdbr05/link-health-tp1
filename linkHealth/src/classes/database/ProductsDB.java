@@ -50,7 +50,8 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
             
             Produto produto = this.fromStringToProductObject(row);
             if(distribuidorId == produto.getDistId())
-                produtos.add(produto);
+                if(produto.getQuantidade()> 0)
+                    produtos.add(produto);
         }
 
         return produtos;
@@ -86,8 +87,6 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
         if(productRows.length == 0) {
             return null;
         }
-        
-        String[] newRows = new String[productRows.length -1];
        
         for(int i=0, j=0; i< productRows.length; i++) {
             if(productRows[i].isBlank()) continue;
@@ -97,10 +96,9 @@ public  class ProductsDB extends Database implements IProductsDBRepository {
                 
                 productRows[i] = product.toString();
             }
-            newRows[j++] = productRows[i]; 
         }
         this.fileClear(file);
-        this.fileWriteRows(file, newRows);
+        this.fileWriteRows(file, productRows);
         return removedProduct;
     }
 
