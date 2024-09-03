@@ -10,12 +10,11 @@ import classes.database.repositories.IComprasDBRepository;
 import classes.ENV;
 import java.util.HashMap;
 
+//Responsavel por operações na tabela de compras
 public class ComprasDB extends Database implements IComprasDBRepository {
     
     static String file = String.format("%s\\compras.txt", ENV.databasePath);
     
-    // quem for rodar não esquece de colocar a path pro seu arquivo
-    // não sei como padronizar isso
     
     @Override
     public Compra  findOne(int id) throws IOException {

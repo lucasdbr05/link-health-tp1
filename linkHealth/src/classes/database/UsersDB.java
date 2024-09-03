@@ -14,6 +14,9 @@ import classes.Usuario;
 import classes.database.repositories.IUsersDBRepository;
 
 
+
+//Responsavel por operações na tabela de compras
+
 public  class UsersDB extends Database implements IUsersDBRepository {
     
     static String file = String.format("%s\\usuarios.txt", ENV.databasePath);
@@ -163,10 +166,7 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         }
 
         HashMap<String, FormaDePagamento> formaDePagamento = new HashMap<String, FormaDePagamento>();
-        
-        // Usando uma logica analoga a logica do endereço
-        // recuperamos as formas de pagamento desse usuario
-        // armazeanadas no banco de dados
+       
 
         
         for(String s : userSplited[5].split(";")){
@@ -228,7 +228,6 @@ public  class UsersDB extends Database implements IUsersDBRepository {
         
         String data = "";
         
-        // Isso aqui vai atualizar os dados
         
         if(newUserData instanceof PessoaFisica){
              

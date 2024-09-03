@@ -9,7 +9,10 @@ import java.util.Scanner;
 
 import classes.database.repositories.IDatabaseRepository;
 
-
+/*
+* Classe responsável por fazer as operações de CRUD 
+* dentro das representações de tabelas do banco
+*/
 
 class Database implements IDatabaseRepository{
     @Override

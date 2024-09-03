@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import classes.Produto;
 import classes.database.repositories.IProductsDBRepository;
 
+//Responsável por fazer altterações na tabela de produtos
 public  class ProductsDB extends Database implements IProductsDBRepository {
     
     static String file = String.format("%s\\produtos.txt", ENV.databasePath);
     
-    // quem for rodar não esquece de colocar a path pro seu arquivo
-    // não sei como padronizar isso
+
     
     @Override
     public Produto  findOne(int id) throws IOException {
