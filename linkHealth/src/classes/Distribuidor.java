@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Distribuidor extends Usuario {
+    
     private String cnpj;
     private ArrayList<Produto> produtos;
     private HashMap<Integer, Integer> estoque = new HashMap<>();
@@ -40,6 +41,7 @@ public class Distribuidor extends Usuario {
         this.cnpj = _cnpj;
         this.aceitaPessoaFisica = _aceitaPessoaFisica;
         try {
+            //Pegar do Banco de Dados os Produtos desse Distribuidor 
             this.produtos = new ProductsDB().findAllByUser(id);
         } catch (IOException ex) {
             Logger.getLogger(Distribuidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,6 +100,7 @@ public class Distribuidor extends Usuario {
         return precosMap;
     }
     public void addProduct(Produto produto) {
+        //Adicionar produto ao estoque 
         this.precos.put(produto.getId(), produto.getPrecoDeCusto());
         this.estoque.put(produto.getId(), this.estoque.getOrDefault(produto.getId(), 0) + produto.getQuantidade());
     }
