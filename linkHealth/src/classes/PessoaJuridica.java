@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PessoaJuridica extends Usuario {
-
+    // Atributos de uma Pessoa Jurídica
     private String cnpj;
     private boolean hospital = false;
     private Carrinho meuCarrinho;

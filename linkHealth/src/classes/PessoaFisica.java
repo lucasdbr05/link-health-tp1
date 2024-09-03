@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class PessoaFisica extends Usuario{
-    
+    //Atributos de uma Pessoa Física 
     private String cpf;
     private int idade;
     private boolean receita = false;
