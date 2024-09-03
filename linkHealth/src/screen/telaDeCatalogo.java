@@ -64,7 +64,7 @@ public class telaDeCatalogo extends javax.swing.JFrame {
             if(this.filter.equals("Todos") || this.filter.equals(p.getNome())){
                 
                 try {
-                    if(this.user instanceof PessoaFisica && !((Distribuidor)(this.usersDb.findOne(p.getDistId()))).isAceitaPessoaFisica())
+                    if(this.user instanceof Distribuidor && !((Distribuidor)(this.usersDb.findOne(p.getDistId()))).isAceitaPessoaFisica())
                         continue;
                 } catch (IOException ex) {
                     Logger.getLogger(telaDeCatalogo.class.getName()).log(Level.SEVERE, null, ex);
